@@ -1,6 +1,7 @@
-## project-atelier
+# project-atelier
 
-Getting Started
+##Getting Started
+
 Fork and clone this repo, then open two terminal tabs and navigate to the root directory.
 
 In one of the two seperate terminal tabs run the following scripts:
