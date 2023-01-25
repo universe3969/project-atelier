@@ -14,7 +14,7 @@ Open localhost:9000 in the browser and you should see Project-Atelier if React i
 
 
 # Summary 
-Project-Atelier about desigining the retail portal to implement below mentioned features:
+Project-Atelier is about desigining the retail portal to implement below mentioned features:
 
 1. Product detail
 2. Ratings & Reviews
