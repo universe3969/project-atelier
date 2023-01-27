@@ -1,5 +1,13 @@
-$body-color: rgb(255, 21, 0);
+@import './variables.scss';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  color: $body-color;
+  background-color: $primary-color;
+  font-family: $dosis;
+  line-height: 1.5;
 }
