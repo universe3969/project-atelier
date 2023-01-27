@@ -1,5 +1,4 @@
-$primary-color: #ffffff;
-$font-stack: Arial, Helvetica, sans-serif;
+@import './variables.scss';
 
 * {
   box-sizing: border-box;
@@ -9,6 +8,6 @@ $font-stack: Arial, Helvetica, sans-serif;
 
 body {
   background-color: $primary-color;
-  font-family: $font-stack;
+  font-family: $dosis;
   line-height: 1.5;
 }
