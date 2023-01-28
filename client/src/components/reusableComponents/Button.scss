@@ -1,0 +1,41 @@
+@import '../../variables.scss';
+
+@mixin button-style {
+  padding: 1rem;
+  font-size: medium;
+  font-weight: 600;
+}
+
+.primary {
+  @include button-style();
+  border: none;
+  background-color: $secondary-color;
+  color: $primary-color;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.secondary {
+  @include button-style();
+  background-color: $primary-color;
+  color: $secondary-color;
+  border-width: 1.5px;
+  &:hover {
+    background-color: $secondary-color;
+    color: $primary-color;
+  }
+}
+
+.primary.active {
+  &:hover {
+    opacity: 1;
+  }
+};
+
+.secondary.active {
+  &:hover {
+    background-color: $primary-color;
+    color: $secondary-color;
+  }
+}
