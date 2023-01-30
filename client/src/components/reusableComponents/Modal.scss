@@ -1,0 +1,41 @@
+@import '../../variables.scss';
+
+@mixin modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0;
+}
+
+@mixin modal-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+}
+
+.modal.clear {
+  .modal-backdrop {
+    @include modal-backdrop();
+    background-color: transparent;
+  };
+  .modal-content {
+    @include modal-content();
+    border: solid black 0.5px;
+  }
+}
+
+.modal.blur {
+  .modal-backdrop {
+    @include modal-backdrop();
+    background-color: rgb(75, 75, 75);
+    opacity: 0.8;
+  };
+  .modal-content {
+    @include modal-content();
+  }
+}
+
