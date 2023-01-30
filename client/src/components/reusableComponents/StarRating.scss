@@ -1,0 +1,14 @@
+.outer-star {
+  display: inline-block;
+  position: relative;
+  font-size: 1rem;
+};
+
+.inner-star {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1rem;
+  color: #000;
+  overflow: hidden;
+};
