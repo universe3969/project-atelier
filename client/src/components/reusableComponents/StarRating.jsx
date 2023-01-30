@@ -4,7 +4,6 @@ import { MdStar } from 'react-icons/md';
 import './StarRating.scss';
 
 const StarRating = ({ rating, className }) => {
-
   const renderStars = [];
 
   if (rating) {
