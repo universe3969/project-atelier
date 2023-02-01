@@ -1,0 +1,29 @@
+.review-container {
+  background-color: #eae7e7;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-left: 20rem;
+  border-top: .2em solid #f4f2f2;
+  z-index: 1;
+  text-align:left;
+}
+
+.sort-option {
+  width: 100px;
+  height: 35px;
+  text-align: center;
+  background-color: rgb(222, 224, 220);
+}
+
+.secondary {
+  width: 200px;
+  height: 35px;
+  text-align: center;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+  padding-right: .01rem;
+  padding-left: .002;
+
+}
