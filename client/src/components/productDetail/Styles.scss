@@ -1,0 +1,73 @@
+.overview-container {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+.big-thumbnail {
+  object-fit: cover;
+  height: 600px;
+  width: 500px;
+}
+.thumbnail-list {
+  display: inline;
+  width: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.thumbnail {
+  height:50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.right-container {
+  margin-left: 30px;
+}
+
+.style-text {
+  display: inline;
+}
+.style-icons {
+  width: 75%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.style-icon {
+  height: 100px;
+  width: 100px;
+  padding: 10px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.size-selection {
+  height: 60px;
+  width: 250px;
+  margin-right: 20px;
+}
+.quantity-selection {
+  height: 60px;
+  width: 150px;
+}
+
+.cart-top {
+  margin-bottom: 10px;
+}
+.addto-bag {
+  height: 60px;
+  width: 300px;
+  border-style: solid;
+  border-color: gray;
+  border-width: 1px;
+  background-color: white;
+  margin-right: 10px;
+}
+
+.save {
+  height: 60px;
+  width: 60px;
+  border-style: solid;
+  border-color: gray;
+  border-width: 1px;
+  background-color: white;
+}

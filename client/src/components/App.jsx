@@ -1,14 +1,12 @@
 import React from 'react';
-import Thumbnail from './productDetail/Thumbnail.jsx';
-import ThumbnailList from './productDetail/ThumbnailList.jsx';
+import Overview from './productDetail/Overview.jsx';
 
 const App = () => {
 
   return (
     <div>
       <h3>Project Atelier</h3>
-      <ThumbnailList />
-      <Thumbnail />
+      <Overview />
     </div>
   );
 };

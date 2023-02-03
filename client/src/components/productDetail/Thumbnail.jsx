@@ -1,12 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 
-const Thumbnail = () => {
-
-
+const Thumbnail = ({photos}) => {
+  const [selectedPhoto, setSelectedPhoto] = useState();
+  useEffect(() => {
+    if (photos) {
+      setSelectedPhoto(photos[0].url);
+    }
+  }, [photos]);
 
   return (
-    <img/>
+    <img className="big-thumbnail" src={selectedPhoto}/>
   );
 }
 
