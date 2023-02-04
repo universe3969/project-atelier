@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .carousel-container {
   position: relative;
   padding: 0;
@@ -7,10 +9,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 50%;
+    top: 45%;
     border: none;
     background-color: transparent;
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: rgb(90, 90, 90);
     z-index: 5;
     &:hover {
@@ -27,11 +29,12 @@
   }
 
   .carousel-content {
-    --items-per-screen: 4;
+    --items-per-screen: $itemPerScreen;
     --added-Width: 0;
     display: flex;
     transform: translateX(var(--added-Width));
     transition: transform 250ms ease-in-out;
+    height: fit-content;
 
     .card-container{
       flex: 0 0 calc(100% / var(--items-per-screen));
@@ -51,6 +54,10 @@
 
     @media only screen and (max-width: 1500px) and (min-width: 1201px) {
       --items-per-screen: 5;
+    }
+
+    @media only screen and (max-width: 1900px) and (min-width: 1501px) {
+      --items-per-screen: 6;
     }
   }
 }

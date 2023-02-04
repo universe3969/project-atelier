@@ -4,10 +4,12 @@ import { FiChevronRight } from 'react-icons/fi';
 import './Carousel.scss';
 import ProductCard from './ProductCard.jsx';
 
-const Carousel = ({ items, onAdd }) => {
+const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef();
   const itemsPerScreen = useRef(0);
+
+  const itemsLength = type === 'yourOutfit' ? items.length + 1 : items.length;
 
   const onHandleClick = (direction) => {
     const slider = sliderRef.current;
@@ -29,7 +31,7 @@ const Carousel = ({ items, onAdd }) => {
       width += cardWidth;
       setCurrentIndex(currentIndex - 1);
     } else if (direction === 'right') {
-      if (index === items.length) {
+      if (index === sliderRef.current.childNodes.length) {
         return;
       }
       width -= cardWidth;
@@ -39,25 +41,43 @@ const Carousel = ({ items, onAdd }) => {
   };
 
   let renderededItems = [];
-  if (items) {
+  if (items.length) {
     renderededItems = items.map(item =>
-      <ProductCard key={item.info.id} product={item} onAdd={onAdd}/>
+      <ProductCard
+        key={item.info.id}
+        type={type}
+        product={item}
+        onButtonClick={onButtonClick}
+        removedId={removedId}
+      />
     );
+  }
+
+  let showNavigation = false;
+  if (type !== 'yourOutfit') {
+    showNavigation = true;
+  } else {
+    if (itemsLength !== 1) {
+      showNavigation = true;
+    }
   }
 
   return (
     <div className='carousel-container'>
-      {currentIndex !== 0 &&
+      {showNavigation &&
+        currentIndex !== 0 &&
         <button className='left' onClick={() => onHandleClick('left')}>
           <FiChevronLeft/>
         </button>
       }
-      {(currentIndex + itemsPerScreen.current) !== items.length &&
+      {showNavigation &&
+        (currentIndex + itemsPerScreen.current) !== itemsLength &&
         <button className='right' onClick={() => onHandleClick('right')}>
           <FiChevronRight/>
         </button>
       }
       <div className='carousel-content' ref={sliderRef}>
+        {type === 'yourOutfit' && <ProductCard type='addProduct' onButtonClick={onAddProduct}/>}
         {items && renderededItems}
       </div>
     </div>

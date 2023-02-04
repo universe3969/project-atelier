@@ -1,41 +1,43 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Carousel from './Carousel.jsx';
 import Modal from '../reusableComponents/Modal.jsx';
+import CompareProductsCard from './CompareProductsCard.jsx';
+import './relatedItemsAndOutfitCreation.scss';
 
-const RelatedProducts = () => {
-  const [relatedProducts, setRelatedProducts] = useState([]);
+const RelatedProducts = ({ relatedProducts }) => {
   const [comparingProducts, setComparingProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
-
-  const addComparingProducts = (productId, action) => {
-    // console.log(productId);
-    if (action === 'add') {
-      comparingProducts.length === 0
-        ? setComparingProducts([productId])
-        : setComparingProducts(prev => [prev.pop(), productId]);
-    } else {
-      setComparingProducts(prev => prev.filter(el => el !== productId));
-    }
-  };
-
-  if (comparingProducts === 2) {
-    setShowModal(true);
-  }
-
-  console.log(comparingProducts);
+  const [removedId, setRemovedId] = useState(0);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/relatedProducts/37317')
-      .then(({ data }) => setRelatedProducts(data));
-  }, []);
+    if (comparingProducts.length === 2) {
+      setShowModal(true);
+    }
+  }, [comparingProducts]);
+
+  const addComparingProducts = (productId) => {
+    const productToCompare = relatedProducts.find(el => el.info.id === productId);
+    setComparingProducts([relatedProducts[0], productToCompare]);
+  };
+
+  const handleModalClose = () => {
+    setRemovedId(comparingProducts[1].info.id);
+    setShowModal(false);
+    setComparingProducts(prev => [prev[0]]);
+  };
 
   return (
     <div>
-      <Carousel items={relatedProducts} onAdd={addComparingProducts}/>
+      <h3 className='header'>RELATED PRODUCTS</h3>
+      <Carousel
+        type='relatedProducts'
+        items={relatedProducts}
+        onButtonClick={addComparingProducts}
+        removedId={removedId}
+      />
       {showModal &&
-        <Modal onClose={() => setShowModal(false)}>
-
+        <Modal className='modal clear' onClose={handleModalClose}>
+          <CompareProductsCard comparingProducts={comparingProducts}/>
         </Modal>
       }
     </div>

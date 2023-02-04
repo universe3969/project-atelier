@@ -1,12 +1,12 @@
 import React from 'react';
-import RelatedProducts from './relatedItemsAndOutfitCreation/RelatedProducts.jsx';
+import RelatedItemsAndOutfitCreation from './relatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreation.jsx';
 
 const App = () => {
 
   return (
     <div>
       <h3>Project Atelier</h3>
-      <RelatedProducts/>
+      <RelatedItemsAndOutfitCreation/>
     </div>
   );
 };

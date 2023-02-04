@@ -4,3 +4,25 @@
 $primary-color: #fff;
 $secondary-color: #000;
 $dosis: 'Dosis', sans-serif;
+$itemsPerScreen: 4;
+
+@media only screen and (max-width: 600px) {
+  $itemsPerScreen: 2;
+}
+
+@media only screen and (max-width: 800px) and (min-width: 601px) {
+  $itemsPerScreen: 3;
+}
+
+@media only screen and (max-width: 1200px) and (min-width: 801px) {
+  $itemsPerScreen: 4;
+}
+
+@media only screen and (max-width: 1500px) and (min-width: 1201px) {
+  $itemsPerScreen: 5;
+}
+
+@media only screen and (max-width: 1900px) and (min-width: 1501px) {
+  $itemsPerScreen: 6;
+}
+
