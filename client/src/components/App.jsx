@@ -8,7 +8,7 @@ const App = () => {
 
   useEffect(() => {
     axios.get('http://localhost:3000/api/products/37311')
-      .then(data => setCurrentProduct(data));
+      .then(({ data }) => setCurrentProduct(data));
   }, []);
 
   return (
