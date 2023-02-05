@@ -1,11 +1,67 @@
-import React from 'react';
-import ReviewList from './ReviewList.jsx';
+/* eslint-disable camelcase */
+import React, { useEffect, useState } from 'react';
+import ReviewList from './ReviewBreakDown/ReviewList.jsx';
+import RatingList from './RatingBreakDown/RatingList.jsx';
+import axios from 'axios';
 
-const RatingsAndReviews = () => {
+const initialStars = {
+  5: false,
+  4: false,
+  3: false,
+  2: false,
+  1: false,
+};
+
+const RatingsAndReviews = ({productName}) => {
+  const [ productReviews, setProductReviews ] = useState([]);
+  const [ sortBy, setSortBy ] = useState('relevance');
+  const [render, setRender] = useState([]);
+  const [reviewMetaData, setReviewMetaData] = useState({});
+  const [starFilter, setStarFilter] = useState(initialStars);
+  useEffect(() => {
+    axios.get('http://localhost:3000/reviews', {
+      params: {
+        product_id: 37315,
+        sort: sortBy,
+        count: 200,
+      },
+    })
+      .then(({data}) => {
+        let reviews = data.results;
+        console.log(reviews);
+        setProductReviews([...reviews]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [sortBy, render]);
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/reviews/meta', {
+      params: {
+        product_id: 37315,
+      },
+    })
+      .then(({data}) => {
+        console.log(data);
+        setReviewMetaData(data);
+      }).catch((err) => {
+        console.log(err);
+      });
+  }, [render]);
+
+  const handleSortClick = (e) => {
+    setSortBy(e.target.value);
+  };
+
+  const handleStarClick = (starType) => {
+    setStarFilter({...starFilter, [starType]: !starFilter[starType]});
+  };
+
   return (
-    <div className='review-containers'>
-      <div>Ratings-Space</div>
-      <ReviewList/>
+    <div className='rating-review-containers'>
+      <RatingList reviewMetaData={reviewMetaData} handleStarClick={handleStarClick} starFilter={starFilter} setStarFilter={setStarFilter} />
+      <ReviewList productReviews={productReviews} handleSortClick={handleSortClick} sortBy={sortBy} setRender={setRender} reviewMetaData={reviewMetaData} productName={productName}/>
     </div>
 
   );

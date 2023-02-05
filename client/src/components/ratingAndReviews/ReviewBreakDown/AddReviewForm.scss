@@ -1,0 +1,53 @@
+.write-review-stars{
+  font-size: 8vw;
+  width: 50%;
+  max-width: 350px;
+}
+.summary{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.name-email{
+  align-items: flex-end;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.review-summary {
+  border-radius: 10px;
+  margin: 0 0 15px 0;
+  font-size: 150%;
+  padding: 7px;
+  width: 70%;
+}
+.review-content {
+  border-radius: 10px;
+  flex:1;
+  font-size: 150%;
+  min-height: 20vh;
+  margin: 0 0 15px 0;
+  padding: 7px;
+}
+.write-top {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 15px 0;
+}
+.bottom {
+  display: flex;
+  justify-content: space-between;
+}
+.submit-review {
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  padding: 7px;
+}
+.name {
+  height: 40%;
+  width: 60%;
+}
+.email {
+  height: 40%;
+  width: 80%;
+}

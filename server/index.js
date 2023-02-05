@@ -20,15 +20,15 @@ const auth = { headers: {'Authorization': process.env.TOKEN} };
 // Routes
 app.get('/reviews', (req, res) => {
   console.log('THIS IS A GET REQUEST----->');
-  const {sort} = req.query;
+  const {sort, product_id, count} = req.query;
   axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/', {
     headers: {
       'Authorization': process.env.TOKEN
     },
     params: {
       // eslint-disable-next-line camelcase
-      product_id: 37315,
-      count: '50',
+      product_id,
+      count,
       sort,
     },
   }).then(({ data }) => {
@@ -65,10 +65,9 @@ app.get('/reviews/meta', (req, res) => {
     },
   })
     .then(({ data }) => {
-      res.status(200);
-      res.json(data);
+      res.send(data);
     })
-    .catch(() => res.send('There was an error'));
+    .catch((err) => res.send('There was an error'));
 });
 
 app.put('/reviews/:review_id/helpful', (req, res) => {
@@ -92,7 +91,27 @@ app.put('/reviews/:review_id/helpful', (req, res) => {
     });
 });
 
-//Josh made this comment!
+app.put('/reviews/:review_id/report', (req, res) => {
+  console.log('There was a put request from /reviews/:review_id/report');
+  const { review_id } = req.params;
+
+  axios.put(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/reviews/${review_id}/helpful`, null, {
+    headers: {
+      Authorization: process.env.TOKEN,
+    },
+  })
+    .then(() => {
+      console.log('Reported successfully');
+      res.status(200);
+      res.end();
+    })
+    .catch((err) => {
+
+      console.log('There was an error');
+      res.end();
+    });
+});
+
 
 app.listen(3000, () => {
   console.log('Server is listening on port 3000');
