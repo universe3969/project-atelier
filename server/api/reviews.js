@@ -31,11 +31,9 @@ const reportReview = (reviewId) => {
     .then(data => data);
 };
 
-const postReview = (productId, reviewPost) => {
-  instance.post(process.env.REVIEW_URL, {
-    product_id: productId,
-    ...reviewPost
-  }).then(({ data }) => data);
+const postReview = (reviewPost) => {
+  instance.post(process.env.REVIEW_URL, reviewPost)
+    .then(data => data);
 };
 
 module.exports = {
