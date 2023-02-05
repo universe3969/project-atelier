@@ -19,7 +19,9 @@ const {
   getQuestions,
   updateQuestionHelpfulCount,
   updateAnswerHelpfulCount,
-  reportAnswer
+  reportAnswer,
+  postQuestion,
+  postAnswer
 } = require('./questionsAndAnswers');
 
 
@@ -35,6 +37,8 @@ module.exports = {
   getQuestions,
   updateQuestionHelpfulCount,
   updateAnswerHelpfulCount,
-  reportAnswer
+  reportAnswer,
+  postQuestion,
+  postAnswer
 };
 

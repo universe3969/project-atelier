@@ -4,13 +4,15 @@ const {
   getProductQuestionsAndAnswers,
   updateQuestionHelpfulFeedback,
   updateAnswerHelpfulFeedback,
-  updateAnswerReportStatus
+  updateAnswerReportStatus,
+  addProductQuestion,
+  addProductAnswer
 } = require('./questionsAndAnswersController');
 const {
   getProductReviewsAndMeta,
   updateReviewHelpfulFeedback,
   updateReviewReportStatus,
-  addProductPreview
+  addProductReview
 } = require('./reviewsController');
 
 
@@ -21,8 +23,10 @@ module.exports = {
   updateQuestionHelpfulFeedback,
   updateAnswerHelpfulFeedback,
   updateAnswerReportStatus,
+  addProductQuestion,
+  addProductAnswer,
   getProductReviewsAndMeta,
   updateReviewHelpfulFeedback,
   updateReviewReportStatus,
-  addProductPreview
+  addProductReview
 };

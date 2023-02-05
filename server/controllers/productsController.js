@@ -9,7 +9,7 @@ const getOverviewProduct = async (req, res) => {
 
   const info = await getProductInfo(productId);
   const styles = await getProductStyles(productId);
-  const { reviews, avgRating } = await getProductReview(productId);
+  const { reviews, avgRating } = await getProductReview(productId, 'relevant', 100);
   const product = { info, styles, reviews, avgRating };
   res.status(200).send(product);
 };
