@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Overview from './productDetail/Overview.jsx';
+
 
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
