@@ -8,10 +8,11 @@ const App = () => {
     axios.get('/api/products/37311')
       .then(data => setCurrentProduct(data));
   });
+
   return (
     <div>
       <h3>Project Atelier</h3>
-      <Overview />
+      {currentProduct ? <Overview currentProduct={currentProduct}/> : null}
     </div>
   );
 };
