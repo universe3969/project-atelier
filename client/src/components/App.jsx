@@ -5,9 +5,9 @@ const App = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {
-    axios.get('/api/products/37311')
-      .then(data => setCurrentProduct(data));
-  });
+    axios.get('http://localhost:3000/api/products/37311')
+      .then(({ data }) => setCurrentProduct(data));
+  }, []);
 
   return (
     <div>
