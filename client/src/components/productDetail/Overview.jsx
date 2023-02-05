@@ -12,7 +12,18 @@ const Overview = ({productId}) => {
   const [defaultPrice, setDefaultPrice] = useState();
   const [slogan, setSlogan] = useState();
 
+
+
+  // axios.get('http://localhost:3000/api/products/37311')
+  //     .then(response => {
+  //       console.log(response.data);
+  //     })
+  //     .catch(err => {
+  //       console.log('request err: ', err.message);
+  //     })
+
   useEffect(() => {
+
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37311', //change to productId
     {
       headers: {
@@ -92,7 +103,7 @@ const Overview = ({productId}) => {
       </div>
     </div>
     );
-  }
+}
 
 
 export default Overview;
