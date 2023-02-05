@@ -6,6 +6,8 @@ export default function Cart ({styles, styleId, currStyle}) {
 
   let storageArr = [];
   let size, quantity;
+  let sizeIndex = 0;
+  let quantityIndex = 0;
 
   if (currStyle) {
     let storageObj = currStyle.skus;
@@ -13,15 +15,16 @@ export default function Cart ({styles, styleId, currStyle}) {
       storageArr.push(storageObj[key]);
     }
 
+
     size = storageArr.map(storage => {
-      <option value={storage.size}>{storage.size}</option>
+
+      return <option key={sizeIndex++} value={storage.size}>{storage.size}</option>
     })
 
     quantity = storageArr.map(storage => {
-      <option value={storage.quantity}>{storage.quantity}</option>
+      return <option key={quantityIndex++} value={storage.quantity}>{storage.quantity}</option>
     })
   }
-
 
   const handleSizeChange = (event) => {
     setSelectedSize(event.target.value);
@@ -35,11 +38,11 @@ export default function Cart ({styles, styleId, currStyle}) {
     <div>
       <div className="cart-top">
         <select className="size-selection" value={selectedSize} onChange={handleSizeChange}>
-          <option value="SELECT SIZE">SELECT SIZE</option>
+          <option >SELECT SIZE</option>
           {size}
         </select>
         <select className="quantity-selection" value={selectedQuantity} onChange={handleQuantityChange}>
-          <option value="SELECT A NUMBER">SELECT A NUMBER</option>
+          <option >SELECT A NUMBER</option>
           {quantity}
         </select>
       </div>

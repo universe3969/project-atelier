@@ -34,6 +34,7 @@ const Overview = ({productId}) => {
 
   const [styles, setStyles] = useState();
   const [styleId, setStyleId] = useState();
+
   useEffect(() => {
     axios.get('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/products/37311/styles', //change to productId
     {
@@ -42,7 +43,7 @@ const Overview = ({productId}) => {
       }
     })
       .then(response => {
-        console.log(response.data)
+        console.log(response.data.results)
         setStyles(response.data.results);
         setStyleId(response.data.results[0].style_id);
       })
@@ -67,30 +68,31 @@ const Overview = ({productId}) => {
         return style.style_id === styleId;
       })[0])
     }
-  }, [styles]);
+  }, [styles, styleId]);
+
+  console.log(currStyle)
 
   useEffect(() => {
     if (currStyle) {
-      setPhotos(currStyle.photos)
+      setPhotos(currStyle.photos);
+      setSalesPrice(currStyle.sale_price);
+      setStyleName(currStyle.name)
     }
   }, [currStyle]);
 
 
-  if (styles) {
-    return (
-      <div className="overview-container">
-        <ThumbnailList photos={photos}/>
-        <Thumbnail photos={photos}/>
-        <div className="right-container">
-          <ProductInfo productName={productName} category={category} defaultPrice={defaultPrice}/>
-          <Styles styles={styles} setStyleId={setStyleId}/>
-          <Cart styles={styles} styleId={styleId} currStyle={currStyle}/>
-        </div>
+  return (
+    <div className="overview-container">
+      <ThumbnailList photos={photos}/>
+      <Thumbnail photos={photos}/>
+      <div className="right-container">
+        <ProductInfo productName={productName} category={category} defaultPrice={defaultPrice}/>
+        {styles ? <Styles styles={styles} styleName={styleName} styleId={styleId} setStyleId={setStyleId}/> : null}
+        {styles ? <Cart styles={styles} styleId={styleId} currStyle={currStyle}/> : null}
       </div>
+    </div>
     );
-  } else {
-    return (<div>waiting for styles to load</div>)
   }
-}
+
 
 export default Overview;
