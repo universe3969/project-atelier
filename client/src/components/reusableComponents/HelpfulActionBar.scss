@@ -23,7 +23,11 @@
   .side-button a, span {
     text-decoration: underline;
     text-underline-offset: 0.2rem;
-  }
+
+    &:hover {
+      cursor: pointer;
+    }
+  };
 
   .side-button {
     margin-left: 0.3rem;
