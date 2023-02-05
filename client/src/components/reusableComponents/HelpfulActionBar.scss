@@ -1,0 +1,31 @@
+.helpful-action-bar {
+  display: flex;
+  font-size: 0.9rem;
+  color: rgb(90, 90, 90);
+
+  & > * {
+    margin-right: 0.3rem;
+  }
+  .helpful-button {
+    display: flex;
+    border-right: solid black 0.5px;
+    padding-right: 0.3rem;
+
+    & > * {
+      margin-right: 0.3rem;
+    };
+
+    span {
+      margin-right: 0.3rem;
+    }
+  }
+
+  .side-button a, span {
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+  }
+
+  .side-button {
+    margin-left: 0.3rem;
+  }
+}
