@@ -1,12 +1,12 @@
 const instance = require('./instance');
 require('dotenv').config();
 
-const getProductReview = (productId, sortCriteria, count ) => {
+const getProductReview = (productId, sortCriteria ) => {
   return instance.get(process.env.REVIEW_URL, {
     params: {
       product_id: productId,
       sort: sortCriteria,
-      count
+      count: 200
     }
   }).then(({ data }) => {
     let avgRating = (data.results.reduce((total, review) =>

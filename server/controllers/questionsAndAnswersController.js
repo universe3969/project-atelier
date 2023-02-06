@@ -46,6 +46,7 @@ const updateQuestionHelpfulFeedback = async (req, res) => {
 
 const updateAnswerHelpfulFeedback = async (req, res) => {
   const { answerId } = req.params;
+
   try {
     await updateAnswerHelpfulCount(answerId);
     res.status(204).send('Successfully update answer helpful count');
