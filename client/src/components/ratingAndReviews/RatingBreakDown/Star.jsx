@@ -1,33 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import './Star.scss';
 
-const Star = ({starType, barWidth, handleStarClick, starFilter}) => {
-  const [isClicked, setIsClicked] = useState(starFilter[starType]);
-  const [clickedClass, setClickedClass] = useState('');
-
-  useEffect(() => {
-    setIsClicked(starFilter[starType]);
-  }, [starFilter]);
-
-  useEffect(() => {
-    if (isClicked) {
-      setClickedClass('filter-active');
-    } else {
-      setClickedClass('');
-    }
-  }, [isClicked]);
-
-  const handleClick = (type) => {
-    handleStarClick(type);
+const Star = ({starType, barWidth, starFilter, onSortStarRatingReview}) => {
+  const handleClickStarRating = () => {
+    onSortStarRatingReview(starType);
+    console.log('click star');
   };
-
   return (
     <div className="star-breakdown-item">
-      <div
-        onClick={() => handleClick(starType)}
-        role="button" tabIndex={0}
-        className={'filter-star-button ' + clickedClass}
-      >
+      <div onClick={handleClickStarRating} role="button" className={'filter-star-button '}>
         <div>
           {starType}
         </div>
@@ -37,7 +18,7 @@ const Star = ({starType, barWidth, handleStarClick, starFilter}) => {
       </div>
       <div className="break-down-bar">
         <div className="gray-bar" />
-        <div className="green-bar" style={{ width: 244 * barWidth }} />
+        <div className="green-bar" style={{ width: 242 * barWidth }} />
       </div>
     </div>
   );

@@ -1,27 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import StarBreakDown from './StarBreakDown.jsx';
 import Recommended from './Recommended.jsx';
-import AverageRatingWithStars from './AverageRatingWithStars.jsx';
 import BarBreakDown from './BarBreakDown.jsx';
+import StarRating from '../../reusableComponents/StarRating.jsx';
 import './RatingList.scss';
 
-let averageRatingCal = (ratings) => {
-  let sum = 0;
+let totalVotesCalculate = (ratings) => {
   let totalVotes = 0;
   for (const key in ratings) {
-    sum += Number(key) * ratings[key];
     totalVotes += Number(ratings[key]);
   }
-  let averageRatingScore = sum / totalVotes;
-  return { averageRatingScore, totalVotes };
+  return { totalVotes };
 };
 
 let recommendPercentCal = (recommended) => {
   return (Number(recommended.true) / (Number(recommended.true) + Number(recommended.false))) * 100;
 };
 
-const RatingList = ({reviewMetaData, handleStarClick, starFilter, setStarFilter, averageRating}) => {
-  console.log(averageRating);
+const RatingList = ({reviewMetaData, onSortStarRatingReview, starFilter, setStarFilter, averageRating}) => {
+
   const [totalVotes, setTotalVotes] = useState(0);
   const [recommendPercent, setRecommendPercent] = useState(100);
   const [ratings, setRatings] = useState({});
@@ -29,19 +26,20 @@ const RatingList = ({reviewMetaData, handleStarClick, starFilter, setStarFilter,
 
   useEffect(() => {
     if (Object.keys(reviewMetaData).length) {
-      //setTotalVotes(averageRatingCalculated.totalVotes);
+      let totalVotesCal = totalVotesCalculate(reviewMetaData.ratings);
+      setTotalVotes(totalVotesCal.totalVotes);
       setRecommendPercent(recommendPercentCal(reviewMetaData.recommended));
       setRatings(reviewMetaData.ratings);
       setCharacters(reviewMetaData.characteristics);
     }
-  });
+  }, [reviewMetaData]);
 
   return (
     <div className='ratings-container'>
       <h4>Ratings and Reviews</h4>
-      {averageRating}
+      {averageRating} <StarRating rating={averageRating}/>
       <Recommended recommendPercent={recommendPercent}/>
-      <StarBreakDown totalVotes={totalVotes} ratings={ratings} handleStarClick={handleStarClick} starFilter={starFilter} setStarFilter={setStarFilter}/>
+      <StarBreakDown totalVotes={totalVotes} ratings={ratings} onSortStarRatingReview={onSortStarRatingReview} starFilter={starFilter} setStarFilter={setStarFilter}/>
       <BarBreakDown characters={characters}/>
     </div>
   );

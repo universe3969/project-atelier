@@ -9,12 +9,12 @@
   width: 300px;
 }
 .comfort-bar {
-  background-color: #bbb;
-  flex-direction: row;
-  height: 7px;
-  margin: 5px 5px 5px 5px;
-  flex:1;
-  z-index: 1;
+  margin-top: 3px;
+  background-color:rgb(59, 56, 56);
+  opacity: 0.4;
+  z-index: -1;
+  width: 100px;
+  height: 10px;
 }
 .comfort-triangle{
   position:absolute;
@@ -22,8 +22,6 @@
   height: 10px;
   transform: rotate(180deg);
   margin-top: 9px;
-  color: rgb(23, 22, 22)
-
 }
 .comfort-trait-left {
   display: flex;
@@ -31,13 +29,13 @@
   width: 100px;
   font-size: .7rem;
 }
-.comfort-trait-left {
+.comfort-trait-middle {
   display: flex;
   justify-content: center;
   width: 100px;
   font-size: .7rem;
 }
-.comfort-trait-left {
+.comfort-trait-right {
   display: flex;
       justify-content: flex-end;
       width: 100px;

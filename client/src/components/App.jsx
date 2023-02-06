@@ -29,12 +29,11 @@ const App = () => {
       setAlert({ type: 'error', message: 'Invalid Product ID'});
     }
   };
-
   return (
     <div>
       <NavBar onSearch={handleSearch}/>
       {alert && <Alert type={alert.type} message={alert.message}/>}
-      {productId && <RatingsAndReviews productId={productId} currentProduct={currentProduct}/>}
+      {currentProduct && <RatingsAndReviews productId={productId} currentProduct={currentProduct}/>}
     </div>
   );
 };

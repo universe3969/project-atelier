@@ -12,58 +12,40 @@ const initialStars = {
   1: false,
 };
 
-const RatingsAndReviews = ({productId}) => {
+const RatingsAndReviews = ({productId, currentProduct}) => {
   const [ productReviews, setProductReviews ] = useState([]);
   const [ sortBy, setSortBy ] = useState('relevant');
   const [render, setRender] = useState([]);
   const [reviewMetaData, setReviewMetaData] = useState({});
   const [starFilter, setStarFilter] = useState(initialStars);
-  const [averageRating, setAverageRating] = useState(5);
+
+  // console.log(currentProduct.reviews.results.filter((review) => review.rating === 5));
   useEffect(() => {
-    console.log(sortBy)
-    axios.get(`http://localhost:3000/api/reviews/${productId}`, {
-      'sortCriteria': sortBy,
-    })
+    axios.get(`http://localhost:3000/api/reviews/${productId}/${sortBy}`)
       .then(({data}) => {
-        console.log(data);
         let reviews = data.reviews.results;
         let metaData = data.reviewMeta;
-        let averageR = data.avgRating;
         setProductReviews([...reviews]);
         setReviewMetaData({...metaData});
-        setAverageRating(averageR);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [sortBy, render]);
 
-  // useEffect(() => {
-  //   axios.get(`http://localhost:3000/api/reviews/meta/${productId}`, {
-  //     params: {
-  //       // eslint-disable-next-line camelcase
-  //       product_id: productId,
-  //     },
-  //   })
-  //     .then(({data}) => {
-  //       console.log(data);
-  //       setReviewMetaData(data);
-  //     }).catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [render]);
-
   const handleSortClick = (e) => {
     setSortBy(e.target.value);
   };
-
-  const handleStarClick = (starType) => {
-    setStarFilter({...starFilter, [starType]: !starFilter[starType]});
+  const handleSortByStars = (starNumber) => {
+    console.log(starNumber);
+    let sortedStarRating = (currentProduct.reviews.results.filter((review) => review.rating === starNumber));
+    console.log(sortedStarRating)
+    setProductReviews(sortedStarRating);
   };
 
   return (
     <div className='rating-review-containers'>
-      <RatingList reviewMetaData={reviewMetaData} handleStarClick={handleStarClick} starFilter={starFilter} setStarFilter={setStarFilter} averageRating={averageRating}/>
+      <RatingList reviewMetaData={reviewMetaData} starFilter={starFilter} setStarFilter={setStarFilter} averageRating={currentProduct.avgRating} onSortStarRatingReview={handleSortByStars}/>
       <ReviewList productReviews={productReviews} handleSortClick={handleSortClick} sortBy={sortBy} setRender={setRender} reviewMetaData={reviewMetaData}/>
     </div>
 

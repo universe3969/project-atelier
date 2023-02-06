@@ -24,11 +24,11 @@ const AddReviewForm = ({setShowReviewModal, reviewMetaData, setRender, productNa
   };
 
   let sizeSelections = ['way too small', 'too small', 'Perfect', 'too big', 'way too big'];
-  //let widthSelections = ['way too narrow', 'too narrow', 'Perfect', 'too wide', 'way too wide'];
+  let widthSelections = ['way too narrow', 'too narrow', 'Perfect', 'too wide', 'way too wide'];
   let comfortSelections = ['Uncomfortable', 'a bit uncomfortable', 'Average', 'Comfortable', 'Perfect'];
-  //let qualitySelections = ['Poor', 'Below average', 'What I expected', 'good', 'Perfect'];
-  //let lengthSelections = ['way too short', 'a bit short', 'Perfect', 'a bit long', 'way too long'];
-  //let fitSelections = ['way too tight', 'a bit tight', 'Perfect', 'a bit loose', 'Rway too loose'];
+  let qualitySelections = ['Poor', 'Below average', 'What I expected', 'good', 'Perfect'];
+  let lengthSelections = ['way too short', 'a bit short', 'Perfect', 'a bit long', 'way too long'];
+  let fitSelections = ['way too tight', 'a bit tight', 'Perfect', 'a bit loose', 'Rway too loose'];
 
   const characteristicsForm = useMemo(() => {
     const currentChar = Object.keys(reviewMetaData.characteristics);
@@ -39,15 +39,14 @@ const AddReviewForm = ({setShowReviewModal, reviewMetaData, setRender, productNa
         currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={sizeSelections} charType="Size" charID={currentKey} />;
       } else if (char === 'Comfort') {
         currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={comfortSelections} charType="Comfort" charID={currentKey} />;
-      // } else if (char === 'Width') {
-      //   currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={widthSelections} charType="Width" charID={currentKey} />;
-      // } else if (char === 'Quality') {
-      //   currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={qualitySelections} charType="Quality" charID={currentKey} />;
-      // } else if (char === 'Length') {
-      //   currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={lengthSelections} charType="Length" charID={currentKey} />;
-      // } else if (char === 'Fit') {
-      //   currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={fitSelections} charType="Fit" charID={currentKey} />;
-      // }
+      } else if (char === 'Width') {
+        currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={widthSelections} charType="Width" charID={currentKey} />;
+      } else if (char === 'Quality') {
+        currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={qualitySelections} charType="Quality" charID={currentKey} />;
+      } else if (char === 'Length') {
+        currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={lengthSelections} charType="Length" charID={currentKey} />;
+      } else if (char === 'Fit') {
+        currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={fitSelections} charType="Fit" charID={currentKey} />;
       }
       return currCharForm;
     });
@@ -55,15 +54,6 @@ const AddReviewForm = ({setShowReviewModal, reviewMetaData, setRender, productNa
 
 
   const handleSubmit = (e) => {
-    console.log('-->product_id', product_id);
-    console.log('-->rating', rating);
-    console.log('-->summary', summary);
-    console.log('-->body', body);
-    console.log('-->recommend', recommend);
-    console.log('-->name', name);
-    console.log('-->email', email);
-    console.log('-->photos', photos);
-    console.log('-->characteristics', characteristics);
     e.preventDefault();
     if (content.length < 50 || !starNum) {
       setShowErrorMessage(true);
@@ -104,11 +94,27 @@ const AddReviewForm = ({setShowReviewModal, reviewMetaData, setRender, productNa
         </div>
       </div>
       <div className="summary">
-        <input type="text" className="review-summary" placeholder="Short and sweet" onChange={e => { setSummary(e.target.value); }}></input>
-        <span>
-          Recommend? *
-          <input type="checkbox" id="recommend" name="recommend" value="recommend" onChange={e => setRecommend(e.target.checked)}></input>
-        </span>
+        <input type="text" className="review-summary" placeholder="Short and sweet summary" onChange={e => { setSummary(e.target.value); }}></input>
+        <div className='recommend'>
+          <div> Recommend? *</div>
+          {/* className='recommend'> */}
+
+          {/* <input type="checkbox" id="recommend" name="recommend" value="recommend" onChange={e => setRecommend(e.target.checked)}></input> */}
+          <div className='recommend-selection'>
+            <label >
+              <span>Yes:</span>
+              <div>
+                <input required type="radio" name="recommend" onChange={() => setRecommend(true)} />
+              </div>
+            </label>
+            <label>
+              <span>No:</span>
+              <div>
+                <input type="radio" name="recommend" onChange={() => setRecommend(false)} />
+              </div>
+            </label>
+          </div>
+        </div>
       </div>
       <textarea rows="rows" required='required' minLength='50' maxLenght='1100'className="review-content" placeholder="Any thoughts on this product.." onChange={e => { setContent(e.target.value); }} />
       <div className='content-warning'>{content.length <= 50 ? `[${50 - content.length}] require to reach minimum limit` : 'Minimum limit reached'}</div>

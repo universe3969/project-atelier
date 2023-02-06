@@ -51,7 +51,7 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
   let totalReviews = [];
   if (productReviews) {
     totalReviews = productReviews.slice(0, visible).map((review, index) => {
-      return <Review key={index} review={review} handleReportClick={handleReportClick} handleHelpfulClick={handleHelpfulClick} handlePhotoClick={handlePhotoClick}/>;
+      return <Review key={index} review={review} handleReportClick={handleReportClick} handleHelpfulClick={handleHelpfulClick} handlePhotoClick={handlePhotoClick} showModal={showModal} setShowModal={setShowModal}/>;
     });
   }
 
@@ -73,7 +73,7 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
         <ActionButtons
           handleLoadClick={handleLoadClick}
           setVisible={setVisible}
-          isible={visible}
+          visible={visible}
           setShowMore={setShowMore}
           totalReviews= {productReviews.length}
         />

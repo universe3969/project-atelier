@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import SizeBar from './SizeBar.jsx';
 import ComfortBar from './ComfortBar.jsx';
+import FitBar from './FitBar.jsx';
 import './BarBreakDown.scss';
 
 let pointerCal = (characters) => {
@@ -15,28 +16,32 @@ let pointerCal = (characters) => {
 const BarBreakDown = ({characters}) => {
   const [showComfort, setShowComfort] = useState(false);
   const [showSize, setShowSize] = useState(false);
-  const [triPositions, setTriPositions] = useState({});
+  const [showFit, setShowFit] = useState(false);
+  const [pointerPosition, setpointerPosition] = useState({});
 
   const renderCharacterBars = (currChar) => {
     if (currChar === 'Size') {
       setShowSize(true);
     } else if (currChar === 'Comfort') {
       setShowComfort(true);
+    } else if (currChar === 'Fit') {
+      setShowFit(true);
     }
   };
   useEffect(() => {
-    const currChars = Object.keys(characters); // List of characteristics for product
+    const currChars = Object.keys(characters);
     if (currChars.length) {
-      setTriPositions(pointerCal(characters)); // Set triangle position
+      setpointerPosition(pointerCal(characters));
       currChars.forEach((char) => {
-        renderCharacterBars(char); // Set render state of each characteristic
+        renderCharacterBars(char);
       });
     }
   }, [characters]);
   return (
     <div className="char-bars-section">
-      { showSize ? <SizeBar position={triPositions.Size} /> : null }
-      { showComfort ? <ComfortBar position={triPositions.Comfort} /> : null }
+      { showSize ? <SizeBar position={pointerPosition.Size} /> : null }
+      { showComfort ? <ComfortBar position={pointerPosition.Comfort} /> : null }
+      { showFit ? <FitBar position={pointerPosition.Fit} /> : null }
     </div>
   );
 };
