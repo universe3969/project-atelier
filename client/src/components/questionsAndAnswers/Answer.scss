@@ -1,0 +1,42 @@
+.answer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  .answer-text {
+    span {
+      font-weight: bold;
+    };
+
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+  };
+
+
+  .action-bar {
+    display: flex;
+    font-size: 0.8rem;
+    color: rgb(80, 80, 80);
+    gap: 0.5rem;
+
+
+    .author {
+      display: flex;
+      border-right: solid black 0.5px;
+      padding-right: 0.5rem;
+
+
+      .date {
+        margin-left: 0.3rem;
+      }
+    };
+
+    .helpful-action-bar {
+      font-size: inherit;
+      color: inherit;
+    }
+  }
+}
+
+
+
