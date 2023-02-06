@@ -29,8 +29,6 @@ const Form = ({ type, title, subtitle, onSubmit }) => {
       const questionPost = { name, email, body };
       onSubmit(questionPost);
     } else {
-      // let message = 'You must enter the following:';
-
       let invalidNameMessage, invalidEmailMessage, invalidBodyMessage;
       if (!validName) {
         invalidNameMessage = 'Your nickname. Nickname must be between 2 and 60 characters.\n';

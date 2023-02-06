@@ -8,13 +8,10 @@ const {
 } = require('../api');
 
 const getProductReviewsAndMeta = async (req, res) => {
-  const { productId } = req.params;
-  let { sortCriteria, count } = req.body;
-  sortCriteria = sortCriteria ? sortCriteria : 'relevant';
-  count = count ? count : 100;
+  const { productId, sortCriteria } = req.params;
 
   try {
-    const { reviews, avgRating } = await getProductReview(productId, sortCriteria, count);
+    const { reviews, avgRating } = await getProductReview(productId, sortCriteria);
     const reviewMeta = await getProductReviewMetadata(productId);
 
     res.status(200).send({ reviews, avgRating, reviewMeta });
