@@ -17,19 +17,16 @@ const YourOutfit = ({ currentProduct, productId }) => {
     if (outfit && outfit.find(product => product.info.id === productId)) {
       return;
     } else if (!outfit || (outfit && !outfit.find(product => product.info.id === productId))) {
-      // if (!outfit.find(product => product.info.id === productId)) {
       const yourOutfit = [...currentOutfit, currentProduct];
       setCurrentOutfit(yourOutfit);
       window.localStorage.setItem('yourOutfit', JSON.stringify(yourOutfit));
-      // }
     }
   };
 
-  const handleRemoveProduct = (productId) => {
-    const yourOutfit = currentOutfit.filter(item => item.info.id !== productId);
+  const handleRemoveProduct = (id) => {
+    const yourOutfit = currentOutfit.filter(item => item.info.id !== id);
     setCurrentOutfit(yourOutfit);
     window.localStorage.setItem('yourOutfit', JSON.stringify(yourOutfit));
-    // setCurrentOutfit(prev => prev.filter(item => item.info.id !== productId));
   };
 
   return (

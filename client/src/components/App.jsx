@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import RelatedItemsAndOutfitCreation from './relatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreation.jsx';
 
-const App = ({ productId }) => {
+const App = () => {
+  const [productId, setProductId] = useState(37315);
   const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {

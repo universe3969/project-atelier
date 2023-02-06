@@ -4,27 +4,30 @@ import YourOutfit from './YourOutfit.jsx';
 import axios from 'axios';
 
 const RelatedItemsAndOutfitCreation = ({ currentProductId, product }) => {
-  const [products, setProducts] = useState([]);
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:3000/api/relatedProducts/${currentProductId}`)
       .then(({ data }) => {
-        setProducts(data);
+        const filteredProducts = [];
+        data.forEach(item => {
+          if (filteredProducts.every(el => el.info.id !== item.info.id)) {
+            filteredProducts.push(item);
+          }
+        });
+        setRelatedProducts(filteredProducts);
       });
   }, []);
 
   return (
     <div className='products-and-outfits'>
       <div className='related-products'>
-        {products.length && <RelatedProducts relatedProducts={products}/>}
+        {relatedProducts.length && <RelatedProducts relatedProducts={relatedProducts}/>}
       </div>
       <div className='your-outfit'>
         <YourOutfit
-          // outfits={currentOutfit}
           currentProduct={product}
           productId={currentProductId}
-          // onRemoveProduct={handleRemoveProduct}
-          // onAddProduct={handleAddProduct}
         />
       </div>
     </div>
