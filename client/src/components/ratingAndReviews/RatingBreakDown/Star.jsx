@@ -4,7 +4,6 @@ import './Star.scss';
 const Star = ({starType, barWidth, handleStarClick, starFilter}) => {
   const [isClicked, setIsClicked] = useState(starFilter[starType]);
   const [clickedClass, setClickedClass] = useState('');
-  // console.log(isClicked);
 
   useEffect(() => {
     setIsClicked(starFilter[starType]);
@@ -20,7 +19,6 @@ const Star = ({starType, barWidth, handleStarClick, starFilter}) => {
 
   const handleClick = (type) => {
     handleStarClick(type);
-    // setIsClicked(!isClicked);
   };
 
   return (

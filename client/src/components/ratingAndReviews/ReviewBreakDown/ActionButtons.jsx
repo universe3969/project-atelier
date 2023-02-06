@@ -26,13 +26,13 @@ const ActionButtons = ({handleLoadClick, setShowMore, totalReviews, visible}) =>
   return (
     <div className="action-buttons-container">
       {moreItems ? (
-        <Button classNmae='secondary' type="button" onClick={showMoreClick}>
-          <div className="more-text">Show More</div>
+        <Button className='secondary' type="button" onClick={showMoreClick}>
+          <div className="more-text">SHOW MORE</div>
         </Button>
       ) : null}
       {lessItems ? (
         <Button className='secondary' type="button" onClick={showLessClick}>
-          <div className="more-text">Show Less</div>
+          <div className="more-text">SHOW LESS</div>
         </Button>
       ) : null }
     </div>

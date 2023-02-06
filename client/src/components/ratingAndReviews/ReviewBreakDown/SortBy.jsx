@@ -1,5 +1,4 @@
-import React from 'React';
-import { useState } from 'React';
+import React, { useState } from 'react';
 
 const SortBy = ({handleSortClick, totalReviews}) => {
 
@@ -9,7 +8,7 @@ const SortBy = ({handleSortClick, totalReviews}) => {
   return (
     <div className='review-sort'>
       <span>
-        {totalReviews}, sorted by
+        {totalReviews} reviews, sorted by
         <select name='sort-by' className='sort-option'onChange={(e) => handleClick(e)}>
           <option value='relevant'>relevance</option>
           <option value='newest'>newest</option>

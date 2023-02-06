@@ -51,3 +51,14 @@
   height: 40%;
   width: 80%;
 }
+.char-container {
+  display: flex;
+  flex-direction: column;
+
+  .char-forms {
+    border: 1px solid rgb(217, 217, 200);
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+  }
+}

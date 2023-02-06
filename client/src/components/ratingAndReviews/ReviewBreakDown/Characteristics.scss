@@ -1,0 +1,49 @@
+.characteristics {
+  display: flex;
+  border: 1px solid rgb(238, 236, 233)t;
+
+  .selection-type {
+
+    border-right: 2px solid rgb(238, 236, 233);
+    background-color: rgb(238, 238, 236);
+    font-size: 1em;
+    min-width: 100px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .selections {
+    font-size: .7em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 80px;
+    min-height: 40px;
+    gap: 3px;
+
+    span {
+      white-space: pre;
+      text-align: center;
+    }
+
+    div {
+      width: 13px;
+      height: 13px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      input {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+      }
+
+    }
+  }
+}

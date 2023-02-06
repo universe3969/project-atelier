@@ -67,14 +67,31 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
     <div className='review-container'>
       <div>
         <SortBy handleSortClick={handleSortClick} totalReviews={productReviews.length} />
-
       </div>
-      { totalReviews}
-      <ActionButtons handleLoadClick={handleLoadClick} setVisible={setVisible} visible={visible} setShowMore={setShowMore} totalReviews= {productReviews.length}/>
-      <div className='add-review'>
-        <Button className='secondary' onClick={onClick}>ADD A REVIEW +</Button>{showModal && <Modal className='modal clear' onClose={onClose}>
-          <AddReviewForm productReviews={productReviews} reviewMetaData={reviewMetaData} setRender={setRender} productName={productName}/></Modal>}
+      {totalReviews}
+      <div className='review-list-buttons'>
+        <ActionButtons
+          handleLoadClick={handleLoadClick}
+          setVisible={setVisible}
+          isible={visible}
+          setShowMore={setShowMore}
+          totalReviews= {productReviews.length}
+        />
+        {/* <div className='add-review'> */}
+        <Button className='secondary' onClick={onClick}>
+          ADD A REVIEW +
+        </Button>
+        {/* </div> */}
       </div>
+      {showModal &&
+        <Modal className='modal clear' onClose={onClose}>
+          <AddReviewForm
+            productReviews={productReviews}
+            reviewMetaData={reviewMetaData}
+            setRender={setRender}
+            productName={productName}/>
+        </Modal>
+      }
     </div>
 
   );

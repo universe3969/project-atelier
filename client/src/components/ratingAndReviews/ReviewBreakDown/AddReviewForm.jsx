@@ -2,80 +2,130 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import axios from 'axios';
 import { BsStarFill, BsStar} from 'react-icons/bs';
 import PhotoReview from './PhotoReview.jsx';
+import Characteristics from './Characteristics.jsx';
+import StarRating from '../../reusableComponents/StarRating.jsx';
 
 
-const AddReviewForm = ({setShowReviewModal, reviewMetaData, setRerender, productName, productReviews}) => {
-  console.log(productReviews);
+const AddReviewForm = ({setShowReviewModal, reviewMetaData, setRender, productName, productReviews}) => {
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [summary, setSummary] = useState('');
   const [recommend, setRecommend] = useState(false);
   const [photos, setPhotos] = useState('');
-  const [characteristics, setCharacteristice] = useState({});
+  const [characteristics, setCharacteristics] = useState({});
   const [content, setContent] = useState('');
   const [starNum, setStarNum] = useState(0);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
-  let handleStarClick = (e) => {
-    e.preventDefault();
-    let num = e.target.getAttribute('num');
-    setStarsNum(parseInt(num) + 1);
-    let data = [...stars];
-    for (let i = 0; i <= num; i++) {
-      data[i] = <button num={i} key={i} onClick={handleStarClick} className="starButton"><BsStarFill/></button>;
-    }
-    for (let i = 4; i > num; i--) {
-      data[i] = <button num={i} key={i} onClick={handleStarClick} className="starButton"><BsStar/></button>;
-    }
-    setStars(data);
+
+  const handleCharClick = (num, id) => {
+    setCharacteristics({ ...characteristics, [id]: num });
   };
-  let [stars, setStars] = useState(
-    [
-      <button num="0" key={0} onClick={handleStarClick} className="starButton"><BsStarFill/></button>,
-      <button num="1" key={1} onClick={handleStarClick} className="starButton"><BsStar/></button>,
-      <button num="2" key={2} onClick={handleStarClick} className="starButton"><BsStar/></button>,
-      <button num="3" key={3} onClick={handleStarClick} className="starButton"><BsStar/></button>,
-      <button num="4" key={4} onClick={handleStarClick} className="starButton"><BsStar/></button>
-    ]);
-  const handleSubmit = (e) => {
-    axios.post ('http://localhost:3000/reviews', {
-      postData: {
-        rating: starsNum,
-        summary: title,
-        body: content,
-        recommend: recommend,
-        name: name,
-        email: email,
-        photos: photos,
-        characteristics: characteristics
+
+  let sizeSelections = ['way too small', 'too small', 'Perfect', 'too big', 'way too big'];
+  //let widthSelections = ['way too narrow', 'too narrow', 'Perfect', 'too wide', 'way too wide'];
+  let comfortSelections = ['Uncomfortable', 'a bit uncomfortable', 'Average', 'Comfortable', 'Perfect'];
+  //let qualitySelections = ['Poor', 'Below average', 'What I expected', 'good', 'Perfect'];
+  //let lengthSelections = ['way too short', 'a bit short', 'Perfect', 'a bit long', 'way too long'];
+  //let fitSelections = ['way too tight', 'a bit tight', 'Perfect', 'a bit loose', 'Rway too loose'];
+
+  const characteristicsForm = useMemo(() => {
+    const currentChar = Object.keys(reviewMetaData.characteristics);
+    return currentChar.map((char) => {
+      const currentKey = reviewMetaData.characteristics[char].id;
+      let currCharForm;
+      if (char === 'Size') {
+        currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={sizeSelections} charType="Size" charID={currentKey} />;
+      } else if (char === 'Comfort') {
+        currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={comfortSelections} charType="Comfort" charID={currentKey} />;
+      // } else if (char === 'Width') {
+      //   currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={widthSelections} charType="Width" charID={currentKey} />;
+      // } else if (char === 'Quality') {
+      //   currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={qualitySelections} charType="Quality" charID={currentKey} />;
+      // } else if (char === 'Length') {
+      //   currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={lengthSelections} charType="Length" charID={currentKey} />;
+      // } else if (char === 'Fit') {
+      //   currCharForm = <Characteristics key={currentKey} handleChange={handleCharClick} selectionNames={fitSelections} charType="Fit" charID={currentKey} />;
+      // }
       }
-    })
-      .then (res => {
-        console.log(res);
+      return currCharForm;
+    });
+  }, [reviewMetaData]);
+
+
+  const handleSubmit = (e) => {
+    console.log('-->product_id', product_id);
+    console.log('-->rating', rating);
+    console.log('-->summary', summary);
+    console.log('-->body', body);
+    console.log('-->recommend', recommend);
+    console.log('-->name', name);
+    console.log('-->email', email);
+    console.log('-->photos', photos);
+    console.log('-->characteristics', characteristics);
+    e.preventDefault();
+    if (content.length < 50 || !starNum) {
+      setShowErrorMessage(true);
+    } else {
+      setShowErrorMessage(false);
+      axios.post ('http://localhost:3000/reviews', {
+        postData: {
+          // eslint-disable-next-line camelcase
+          product_id: Number(reviewMetaData.product_id),
+          rating: starsNum,
+          summary: title,
+          body: content,
+          recommend: recommend,
+          name: name,
+          email: email,
+          photos: photos,
+          characteristics: characteristics
+        }
       })
-      .catch(err => console.log(err));
+        .then (res => {
+          setRender([]);
+        })
+        .catch(err => console.log(err));
+    }
   };
   return (
     <form className="write-review">
       <div className="write-top">
+        <div>Write Your Review</div>
         <div className="write-review-stars">
-          {stars}
+          <div>Rate this product *</div>
+          {/* <div>{stars}</div> */}
+          <StarRating rating='0' onRating={(r) => setStarNum(r)}/>
         </div>
         <div className="name-email">
-          <input type="text" className="writeName" placeholder="Name" onChange={e => { setName(e.target.value); }}></input>
-          <input type="text" className="writeEmail" placeholder="Email" onChange={e => { setEmail(e.target.value); }}></input>
+          <input type="text" className="name" placeholder="Name" onChange={e => { setName(e.target.value); }}></input>
+          <input type="text" className="email" placeholder="Email" onChange={e => { setEmail(e.target.value); }}></input>
         </div>
       </div>
       <div className="summary">
         <input type="text" className="review-summary" placeholder="Short and sweet" onChange={e => { setSummary(e.target.value); }}></input>
         <span>
-          Recommend?
+          Recommend? *
           <input type="checkbox" id="recommend" name="recommend" value="recommend" onChange={e => setRecommend(e.target.checked)}></input>
         </span>
       </div>
-      <textarea rows="rows" className="review-content" placeholder="Any thoughts on this product.." onChange={e => { setContent(e.target.value); }}></textarea>
-      <div className="bottom">
-        <PhotoReview photos={photos} setPhotos={setPhotos} />
-        <input type="submit" className="submit-review" value="Submit" onClick={handleSubmit} ></input>
+      <textarea rows="rows" required='required' minLength='50' maxLenght='1100'className="review-content" placeholder="Any thoughts on this product.." onChange={e => { setContent(e.target.value); }} />
+      <div className='content-warning'>{content.length <= 50 ? `[${50 - content.length}] require to reach minimum limit` : 'Minimum limit reached'}</div>
+      <div className="photo-container">
+        <span>You can upload 5 max photos</span>
+        {photos.length < 5 ? ( <PhotoReview photos={photos} setPhotos={setPhotos} />) : null}
+        <div className="char-container">
+          <div>Select Characteristics *</div>
+          <div className="char-forms">
+            {characteristicsForm}
+          </div>
+        </div>
+        <br />
+
+        <div>{showErrorMessage ? 'There was an error' : null}</div>
       </div>
+      <button type="submit" className="submit-review" value="Submit" onSubmit={handleSubmit} >Submit</button>
     </form>
   );
 };

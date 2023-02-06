@@ -1,4 +1,5 @@
 import React from 'react';
+import './ReviewPhotos.scss';
 
 const ReviewPhotos = ({photos, handleImageClick}) => {
 
@@ -6,7 +7,12 @@ const ReviewPhotos = ({photos, handleImageClick}) => {
     <img key={photo.id} alt='img' src={photo.url} className='review-photo'/>
   ));
   return (
-    <div onClick={(e) => handleImageClick(e)}>{photo}</div>
+    <div
+      className='photos-container'
+      onClick={(e) => handleImageClick(e)}
+    >
+      {photo}
+    </div>
   );
 };
 export default ReviewPhotos;

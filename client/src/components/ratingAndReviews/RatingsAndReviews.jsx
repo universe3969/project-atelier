@@ -1,8 +1,8 @@
-/* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react';
 import ReviewList from './ReviewBreakDown/ReviewList.jsx';
 import RatingList from './RatingBreakDown/RatingList.jsx';
 import axios from 'axios';
+import './RatingsAndReviews.scss';
 
 const initialStars = {
   5: false,
@@ -21,6 +21,7 @@ const RatingsAndReviews = ({productName}) => {
   useEffect(() => {
     axios.get('http://localhost:3000/reviews', {
       params: {
+        // eslint-disable-next-line camelcase
         product_id: 37315,
         sort: sortBy,
         count: 200,
@@ -39,6 +40,7 @@ const RatingsAndReviews = ({productName}) => {
   useEffect(() => {
     axios.get('http://localhost:3000/reviews/meta', {
       params: {
+        // eslint-disable-next-line camelcase
         product_id: 37315,
       },
     })

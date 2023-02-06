@@ -18,9 +18,6 @@ const Review = ({review, handleReportClick, handleHelpfulClick, handlePhotoClick
 
   let date = formatDate(dateString);
 
-
-
-
   return (
 
     <div className='individual-review'>
