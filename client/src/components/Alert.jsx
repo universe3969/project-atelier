@@ -2,7 +2,6 @@ import React from 'react';
 import './Alert.scss';
 
 const Alert = ({ type, message }) => {
-
   let alertStyle;
 
   switch (type) {
