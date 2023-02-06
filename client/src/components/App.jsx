@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import QuestionsAndAnswers from './questionsAndAnswers/QuestionsAndAnswers.jsx';
-import StarRating from './reusableComponents/StarRating.jsx';
 
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
@@ -9,8 +8,6 @@ const App = () => {
     axios.get('http://localhost:3000/api/products/37316')
       .then(({ data }) => setCurrentProduct(data));
   }, []);
-
-console.log(currentProduct)
 
   return (
     <div>
@@ -21,7 +18,6 @@ console.log(currentProduct)
           productName={currentProduct.info.name}
         />
       }
-      <StarRating rating='4.3'/>
     </div>
   );
 };

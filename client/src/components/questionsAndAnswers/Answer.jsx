@@ -8,29 +8,12 @@ const Answer = ({ answer }) => {
   const [showImageModal, setShowImageModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const { id, body, helpfulness, answerer_name, date, photos } = answer;
-  const [helpfulnessCount, setHelpfulnessCount] = useState(helpfulness);
 
   const renderedUser = answerer_name === 'Seller'
     ? <span style={{ fontWeight: 'bold' }}>{answerer_name}</span>
     : <span>{answerer_name}</span>;
 
   const formattedDate = new Date(date).toDateString().slice(4);
-
-  const updateAnswerHelpfulness = (isHelpful) => {
-    if (isHelpful) {
-      axios.put(`http://localhost:3000/api/questionsAndAnswers/answers/${id}/helpful`)
-        .then(data => setHelpfulnessCount(prev => prev + 1))
-        .catch(err => console.log(err));
-    }
-  };
-
-  const handleSideAction = (isCalled) => {
-    if (isCalled) {
-      axios.put(`http://localhost:3000/api/questionsAndAnswers/answers/${id}/report`)
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
-    }
-  };
 
   let renderedPhotos = null;
   if (photos) {
@@ -61,10 +44,8 @@ const Answer = ({ answer }) => {
         </div>
         <HelpfulActionBar
           id={id}
-          helpfulCount={helpfulnessCount}
-          onUpdateHelpful={updateAnswerHelpfulness}
+          helpfulCount={helpfulness}
           sideButtonText='Report'
-          onHandleSideAction={handleSideAction}
         />
       </div>
       {showImageModal &&
