@@ -11,6 +11,7 @@ const App = () => {
       .then(({ data }) => setCurrentProduct(data));
   }, []);
 
+  console.log(currentProduct);
   return (
     <div>
       <h3>Project Atelier</h3>

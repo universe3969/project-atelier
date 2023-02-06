@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './Styles.scss';
 
-const ThumbnailList = ({photos}) => {
+const Gallery = ({photos}) => {
   // const [currStyle, setCurrStyle] = useState();
   // const [photos, setPhotos] = useState();
   // const [styleName, setStyleName] = useState();
@@ -42,4 +42,4 @@ const ThumbnailList = ({photos}) => {
   );
 }
 
-export default ThumbnailList;
+export default Gallery;
