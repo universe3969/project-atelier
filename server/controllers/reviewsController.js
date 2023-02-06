@@ -9,7 +9,11 @@ const {
 
 const getProductReviewsAndMeta = async (req, res) => {
   const { productId } = req.params;
-  const { reviews, avgRating } = await getProductReview(productId, sortCriteria = 'relevant', count = 5);
+  let { sortCriteria, count } = req.body;
+  sortCriteria = sortCriteria ? sortCriteria : 'relevant';
+  count = count ? count : 100;
+
+  const { reviews, avgRating } = await getProductReview(productId, sortCriteria, count);
   const reviewMeta = await getProductReviewMetadata(productId);
 
   res.status(200).send({ reviews, avgRating, reviewMeta });
@@ -29,22 +33,20 @@ const updateReviewReportStatus = async (req, res) => {
   res.status(204).send('Successfully update review reported status');
 };
 
-const addProductPreview = async (req, res) => {
+const addProductReview = async (req, res) => {
   const errors = validationResult(req);
   console.log('errors ', errors);
   if (!errors.isEmpty()) {
     res.status(400).send('Invalid input');
+  } else {
+    await postReview(req.body);
+    res.status(201).send('Successfully posted new review');
   }
-
-  const { productId } = req.params;
-  console.log(req.body);
-  const result = await postReview(productId, req.body);
-  console.log(result);
 };
 
 module.exports = {
   getProductReviewsAndMeta,
   updateReviewHelpfulFeedback,
   updateReviewReportStatus,
-  addProductPreview
+  addProductReview
 };

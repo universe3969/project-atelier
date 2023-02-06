@@ -8,12 +8,13 @@ const {
   updateQuestionHelpfulFeedback,
   updateAnswerHelpfulFeedback,
   updateAnswerReportStatus,
+  addProductQuestion,
+  addProductAnswer,
   getProductReviewsAndMeta,
   updateReviewHelpfulFeedback,
   updateReviewReportStatus,
-  addProductPreview
+  addProductReview
 } = require('./controllers');
-
 
 const router = express.Router();
 
@@ -35,6 +36,22 @@ router.put('/api/questionsAndAnswers/:answerId/helpful', updateAnswerHelpfulFeed
 // Update answer reported status
 router.put('/api/questionsAndAnswers/:answerId/report', updateAnswerReportStatus);
 
+// Post new question for a product
+router.post('/api/questions/new',
+  body('product_id', 'product ID must be an integer').isInt(),
+  body('name', 'name must have length between 2 and 60').trim().escape().isLength({ min: 2, max: 60 }),
+  body('email', 'Invalid email').trim().normalizeEmail().isEmail().isLength({ min: 3, max: 60 }),
+  body('body', 'body must have length between 5 and 1000').trim().isLength({ min: 5, max: 1000}),
+  addProductQuestion);
+
+// Post new answer for a product's question
+router.post('/api/questions/:questionId/answers/new',
+  body('name', 'name must have length between 2 and 60').trim().escape().isLength({ min: 2, max: 60 }),
+  body('email', 'Invalid email').trim().normalizeEmail().isEmail().isLength({ min: 3, max: 60 }),
+  body('body', 'body must have length between 5 and 1000').trim().isLength({ min: 5, max: 1000}),
+  body('photos').isArray(),
+  addProductAnswer);
+
 // Return product reviews and metadata
 router.get('/api/reviews/:productId', getProductReviewsAndMeta);
 
@@ -45,16 +62,17 @@ router.put('/api/reviews/:reviewId/helpful', updateReviewHelpfulFeedback);
 router.put('/api/reviews/:reviewId/report', updateReviewReportStatus);
 
 // Add new product review
-router.post('/api/reviews/:productId',
+router.post('/api/reviews/new',
+  body('product_id', 'product ID must be an integer').isInt(),
   body('rating', 'rating must be a number between 1 and 5').isInt({ min: 1, max: 5 }),
-  body('summary').trim().escape().isLength({ min: 2, max: 60}),
+  body('summary').trim().isLength({ min: 2, max: 60}),
   body('recommend', 'rating must be either true or false').isBoolean(),
   body('name', 'name must have length between 2 and 60').trim().escape().isLength({ min: 2, max: 60 }),
-  body('body', 'body must have length between 50 and 1000').trim().escape().isLength({ min: 50, max: 1000}),
-  body('email').trim().normalizeEmail().isEmail().isLength({ min: 3, max: 60 }),
+  body('body', 'body must have length between 50 and 1000').trim().isLength({ min: 50, max: 1000}),
+  body('email', 'Invalid email').trim().normalizeEmail().isEmail().isLength({ min: 3, max: 60 }),
   body('photos').isArray(),
   body('characteristics', 'characteristics must be an object').isObject(),
-  addProductPreview
+  addProductReview
 );
 
 module.exports = router;

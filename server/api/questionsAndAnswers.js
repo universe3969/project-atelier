@@ -5,6 +5,7 @@ const getQuestions = (productId, page) => {
   return instance.get(process.env.QUESTIONS_URL, {
     params: {
       product_id: productId,
+      count: 100,
       page
     }
   }).then(({ data }) => data.results);
@@ -25,10 +26,21 @@ const reportAnswer = (answerId) => {
     .then(({ data }) => data);
 };
 
+const postQuestion = (questionPost) => {
+  return instance.post(process.env.QUESTIONS_URL, questionPost)
+    .then(data => data);
+};
+
+const postAnswer = (questionId, answerPost) => {
+  return instance.post(`${process.env.QUESTIONS_URL}/${questionId}/answers`, answerPost)
+    .then(data => data);
+};
 
 module.exports = {
   getQuestions,
   updateQuestionHelpfulCount,
   updateAnswerHelpfulCount,
-  reportAnswer
+  reportAnswer,
+  postQuestion,
+  postAnswer
 };
