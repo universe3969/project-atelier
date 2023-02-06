@@ -3,25 +3,15 @@ import RelatedProducts from './RelatedProducts.jsx';
 import YourOutfit from './YourOutfit.jsx';
 import axios from 'axios';
 
-const RelatedItemsAndOutfitCreation = ({ currentProduct }) => {
+const RelatedItemsAndOutfitCreation = ({ currentProductId, product }) => {
   const [products, setProducts] = useState([]);
-  const [currentOutfit, setCurrentOutfit] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/relatedProducts/37317')
+    axios.get(`http://localhost:3000/api/relatedProducts/${currentProductId}`)
       .then(({ data }) => {
         setProducts(data);
       });
   }, []);
-
-  const handleAddProduct = () => {
-    // TODO: Add current product
-    console.log('add new outfit');
-  };
-
-  const handleRemoveProduct = (productId) => {
-    setCurrentOutfit(prev => prev.filter(item => item.info.id !== productId));
-  };
 
   return (
     <div className='products-and-outfits'>
@@ -30,9 +20,11 @@ const RelatedItemsAndOutfitCreation = ({ currentProduct }) => {
       </div>
       <div className='your-outfit'>
         <YourOutfit
-          outfits={currentOutfit}
-          onRemoveProduct={handleRemoveProduct}
-          onAddProduct={handleAddProduct}
+          // outfits={currentOutfit}
+          currentProduct={product}
+          productId={currentProductId}
+          // onRemoveProduct={handleRemoveProduct}
+          // onAddProduct={handleAddProduct}
         />
       </div>
     </div>
