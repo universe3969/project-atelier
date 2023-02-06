@@ -26,18 +26,20 @@ const Form = ({ type, title, subtitle, onSubmit }) => {
     const validEmail = email.trim().length >= 3 && name.trim().length <= 60 && email.includes('@');
 
     if (validBody && validName && validEmail) {
-      const questionPost = { name, email, body };
-      onSubmit(questionPost);
+      const post = { name, email, body };
+      onSubmit(post);
     } else {
       let invalidNameMessage, invalidEmailMessage, invalidBodyMessage;
       if (!validName) {
-        invalidNameMessage = 'Your nickname. Nickname must be between 2 and 60 characters.\n';
+        invalidNameMessage = 'Your nickname. Nickname must be between 2 and 60 characters.';
       }
       if (!validEmail) {
-        invalidEmailMessage = 'A valid email. Email must be between 3 and 60 characters.\n';
+        invalidEmailMessage = 'A valid email. Email must be between 3 and 60 characters.';
       }
       if (!validBody) {
-        invalidBodyMessage = 'Your Question. Question must be between 5 and 1000 characters.\n';
+        invalidBodyMessage = type === 'question'
+          ? 'Your Question. Question must be between 5 and 1000 characters.'
+          : 'Your Answer. Answer must be between 5 and 1000 characters.';
       }
       setErrorMessage({
         name: invalidNameMessage || '',

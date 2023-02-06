@@ -28,7 +28,7 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
     renderedQuestions = searchQuestions
       .slice(0, loadedQuestionsCount)
       .map(question =>
-        <Question key={question.question_id} question={question}/>
+        <Question key={question.question_id} question={question} productName={productName}/>
       );
   }
 

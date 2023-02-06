@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import HelpfulActionBar from '../reusableComponents/HelpfulActionBar.jsx';
 import Modal from '../reusableComponents/Modal.jsx';
 import './Answer.scss';

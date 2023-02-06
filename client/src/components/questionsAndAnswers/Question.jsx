@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Answer from './Answer.jsx';
+import Form from './Form.jsx';
 import HelpfulActionBar from '../reusableComponents/HelpfulActionBar.jsx';
-import './Question.scss';
 import Button from '../reusableComponents/Button.jsx';
+import Modal from '../reusableComponents/Modal.jsx';
+import './Question.scss';
 
-const Question = ({ question }) => {
+const Question = ({ question, productName }) => {
 // console.log(question);
   const [sortedAnswers, setSortedAnswers] = useState(null);
   const [loadedAnswersCount, setLoadedAnswersCount] = useState(2);
   const [loadMoreAnswers, setLoadMoreAnswers] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const { question_id, question_body, answers, question_helpfulness } = question;
 
   useEffect(() => {
@@ -29,14 +32,6 @@ const Question = ({ question }) => {
     );
   }
 
-  const updateQuestionHelpfulness = (isHelpful) => {
-    if (isHelpful) {
-      axios.get(`http://localhost:3000/api/questionsAndAnswers/${question_id}/helpful`)
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
-    }
-  };
-
   const handleLoadMoreAnswers = () => {
     if (loadMoreAnswers) {
       setLoadedAnswersCount(sortedAnswers.length);
@@ -51,6 +46,13 @@ const Question = ({ question }) => {
     }
   };
 
+  const handleSubmitAnswer = (answerPost) => {
+    axios.post(`http://localhost:3000/api/questions/${question_id}/answers/new`, answerPost)
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
+    setShowModal(false);
+  };
+
   return (
     <div className='question'>
       <div className='question-content'>
@@ -59,8 +61,8 @@ const Question = ({ question }) => {
           <HelpfulActionBar
             id={question_id}
             helpfulCount={question_helpfulness}
-            onUpdateHelpful={updateQuestionHelpfulness}
             sideButtonText='Add Answer'
+            onHandleSideAction={() => setShowModal(true)}
           />
         </div>
       </div>
@@ -74,6 +76,19 @@ const Question = ({ question }) => {
         >
           {loadMoreAnswers ? 'LOAD MORE ANSWERS' : 'COLLAPSE ANSWERS'}
         </Button>
+      }
+      {showModal &&
+        <Modal
+          className='modal blur'
+          onClose={() => setShowModal(false)}
+        >
+          <Form
+            type='answer'
+            title='Submit your Answer'
+            subtitle={`${productName}: ${question_body}`}
+            onSubmit={handleSubmitAnswer}
+          />
+        </Modal>
       }
     </div>
   );
