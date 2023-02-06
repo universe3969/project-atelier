@@ -12,6 +12,15 @@
     padding-bottom: 0.5rem;
   };
 
+  .photos-container {
+    overflow-x: hidden;
+
+    img {
+      height: 60px;
+      cursor: pointer;
+      margin-right: 0.8rem;
+    }
+  }
 
   .action-bar {
     display: flex;
@@ -36,6 +45,7 @@
       color: inherit;
     }
   }
+
 }
 
 

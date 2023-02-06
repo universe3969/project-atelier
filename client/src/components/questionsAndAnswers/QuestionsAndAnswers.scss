@@ -22,6 +22,7 @@
   }
 
   .search-bar {
+    flex-direction: row;
     width: inherit;
 
     .search-input::placeholder {

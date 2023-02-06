@@ -4,7 +4,6 @@ import QuestionsAndAnswers from './questionsAndAnswers/QuestionsAndAnswers.jsx';
 
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
-
   useEffect(() => {
     axios.get('http://localhost:3000/api/products/37316')
       .then(({ data }) => setCurrentProduct(data));
@@ -13,7 +12,12 @@ const App = () => {
   return (
     <div>
       <h3>Project Atelier</h3>
-      <QuestionsAndAnswers productId='37316'/>
+      {currentProduct &&
+        <QuestionsAndAnswers
+          productId='37316'
+          productName={currentProduct.info.name}
+        />
+      }
     </div>
   );
 };

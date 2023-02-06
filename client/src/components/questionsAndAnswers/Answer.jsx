@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import HelpfulActionBar from '../reusableComponents/HelpfulActionBar.jsx';
+import Modal from '../reusableComponents/Modal.jsx';
 import './Answer.scss';
 
 const Answer = ({ answer }) => {
-  const { id, body, helpfulness, answerer_name, date } = answer;
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const { id, body, helpfulness, answerer_name, date, photos } = answer;
 
   const renderedUser = answerer_name === 'Seller'
     ? <span style={{ fontWeight: 'bold' }}>{answerer_name}</span>
@@ -28,10 +31,27 @@ const Answer = ({ answer }) => {
     }
   };
 
+  let renderedPhotos = null;
+  if (photos) {
+    renderedPhotos = photos.map((photo, index) =>
+      <img
+        key={`${id}-${index}`}
+        src={photo}
+        onClick={() => {
+          setShowImageModal(true);
+          setSelectedImage(photo);
+        }}
+      />
+    );
+  }
+
   return (
     <div className='answer'>
       <div className='answer-text'>
         <span>A:</span> {body}
+      </div>
+      <div className='photos-container'>
+        {renderedPhotos}
       </div>
       <div className='action-bar'>
         <div className='author'>
@@ -46,6 +66,14 @@ const Answer = ({ answer }) => {
           onHandleSideAction={handleSideAction}
         />
       </div>
+      {showImageModal &&
+        <Modal
+          className='modal blur'
+          onClose={() => setShowImageModal(false)}
+        >
+          <img src={selectedImage}/>
+        </Modal>
+      }
     </div>
   );
 };

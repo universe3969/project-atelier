@@ -14,7 +14,7 @@ const SearchBar = ({ onSearch, className, placeholderText = '', searchByKey }) =
       return () => {
         clearTimeout(timeoutId);
       };
-    } else if (searchByKey && term.length === 0) {
+    } else if (searchByKey && term.length < 3) {
       onSearch('');
     }
   }, [term]);

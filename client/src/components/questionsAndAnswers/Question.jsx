@@ -9,7 +9,7 @@ const Question = ({ question }) => {
 // console.log(question);
   const [sortedAnswers, setSortedAnswers] = useState(null);
   const [loadedAnswersCount, setLoadedAnswersCount] = useState(2);
-  const [loadMoreAnswer, setLoadMoreAnswer] = useState(true);
+  const [loadMoreAnswers, setLoadMoreAnswers] = useState(true);
   const { question_id, question_body, answers, question_helpfulness } = question;
 
   useEffect(() => {
@@ -38,15 +38,15 @@ const Question = ({ question }) => {
   };
 
   const handleLoadMoreAnswers = () => {
-    if (loadMoreAnswer) {
+    if (loadMoreAnswers) {
       setLoadedAnswersCount(sortedAnswers.length);
-      setLoadMoreAnswer(false);
+      setLoadMoreAnswers(false);
       if (sortedAnswers.length > 3) {
         document.querySelector('.answer-content').style.overflowY = 'scroll';
       }
     } else {
       setLoadedAnswersCount(2);
-      setLoadMoreAnswer(true);
+      setLoadMoreAnswers(true);
       document.querySelector('.answer-content').style.overflowY = 'hidden';
     }
   };
@@ -72,7 +72,7 @@ const Question = ({ question }) => {
           className='secondary'
           onClick={handleLoadMoreAnswers}
         >
-          {loadMoreAnswer ? 'LOAD MORE ANSWERS' : 'COLLAPSE ANSWERS'}
+          {loadMoreAnswers ? 'LOAD MORE ANSWERS' : 'COLLAPSE ANSWERS'}
         </Button>
       }
     </div>
