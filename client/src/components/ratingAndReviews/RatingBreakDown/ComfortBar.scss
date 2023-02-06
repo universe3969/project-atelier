@@ -1,20 +1,20 @@
-.character-bar-container {
+.comfort-bar-container {
   display: flex;
-      width: 300px;
-      margin-bottom: 5px;
-      gap: 5px;
+  width: 300px;
+  margin-bottom: 5px;
+  gap: 5px;
 }
-.character-bar-traits {
+.comfort-bar-traits {
   display: flex;
-      width: 300px;
+  width: 300px;
 }
 .comfort-bar {
-  margin-top: 3px;
-  background-color:rgb(59, 56, 56);
-  opacity: 0.4;
-  z-index: -1;
-  width: 100px;
-  height: 10px;
+  background-color: #bbb;
+  flex-direction: row;
+  height: 7px;
+  margin: 5px 5px 5px 5px;
+  flex:1;
+  z-index: 1;
 }
 .comfort-triangle{
   position:absolute;
@@ -22,6 +22,7 @@
   height: 10px;
   transform: rotate(180deg);
   margin-top: 9px;
+  color: rgb(23, 22, 22)
 
 }
 .comfort-trait-left {

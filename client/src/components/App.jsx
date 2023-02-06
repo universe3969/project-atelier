@@ -34,7 +34,7 @@ const App = () => {
     <div>
       <NavBar onSearch={handleSearch}/>
       {alert && <Alert type={alert.type} message={alert.message}/>}
-      <RatingsAndReviews/>
+      {productId && <RatingsAndReviews productId={productId} currentProduct={currentProduct}/>}
     </div>
   );
 };
