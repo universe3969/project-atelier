@@ -10,10 +10,7 @@ const App = () => {
       .then(({ data }) => setCurrentProduct(data));
   }, []);
 
-  useEffect(() => {
-    axios.get('http://localhost:3000/api/reviews/37316/newest')
-      .then(({ data }) => console.log(data));
-  }, []);
+console.log(currentProduct)
 
   return (
     <div>
@@ -24,7 +21,7 @@ const App = () => {
           productName={currentProduct.info.name}
         />
       }
-      <StarRating rating='3.5'/>
+      <StarRating rating='4.3'/>
     </div>
   );
 };
