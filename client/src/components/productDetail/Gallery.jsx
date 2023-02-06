@@ -1,43 +1,71 @@
 import React, {useState, useEffect} from 'react';
 import './Styles.scss';
-
+import {AiOutlineArrowRight, AiOutlineArrowLeft, AiOutlineUp, AiOutlineDown} from 'react-icons/ai';
 const Gallery = ({photos}) => {
-  // const [currStyle, setCurrStyle] = useState();
-  // const [photos, setPhotos] = useState();
-  // const [styleName, setStyleName] = useState();
-  // const [defaultState, setDefaultState] = useState();
-  // const [originalPrice, setOriginalPrice] = useState();
 
-  // useEffect(() => {
-  //   setCurrStyle(styles.filter((style) => {
-  //     return style.style_id === styleId;
-  //   })[0])
-  // }, [])
+  const [currIndex, setCurrIndex] = useState(0);
 
-  // console.log(currStyle)
+  let thumbnailList = photos.map((photo, index) => {
+    return <img
+    className={currIndex === index ? "selected-thumbnail" : "thumbnail"}
+    src={photo.thumbnail_url}
+    key={index}
+    onClick={() => {toThumbnail(index)}}
+    />
+  })
 
-  // useEffect(() => {
-  //   if (currStyle) {
-  //     setPhotos(currStyle.photos)
-  //   }
-  // }, [currStyle]);
 
-  // console.log(photos)
-
-  if (photos) {
-    photos.map(photo => {
-      <img src={photo.thumbnail_url} />
-    })
+  const toThumbnail = (index) => {
+    setCurrIndex(index);
+  }
+  // had to write css in here because i need access to the url;
+  const galleryStyles = {
+    width: '800px',
+    height: '700px',
+    backgroundImage: `url(${photos[currIndex].url})`,
+    borderRadius: '10px',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover'
   }
 
-  let index = 0;
+  const isFirst = currIndex === 0;
+  const isLast = currIndex === photos.length - 1;
+
+  // onclick function for gallery
+  const previous = () => {
+    const newIndex = isFirst ? null : currIndex - 1;
+    setCurrIndex(newIndex);
+  }
+  const next = () => {
+    const newIndex = isLast ? null : currIndex + 1;
+    setCurrIndex(newIndex);
+  }
+
+  // onclick function for thumbnailList
+  const up = () => {
+    const newIndex = isFirst ? currIndex : currIndex - 1;
+    setCurrIndex(newIndex);
+  }
+  const down = () => {
+    const newIndex = isLast ? currIndex : currIndex + 1;
+    setCurrIndex(newIndex);
+  }
 
   return (
-    <div className='thumbnail-list'>
-      {photos ? photos.map(photo => {
-        return <img className="thumbnail" key={index++} src={photo.thumbnail_url} />
-      }) : null
-      }
+    <div className='gallery-container'>
+
+      {isFirst ? null : <AiOutlineArrowLeft onClick={previous} className="carousel-left"/>}
+
+      {isLast ? null : <AiOutlineArrowRight onClick={next} className="carousel-right"/>}
+
+      <div style={galleryStyles}>
+        <div className="thumbnails-container">
+          <AiOutlineUp className="carousel-up" onClick={up}/>
+          {thumbnailList}
+          <AiOutlineDown className="carousel-down" onClick={down}/>
+        </div>
+      </div>
+
     </div>
   );
 }

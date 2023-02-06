@@ -12,6 +12,7 @@ const App = () => {
   }, []);
 
   console.log(currentProduct);
+
   return (
     <div>
       <h3>Project Atelier</h3>

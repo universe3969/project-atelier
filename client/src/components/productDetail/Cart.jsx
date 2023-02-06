@@ -1,49 +1,38 @@
 import React, {useState, useEffect} from 'react';
 
-export default function Cart ({styles, styleId, currStyle}) {
-  const [selectedSize, setSelectedSize] = useState();
-  const [selectedQuantity, setSelectedQuantity] = useState();
+export default function Cart ({currStyle}) {
+  const {skus} = currStyle;
+  const [sku, setSku] = useState();
+  const [availableQty, setAvailableQty] = useState();
 
-  let storageArr = [];
-  let size, quantity;
-  let sizeIndex = 0;
-  let quantityIndex = 0;
-
-  if (currStyle) {
-    let storageObj = currStyle.skus;
-    for (let key in storageObj) {
-      storageArr.push(storageObj[key]);
-    }
-
-
-    size = storageArr.map(storage => {
-
-      return <option key={sizeIndex++} value={storage.size}>{storage.size}</option>
-    })
-
-    quantity = storageArr.map(storage => {
-      return <option key={quantityIndex++} value={storage.quantity}>{storage.quantity}</option>
-    })
+  const sizeMenu = [<option value='0' key='0'>Select Size</option>]
+  for (let sku in skus) {
+    const option = <option value={sku} key={sku}>{skus[sku].size}</option>;
+    sizeMenu.push(option);
   }
-
   const handleSizeChange = (event) => {
-    setSelectedSize(event.target.value);
+    console.log(event.target.value)
+    setSku(event.target.value)
   };
 
-  const handleQuantityChange = (event) => {
-    setSelectedQuantity(event.target.value);
-  };
+  const quantity = skus[sku] ? skus[sku].quantity : 0;
+  const quantityMenu = [<option value='-1' key='-1'>Select Quantity</option>]
+  for (let i = 0; i < quantity; i++) {
+    const option = <option value={i} key={i}>--{i}--</option>
+    quantityMenu.push(option);
+  }
+  // const handleQuantityChange = (event) => {
+  //   connsole.log(event.target)
+  // }
 
   return (
     <div>
       <div className="cart-top">
-        <select className="size-selection" value={selectedSize} onChange={handleSizeChange}>
-          <option >SELECT SIZE</option>
-          {size}
+        <select className="size-selection" onChange={handleSizeChange}>
+          {sizeMenu}
         </select>
-        <select className="quantity-selection" value={selectedQuantity} onChange={handleQuantityChange}>
-          <option >SELECT A NUMBER</option>
-          {quantity}
+        <select className="quantity-selection" >
+          {quantityMenu}
         </select>
       </div>
       <div className="cart-bottom">

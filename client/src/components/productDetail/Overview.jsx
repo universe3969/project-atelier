@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import Styles from './Styles.jsx';
 import axios from 'axios';
 import Gallery from './Gallery.jsx';
-import Thumbnail from './Thumbnail.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import Cart from './Cart.jsx';
 
@@ -13,7 +12,7 @@ const Overview = ({currentProduct}) => {
   const [productName, setProductName] = useState();
   const [defaultPrice, setDefaultPrice] = useState();
   const [slogan, setSlogan] = useState();
-  const [avgRating, setAvgRating] = useState();
+  const [avgRating, setAvgRating] = useState(currentProduct.avgRating);
   // product styles
   const [styles, setStyles] = useState();
   const [styleId, setStyleId] = useState();
@@ -38,11 +37,6 @@ const Overview = ({currentProduct}) => {
   // console.log(category, productName, defaultPrice, slogan)
 
 
-
-
-
-  console.log(styles)
-
   useEffect(() => {
     if (styles) {
       setCurrStyle(styles.filter((style) => {
@@ -64,12 +58,16 @@ const Overview = ({currentProduct}) => {
 
   return (
     <div className="overview-container">
-      <Gallery photos={photos}/>
-      <Thumbnail photos={photos}/>
+      <div className="left-container">
+        {photos ? <Gallery photos={photos}/> : null}
+      </div>
       <div className="right-container">
-        <ProductInfo productName={productName} category={category} defaultPrice={defaultPrice} salesPrice={salesPrice}/>
+        <ProductInfo
+        productName={productName} category={category} defaultPrice={defaultPrice}
+        salesPrice={salesPrice} avgRating ={avgRating}
+        />
         {styles ? <Styles styles={styles} styleName={styleName} styleId={styleId} setStyleId={setStyleId}/> : null}
-        {styles ? <Cart styles={styles} styleId={styleId} currStyle={currStyle}/> : null}
+        {styles && currStyle ? <Cart styles={styles} styleId={styleId} currStyle={currStyle}/> : null}
       </div>
     </div>
     );
