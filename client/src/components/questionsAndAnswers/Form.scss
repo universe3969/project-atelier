@@ -29,6 +29,10 @@ form {
       padding: 0.5rem;
       border: solid rgb(195, 195, 195) 0.5px;
       outline: none;
+
+      &:focus::placeholder {
+        color: transparent;
+      }
     }
 
     textarea {
@@ -41,6 +45,16 @@ form {
       font-size: 0.9rem;
       color: rgb(80, 80, 80);
       font-style: italic;
+    }
+  }
+
+  .error-message {
+    color: red;
+    font-size: 95%;
+    font-style: italic;
+
+    .messages {
+      padding: 0 1rem;
     }
   }
 
