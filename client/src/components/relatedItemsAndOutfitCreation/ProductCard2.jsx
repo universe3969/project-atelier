@@ -1,4 +1,6 @@
 import React, { useState, useRef } from 'react';
+import { FiChevronLeft } from 'react-icons/fi';
+import { FiChevronRight } from 'react-icons/fi';
 import './ProductCard2.scss';
 
 const ProductCard2 = ({ product }) => {
@@ -8,11 +10,12 @@ const ProductCard2 = ({ product }) => {
   const { avgRating, info, styles } = product;
   const defaultStyle = styles.results
     .find(style => style['default?'] === true) || styles.results[0];
+  // const defaultStyle = styles.results[1];
   const images = defaultStyle.photos.map(img => img.thumbnail_url);
 
   const onHandleClick = (direction) => {
     const slider = sliderRef.current;
-    let width = getComputedStyle(slider).getPropertyValue('--added-Width');
+    let width = getComputedStyle(slider).getPropertyValue('--added-Single-Width');
     if (width.includes('px')) {
       width = parseInt(width.slice(0, -2));
     } else {
@@ -24,7 +27,7 @@ const ProductCard2 = ({ product }) => {
     const index = currentIndex + 1;
 
     if (direction === 'left') {
-      if (index === itemsPerScreen.current) {
+      if (index === 1) {
         return;
       }
       width += cardWidth;
@@ -36,13 +39,13 @@ const ProductCard2 = ({ product }) => {
       width -= cardWidth;
       setCurrentIndex(currentIndex + 1);
     }
-    slider.style.setProperty('--added-Width', `${width}px`);
+    slider.style.setProperty('--added-Single-Width', `${width}px`);
   };
 
   let renderedImages = [];
   if (images.length) {
-    renderededImages = images.map(url =>
-      <div>
+    renderedImages = images.map(url =>
+      <div key={url}>
         <img src={url}/>
       </div>
       // <ProductCard
@@ -56,26 +59,23 @@ const ProductCard2 = ({ product }) => {
   }
 
   return (
-    <div>
-      <div className='carousel-container'>
-        {/* {showNavigation &&
-          currentIndex !== 0 &&
+    <div className='product-slideshow-container'>
+      <div className=''>
+        {currentIndex !== 0 &&
           <button className='left' onClick={() => onHandleClick('left')}>
             <FiChevronLeft/>
           </button>
         }
-        {showNavigation &&
-          (currentIndex + itemsPerScreen.current) !== itemsLength &&
+        {(currentIndex + 1) !== images.length &&
           <button className='right' onClick={() => onHandleClick('right')}>
             <FiChevronRight/>
           </button>
-        } */}
-        <div className='carousel-content' ref={sliderRef}>
-          {/* {type === 'yourOutfit' && <ProductCard type='addProduct' onButtonClick={onAddProduct}/>} */}
+        }
+        <div className='slideshow-content' ref={sliderRef}>
           {images && renderedImages}
         </div>
       </div>
-      <div className='product-showcase-detail'>
+      <div className='product-card-detail'>
 
       </div>
     </div>
