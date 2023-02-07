@@ -3,7 +3,7 @@ import axios from 'axios';
 import RelatedItemsAndOutfitCreation from './relatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreation.jsx';
 
 const App = () => {
-  const [productId, setProductId] = useState(37315);
+  const [productId, setProductId] = useState(37317);
   const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {

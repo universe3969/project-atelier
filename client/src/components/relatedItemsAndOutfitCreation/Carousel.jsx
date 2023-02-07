@@ -10,7 +10,7 @@ const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct }) => {
   const itemsPerScreen = useRef(0);
 
   const itemsLength = type === 'yourOutfit' ? items.length + 1 : items.length;
-
+console.log
   const onHandleClick = (direction) => {
     const slider = sliderRef.current;
     let width = getComputedStyle(slider).getPropertyValue('--added-Width');
@@ -57,7 +57,10 @@ const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct }) => {
   if (type !== 'yourOutfit') {
     showNavigation = true;
   } else {
-    if (itemsLength !== 1) {
+    // if (itemsLength !== 1) {
+    //   showNavigation = true;
+    // }
+    if (itemsLength > 3) {
       showNavigation = true;
     }
   }
