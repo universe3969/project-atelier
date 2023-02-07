@@ -5,8 +5,10 @@ export default function ProductInfo ({productName, category, defaultPrice, sales
 
   return (
     <div className="product-info">
-      <div className="overview-rating"><StarRating rating={avgRating}/></div>
-      <div className="read-reviews">read all reviews</div>
+      <div className="overview-review-container">
+        <div className="overview-rating"><StarRating rating={avgRating}/></div>
+        <div className="read-reviews">read all reviews</div>
+      </div>
       <div className="product-category">{category}</div>
       <h2 className="product-name">{productName}</h2>
       <div className="price">

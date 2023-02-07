@@ -1,7 +1,18 @@
-.overview-container {
+
+.overview-review-container {
+  display: flex;
+  margin-top: 30px;
+}
+
+.overview-container-top {
   display: flex;
   justify-content: center;
   margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.top-container-left {
+  margin-right: 36px;
 }
 
 .gallery-container {
@@ -136,11 +147,26 @@
   display: inline;
 }
 .overview-rating {
-  display: inline;
+  margin-top: 3px;
+  margin-right: 14px;
 }
 
 .product-category,
 .product-name,
 .price {
   display: block;
+}
+
+.additional-info-divider {
+  height: 100px;
+  border-left: 6px solid black;
+}
+
+.over-container-bottom {
+  display: block;
+}
+.additional-info-divider,
+.additional-info-left,
+.additiona-info-right {
+  display: inline;
 }

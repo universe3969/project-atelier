@@ -4,6 +4,7 @@ import axios from 'axios';
 import Gallery from './Gallery.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import Cart from './Cart.jsx';
+import AdditionalInfo from './AdditionalInfo.jsx';
 
 const Overview = ({currentProduct}) => {
 
@@ -13,6 +14,8 @@ const Overview = ({currentProduct}) => {
   const [defaultPrice, setDefaultPrice] = useState();
   const [slogan, setSlogan] = useState();
   const [avgRating, setAvgRating] = useState(currentProduct.avgRating);
+  const [features, setFeatures] = useState();
+  const [description, setDescription] = useState();
   // product styles
   const [styles, setStyles] = useState();
   const [styleId, setStyleId] = useState();
@@ -25,16 +28,19 @@ const Overview = ({currentProduct}) => {
   const [originalPrice, setOriginalPrice] = useState();
   const [salesPrice, setSalesPrice] = useState();
 
+  console.log(currentProduct.info.description)
+
   useEffect(() => {
     setCategory(currentProduct.info.category);
     setProductName(currentProduct.info.name);
     setDefaultPrice(currentProduct.info.default_price);
     setSlogan(currentProduct.info.slogan);
+    setFeatures(currentProduct.info.features);
+    setDescription(currentProduct.info.description)
 
     setStyles(currentProduct.styles.results);
     setStyleId(currentProduct.styles.results[0].style_id);
   }, []);
-  // console.log(category, productName, defaultPrice, slogan)
 
 
   useEffect(() => {
@@ -58,16 +64,21 @@ const Overview = ({currentProduct}) => {
 
   return (
     <div className="overview-container">
-      <div className="left-container">
-        {photos ? <Gallery photos={photos}/> : null}
+      <div className="overview-container-top">
+        <div className="top-container-left">
+          {photos ? <Gallery photos={photos}/> : null}
+        </div>
+        <div className="top-container-right">
+          <ProductInfo
+          productName={productName} category={category} defaultPrice={defaultPrice}
+          salesPrice={salesPrice} avgRating ={avgRating}
+          />
+          {styles ? <Styles styles={styles} styleName={styleName} styleId={styleId} setStyleId={setStyleId}/> : null}
+          {styles && currStyle ? <Cart styles={styles} styleId={styleId} currStyle={currStyle}/> : null}
+        </div>
       </div>
-      <div className="right-container">
-        <ProductInfo
-        productName={productName} category={category} defaultPrice={defaultPrice}
-        salesPrice={salesPrice} avgRating ={avgRating}
-        />
-        {styles ? <Styles styles={styles} styleName={styleName} styleId={styleId} setStyleId={setStyleId}/> : null}
-        {styles && currStyle ? <Cart styles={styles} styleId={styleId} currStyle={currStyle}/> : null}
+      <div className="overview-container-bottom">
+        {slogan && features && description ? <AdditionalInfo slogan={slogan} features={features} description={description}/> : null}
       </div>
     </div>
     );
