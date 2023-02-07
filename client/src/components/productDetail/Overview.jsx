@@ -28,8 +28,6 @@ const Overview = ({currentProduct}) => {
   const [originalPrice, setOriginalPrice] = useState();
   const [salesPrice, setSalesPrice] = useState();
 
-  console.log(currentProduct.info.description)
-
   useEffect(() => {
     setCategory(currentProduct.info.category);
     setProductName(currentProduct.info.name);
