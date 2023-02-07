@@ -33,7 +33,6 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
   }
 
   const handleSearchQuestions = (searchTerm) => {
-    console.log(searchTerm);
     if (searchTerm === '') {
       setSearchQuestions(questions);
     } else {
@@ -67,14 +66,17 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
   };
 
   const handleSubmitQuestion = (questionPost) => {
-    console.log(questionPost);
     const questionData = {
       product_id: +productId,
       ...questionPost
     };
     axios.post('http://localhost:3000/api/questions/new', questionData)
-      .then(data => data)
-      .catch(err => console.log(data));
+      .then(data => {
+        return axios .get(`http://localhost:3000/api/questionsAndAnswers/${productId}`);
+      }).then(({ data }) => {
+        setQuestions(data);
+        setSearchQuestions(data);
+      }).catch(err => console.log(err));
     setShowModal(false);
   };
 

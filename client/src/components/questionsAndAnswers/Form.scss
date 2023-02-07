@@ -7,13 +7,15 @@ form {
   & > * {
     display: flex;
     flex-direction: column;
-  }
+  };
+
   header {
     gap: 0.3rem;
+
     h3 {
       font-size: 1.3rem;
-    }
-  }
+    };
+  };
 
   .form-body,
   .form-name,
@@ -33,7 +35,7 @@ form {
       &:focus::placeholder {
         color: transparent;
       }
-    }
+    };
 
     textarea {
       height: 5rem;
@@ -46,7 +48,7 @@ form {
       font-size: 0.9rem;
       color: rgb(80, 80, 80);
       font-style: italic;
-    }
+    };
   }
 
   .primary.add-image {

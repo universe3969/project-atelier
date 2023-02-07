@@ -2,6 +2,7 @@ const getOverviewProduct = require('./productsController');
 const getRelatedProducts = require('./relatedProductsController');
 const {
   getProductQuestionsAndAnswers,
+  getAnswerListofQuestion,
   updateQuestionHelpfulFeedback,
   updateAnswerHelpfulFeedback,
   updateAnswerReportStatus,
@@ -20,6 +21,7 @@ module.exports = {
   getOverviewProduct,
   getRelatedProducts,
   getProductQuestionsAndAnswers,
+  getAnswerListofQuestion,
   updateQuestionHelpfulFeedback,
   updateAnswerHelpfulFeedback,
   updateAnswerReportStatus,

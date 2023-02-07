@@ -17,6 +17,7 @@ const {
 
 const {
   getQuestions,
+  getAnswerList,
   updateQuestionHelpfulCount,
   updateAnswerHelpfulCount,
   reportAnswer,
@@ -35,6 +36,7 @@ module.exports = {
   reportReview,
   postReview,
   getQuestions,
+  getAnswerList,
   updateQuestionHelpfulCount,
   updateAnswerHelpfulCount,
   reportAnswer,

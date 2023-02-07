@@ -8,7 +8,6 @@ import Modal from '../reusableComponents/Modal.jsx';
 import './Question.scss';
 
 const Question = ({ question, productName }) => {
-// console.log(question);
   const [sortedAnswers, setSortedAnswers] = useState(null);
   const [loadedAnswersCount, setLoadedAnswersCount] = useState(2);
   const [loadMoreAnswers, setLoadMoreAnswers] = useState(true);
@@ -49,10 +48,9 @@ const Question = ({ question, productName }) => {
   const handleSubmitAnswer = (answerPost) => {
     axios.post(`http://localhost:3000/api/questions/${question_id}/answers/new`, answerPost)
       .then(data => {
-        return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question_id}/answers?count=100`, { headers: { 'Authorization': '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' } });
+        return axios.get(`http://localhost:3000/api/questionsAndAnswers/answers/${question_id}`);
       }).then(({ data }) => {
-        console.log('new answer list, ', data);
-        let sorted = Object.values(data.results).sort((a, b) => b.helpfulness - a.helpfulness);
+        let sorted = Object.values(data).sort((a, b) => b.helpfulness - a.helpfulness);
         let sellerAnswers = sorted.filter(answer => answer.answerer_name === 'Seller') || [];
         sorted = sellerAnswers.concat(sorted.filter(answer => answer.answerer_name !== 'Seller'));
         setSortedAnswers(sorted);

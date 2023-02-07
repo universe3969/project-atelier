@@ -5,7 +5,7 @@
   .secondary {
     padding: 0.5rem;
     font-size: 80%;
-  }
+  };
  }
 
  .question-content {
@@ -17,7 +17,6 @@
     font-weight: bold;
   };
 
-
   .action-bar {
     display: flex;
     font-size: 0.8rem;
@@ -26,8 +25,8 @@
 
     .helpful-action-bar {
       font-size: inherit;
-    }
-  }
+    };
+  };
 }
 
  .answer-content {
@@ -37,5 +36,5 @@
 
   & > :last-child {
     margin-bottom: 0;
-  }
+  };
 }
