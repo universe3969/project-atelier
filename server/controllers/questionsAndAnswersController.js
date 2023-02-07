@@ -15,38 +15,57 @@ const getProductQuestionsAndAnswers = async (req, res) => {
   let page = 1;
   let results = [];
 
-  do {
-    results = await getQuestions(productId, page);
-    if (results.length) {
-      questions = questions.concat(results);
-    }
-    page++;
-  } while (results.length);
+  try {
+    do {
+      results = await getQuestions(productId, page);
+      if (results.length) {
+        questions = questions.concat(results);
+      }
+      page++;
+    } while (results.length);
 
 
-  questions = questions.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
-  res.status(200).send(questions);
+    questions = questions.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
+    res.status(200).send(questions);
+  } catch (err) {
+    console.log(err);
+    res.status(400).send('Unable to retrieve questions');
+  }
 };
 
 const updateQuestionHelpfulFeedback = async (req, res) => {
   const { questionId } = req.params;
-  await updateQuestionHelpfulCount(questionId);
-
-  res.status(204).send('Successfully update question helpful count');
+  try {
+    await updateQuestionHelpfulCount(questionId);
+    res.status(204).send('Successfully update question helpful count');
+  } catch (err) {
+    console.log(err);
+    res.status(400).send('Failed updating question helpful count');
+  }
 };
 
 const updateAnswerHelpfulFeedback = async (req, res) => {
   const { answerId } = req.params;
-  await updateAnswerHelpfulCount(answerId);
 
-  res.status(204).send('Successfully update answer helpful count');
+  try {
+    await updateAnswerHelpfulCount(answerId);
+    res.status(204).send('Successfully update answer helpful count');
+  } catch (err) {
+    console.log(err);
+    res.status(400).send('Failed updating answer helpful count');
+  }
 };
 
 const updateAnswerReportStatus = async (req, res) => {
   const { answerId } = req.params;
-  await reportAnswer(answerId);
 
-  res.status(204).send('Successfully update answer reported status');
+  try {
+    await reportAnswer(answerId);
+    res.status(204).send('Successfully update answer reported status');
+  } catch (err) {
+    console.log(err);
+    res.status(400).send('Failed updating answer reported status');
+  }
 };
 
 const addProductQuestion = async (req, res) => {
@@ -54,8 +73,13 @@ const addProductQuestion = async (req, res) => {
   if (!errors.isEmpty()) {
     res.status(400).send('Invalid input');
   } else {
-    await postQuestion(req.body);
-    res.status(201).send('Successfully posted new question');
+    try {
+      await postQuestion(req.body);
+      res.status(201).send('Successfully posted new question');
+    } catch (err) {
+      console.log(err);
+      res.status(400).send('Failed posting new question');
+    }
   }
 };
 
@@ -64,9 +88,14 @@ const addProductAnswer = async (req, res) => {
   if (!errors.isEmpty()) {
     res.status(400).send('Invalid input');
   } else {
-    const { questionId } = req.params;
-    await postAnswer(questionId, req.body);
-    res.status(201).send('Successfully posted new answer');
+    try {
+      const { questionId } = req.params;
+      await postAnswer(questionId, req.body);
+      res.status(201).send('Successfully posted new answer');
+    } catch (err) {
+      console.log(err);
+      res.status(400).send('Failed posting new answer');
+    }
   }
 };
 

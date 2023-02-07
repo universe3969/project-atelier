@@ -17,12 +17,12 @@ const updateQuestionHelpfulCount = (questionId) => {
 };
 
 const updateAnswerHelpfulCount = (answerId) => {
-  return instance.put(`${process.env.ANSWERS_URL}/${answerId}/helpful`)
+  return instance.put(`${process.env.ANSWER_URL}/${answerId}/helpful`)
     .then(({ data }) => data);
 };
 
 const reportAnswer = (answerId) => {
-  return instance.put(`${process.env.ANSWERS_URL}/${answerId}/report`)
+  return instance.put(`${process.env.ANSWER_URL}/${answerId}/report`)
     .then(({ data }) => data);
 };
 

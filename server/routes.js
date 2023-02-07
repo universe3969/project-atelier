@@ -28,13 +28,13 @@ router.get('/api/relatedProducts/:productId', getRelatedProducts);
 router.get('/api/questionsAndAnswers/:productId', getProductQuestionsAndAnswers);
 
 // Update question helpful feedback for a product
-router.put('/api/questionsAndAnswers/:questionId/helpful', updateQuestionHelpfulFeedback);
+router.put('/api/questionsAndAnswers/questions/:questionId/helpful', updateQuestionHelpfulFeedback);
 
 // Update answer helpful feedback for a product
-router.put('/api/questionsAndAnswers/:answerId/helpful', updateAnswerHelpfulFeedback);
+router.put('/api/questionsAndAnswers/answers/:answerId/helpful', updateAnswerHelpfulFeedback);
 
 // Update answer reported status
-router.put('/api/questionsAndAnswers/:answerId/report', updateAnswerReportStatus);
+router.put('/api/questionsAndAnswers/answers/:answerId/report', updateAnswerReportStatus);
 
 // Post new question for a product
 router.post('/api/questions/new',
@@ -53,7 +53,7 @@ router.post('/api/questions/:questionId/answers/new',
   addProductAnswer);
 
 // Return product reviews and metadata
-router.get('/api/reviews/:productId', getProductReviewsAndMeta);
+router.get('/api/reviews/:productId/:sortCriteria', getProductReviewsAndMeta);
 
 // Update review helpful feedback for a review
 router.put('/api/reviews/:reviewId/helpful', updateReviewHelpfulFeedback);
