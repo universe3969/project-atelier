@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './Styles.scss';
-import {AiOutlineArrowRight, AiOutlineArrowLeft, AiOutlineUp, AiOutlineDown} from 'react-icons/ai';
+import {GoArrowLeft, GoArrowRight, GoTriangleDown, GoTriangleUp} from 'react-icons/go';
 const Gallery = ({photos}) => {
 
   const [currIndex, setCurrIndex] = useState(0);
@@ -53,17 +53,16 @@ const Gallery = ({photos}) => {
 
   return (
     <div className='gallery-container'>
-
-      {isFirst ? null : <AiOutlineArrowLeft onClick={previous} className="carousel-left"/>}
-
-      {isLast ? null : <AiOutlineArrowRight onClick={next} className="carousel-right"/>}
-
-      <div style={galleryStyles}>
-        <div className="thumbnails-container">
-          <AiOutlineUp className="carousel-up" onClick={up}/>
+      <div className="thumbnails-container">
+        <GoTriangleUp className="carousel-up" onClick={up}/>
           {thumbnailList}
-          <AiOutlineDown className="carousel-down" onClick={down}/>
-        </div>
+        <GoTriangleDown className="carousel-down" onClick={down}/>
+      </div>
+      {isFirst ? null : <GoArrowLeft onClick={previous} className="carousel-left"/>}
+
+      {isLast ? null : <GoArrowRight onClick={next} className="carousel-right"/>}
+
+      <div className="big-thumbnail" style={galleryStyles}>
       </div>
 
     </div>

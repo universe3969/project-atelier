@@ -12,11 +12,12 @@ export default function ProductInfo ({productName, category, defaultPrice, sales
       <div className="product-category">{category}</div>
       <h2 className="product-name">{productName}</h2>
       <div className="price">
-        {salesPrice ? <div>
-            <div style={{color: "red"}}>{salesPrice}</div>
-            <div style={{textDecoration: 'line-through'}}>{defaultPrice}</div>
+        {salesPrice ?
+          <div className="price-container">
+            <div className="sales-price" style={{color: "red"}}>${salesPrice}</div>
+            <div className="original-price" style={{textDecoration: 'line-through'}}>${defaultPrice}</div>
           </div>
-        : <div className="default-price">{defaultPrice}</div>}
+          : <div className="default-price">${defaultPrice}</div>}
       </div>
     </div>
   );

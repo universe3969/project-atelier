@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {AiOutlineCheckCircle} from 'react-icons/ai';
+import {AiFillCheckCircle} from 'react-icons/ai';
 
 const Styles = ({styles, styleId, setStyleId, styleName}) => {
 
@@ -10,22 +10,22 @@ const Styles = ({styles, styleId, setStyleId, styleName}) => {
   let styleIcons;
   styleIcons = styles.map(style => {
     return (
-      <div key={style.style_id}>
+      <div key={style.style_id} className="style-icon-container">
         <img
         className="style-icon"
         onClick={selectStyle}
         src={style.photos[0]['url']}
         data-style={style.style_id}
         />
-        {styleId === style.style_id ? <AiOutlineCheckCircle /> : null}
+        {styleId === style.style_id ? <AiFillCheckCircle className="style-check" /> : null}
       </div>
     )
   })
 
   return (
-    <div className="styles-selection">
+    <div className="style-selection-container">
       <div className="style-text">STYLE > {styleName}</div>
-      <div className="style-icons">
+      <div className="style-icons-container">
         {styleIcons}
       </div>
     </div>
