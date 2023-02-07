@@ -28,7 +28,7 @@ const Question = ({ question, productName }) => {
   if (sortedAnswers) {
     const loadingAnswer = sortedAnswers.slice(0, loadedAnswersCount);
     renderedAnswers = loadingAnswer.map(answer =>
-      <Answer key={answer.id} answer={answer}/>
+      <Answer key={answer.id || answer.answer_id} answer={answer}/>
     );
   }
 
@@ -48,8 +48,15 @@ const Question = ({ question, productName }) => {
 
   const handleSubmitAnswer = (answerPost) => {
     axios.post(`http://localhost:3000/api/questions/${question_id}/answers/new`, answerPost)
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
+      .then(data => {
+        return axios.get(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfe/qa/questions/${question_id}/answers?count=100`, { headers: { 'Authorization': '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' } });
+      }).then(({ data }) => {
+        console.log('new answer list, ', data);
+        let sorted = Object.values(data.results).sort((a, b) => b.helpfulness - a.helpfulness);
+        let sellerAnswers = sorted.filter(answer => answer.answerer_name === 'Seller') || [];
+        sorted = sellerAnswers.concat(sorted.filter(answer => answer.answerer_name !== 'Seller'));
+        setSortedAnswers(sorted);
+      }).catch(err => console.log(err));
     setShowModal(false);
   };
 

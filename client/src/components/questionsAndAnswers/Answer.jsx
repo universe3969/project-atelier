@@ -6,7 +6,8 @@ import './Answer.scss';
 const Answer = ({ answer }) => {
   const [showImageModal, setShowImageModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const { id, body, helpfulness, answerer_name, date, photos } = answer;
+  const id = answer.id || answer.answer_id;
+  const { body, helpfulness, answerer_name, date, photos } = answer;
 
   const renderedUser = answerer_name === 'Seller'
     ? <span style={{ fontWeight: 'bold' }}>{answerer_name}</span>
@@ -16,16 +17,19 @@ const Answer = ({ answer }) => {
 
   let renderedPhotos = null;
   if (photos) {
-    renderedPhotos = photos.map((photo, index) =>
-      <img
-        key={`${id}-${index}`}
-        src={photo}
-        onClick={() => {
-          setShowImageModal(true);
-          setSelectedImage(photo);
-        }}
-      />
-    );
+    renderedPhotos = photos.map((photo, index) => {
+      const url = typeof photo === 'object' ? photo.url : photo;
+      return (
+        <img
+          key={`${id}-${index}`}
+          src={url}
+          onClick={() => {
+            setShowImageModal(true);
+            setSelectedImage(photo);
+          }}
+        />
+      );
+    });
   }
 
   return (

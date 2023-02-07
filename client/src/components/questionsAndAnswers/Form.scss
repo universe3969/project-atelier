@@ -49,6 +49,12 @@ form {
     }
   }
 
+  .primary.add-image {
+    width: 8rem;
+    justify-content: center;
+    align-self: start;
+  }
+
   .error-message {
     color: red;
     font-size: 95%;

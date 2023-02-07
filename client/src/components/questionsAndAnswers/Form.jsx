@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Form.scss';
 import Button from '../reusableComponents/Button.jsx';
+import UploadFileWidget from './UploadFileWidget.jsx';
 
 const Form = ({ type, title, subtitle, onSubmit }) => {
   const [body, setBody] = useState('');
@@ -26,7 +27,12 @@ const Form = ({ type, title, subtitle, onSubmit }) => {
     const validEmail = email.trim().length >= 3 && name.trim().length <= 60 && email.includes('@');
 
     if (validBody && validName && validEmail) {
-      const post = { name, email, body };
+      let post;
+      if (type === 'question') {
+        post = { name, email, body };
+      } else {
+        post = { name, email, body, photos };
+      }
       onSubmit(post);
     } else {
       let invalidNameMessage, invalidEmailMessage, invalidBodyMessage;
@@ -46,7 +52,6 @@ const Form = ({ type, title, subtitle, onSubmit }) => {
         email: invalidEmailMessage || '',
         body: invalidBodyMessage || ''
       });
-
     }
   };
 
@@ -81,6 +86,9 @@ const Form = ({ type, title, subtitle, onSubmit }) => {
           value={body}
         ></textarea>
       </div>
+      {type === 'answer' &&
+        <UploadFileWidget onSetPhotos={setPhotos}/>
+      }
       {errorMessage &&
         <div className='error-message'>
           <p>You must enter the following:</p>
@@ -90,7 +98,6 @@ const Form = ({ type, title, subtitle, onSubmit }) => {
             {errorMessage.body.length > 0 && <p>- {errorMessage.body}</p>}
           </div>
         </div>
-
       }
       <Button className='primary' onClick={handleSubmit}>
         SUBMIT
