@@ -8,7 +8,7 @@ const RelatedProducts = ({ relatedProducts }) => {
   const [comparingProducts, setComparingProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [removedId, setRemovedId] = useState(0);
-
+console.log(relatedProducts);
   useEffect(() => {
     if (comparingProducts.length === 2) {
       setShowModal(true);
