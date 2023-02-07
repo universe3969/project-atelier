@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import NavBar from './NavBar.jsx';
 import Alert from './Alert.jsx';
+import Overview from './productDetail/Overview.jsx';
 
 const App = () => {
   const [productId, setProductId] = useState(37316);
