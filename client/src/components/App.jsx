@@ -32,10 +32,12 @@ const App = () => {
     <div className='app-container'>
       <NavBar onSearch={handleSearch}/>
       {alert && <Alert type={alert.type} message={alert.message}/>}
-      <div className='announcement'><span>SITE-WIDE ANNOUNCEMENT MESSAGE!</span><span className='dash'>&#8212;</span>SALE / DISCOUNT<span className='offer'>OFFER</span><span className='dash'>&#8212;</span><span className='highlight'>NEW PRODUCT HIGHTLIGHT</span></div>
+      {/* <div className='announcement'><span>SITE-WIDE ANNOUNCEMENT MESSAGE!</span><span className='dash'>&#8212;</span>SALE / DISCOUNT<span className='offer'>OFFER</span><span className='dash'>&#8212;</span><span className='highlight'>NEW PRODUCT HIGHTLIGHT</span></div> */}
+      <div className='announcement'><span>APPLY FOR OUR MASTERCARD</span><span className='dash'>&#8212;</span><span className='offer'>GET UP TO 30% OFF YOUR NEXT ORDER</span><span className='dash'>&#8212;</span><span className='highlight'>SPRING 2023 COLLECTON</span></div>
       <div className='app-modules'>
         {currentProduct &&
           <Fragment>
+            <Overview currentProduct={currentProduct}/>
             <RelatedItemsAndOutfitCreation
               currentProductId={productId}
               product={currentProduct}
