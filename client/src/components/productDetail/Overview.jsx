@@ -59,14 +59,18 @@ const Overview = ({currentProduct}) => {
     }
   }, [currStyle]);
 
+  const [isZoomed, setIsZoomed] = useState(false);
 
   return (
     <div className="overview-container">
+      <div className="overview-message-container">
+        <div className="overview-message"><u className="master-card">APPLY FOR OUR MASTERCARD</u> — <em>GET UP TO 30% OFF YOUR NEXT ORDER</em> — </div>
+      </div>
       <div className="overview-container-top">
         <div className="top-container-left">
-          {photos ? <Gallery photos={photos}/> : null}
+          {photos ? <Gallery photos={photos} isZoomed={isZoomed} setIsZoomed={setIsZoomed}/> : null}
         </div>
-        <div className="top-container-right">
+        <div className={!isZoomed ? "top-container-right" : "top-container-right top-right-zoomed"}>
           <ProductInfo
           productName={productName} category={category} defaultPrice={defaultPrice}
           salesPrice={salesPrice} avgRating ={avgRating}
