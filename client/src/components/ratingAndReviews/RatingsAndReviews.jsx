@@ -18,8 +18,8 @@ const RatingsAndReviews = ({productId, currentProduct}) => {
   const [render, setRender] = useState([]);
   const [reviewMetaData, setReviewMetaData] = useState({});
   const [starFilter, setStarFilter] = useState(initialStars);
-  const [firstClick, setFirstClick] = useState(true);
-
+  const [selectStar, setSelectStar] = useState(0);
+  const [allSelectStarSort, setAllSelectStarSort] = useState([]);
 
   useEffect(() => {
     axios.get(`http://localhost:3000/api/reviews/${productId}/${sortBy}`)
@@ -39,12 +39,18 @@ const RatingsAndReviews = ({productId, currentProduct}) => {
   };
   const handleSortByStars = (starNumber) => {
     let sortedStarRating = (currentProduct.reviews.results.filter((review) => review.rating === starNumber));
-    if (firstClick) {
-      setProductReviews(sortedStarRating);
-      setFirstClick(false);
-    } else {
+    if (starNumber === selectStar) {
+      setSelectStar(0);
+      setAllSelectStarSort([]);
       setProductReviews(currentProduct.reviews.results);
-      setFirstClick(true);
+    } else {
+      setSelectStar(starNumber);
+      if (selectStar !== 0 && allSelectStarSort.length !== 5 && !allSelectStarSort.includes(starNumber)) {
+        setAllSelectStarSort((prev => [...prev, starNumber]));
+        setProductReviews((previous => [...previous, ...sortedStarRating]));
+      } else {
+        setProductReviews(sortedStarRating);
+      }
     }
   };
 

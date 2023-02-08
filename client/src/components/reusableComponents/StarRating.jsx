@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MdStarBorder } from 'react-icons/md';
 import { MdStar } from 'react-icons/md';
 import './StarRating.scss';
@@ -7,7 +7,11 @@ const StarRating = ({ rating, className, onRating }) => {
   const [currentRating, setCurrentRating] = useState(+rating);
   const renderStars = [];
 
-  let handleRating;
+  useEffect(() => {
+    setCurrentRating(rating);
+  }, [rating]);
+
+  let handleRating = null;
   if (onRating) {
     handleRating = (event) => {
       if (event.target.tagName !== 'path') {
@@ -15,8 +19,6 @@ const StarRating = ({ rating, className, onRating }) => {
         onRating(+event.target.id + 1);
       }
     };
-  } else {
-    handleRating = () => {};
   }
 
   if (currentRating !== undefined) {

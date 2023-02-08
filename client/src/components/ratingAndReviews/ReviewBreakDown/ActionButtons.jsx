@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Button from '../../reusableComponents/Button.jsx';
 
-const ActionButtons = ({handleLoadClick, setShowMore, totalReviews, visible}) => {
+const ActionButtons = ({handleLoadClick, totalReviews, visible}) => {
   const [moreItems, setMoreItems] = useState(true);
   const [lessItems, setLessItems] = useState(false);
 
@@ -10,6 +10,7 @@ const ActionButtons = ({handleLoadClick, setShowMore, totalReviews, visible}) =>
     if (visible >= totalReviews) {
       setMoreItems(false);
       setLessItems(true);
+
     } else {
       handleLoadClick('more');
     }

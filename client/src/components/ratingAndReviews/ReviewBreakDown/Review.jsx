@@ -23,8 +23,8 @@ const Review = ({review, handleReportClick, handleHelpfulClick, handlePhotoClick
 
     <div className='individual-review'>
       <div>
-        {/* <StarRating rating={review.rating}/> */}
-        {review.rating}
+        <StarRating rating={review.rating}/>
+        {/* {review.rating} */}
         <span className='name-date'>{review.reviewer_name}, {date} </span>
       </div>
       <div className='summary'>{review.summary}</div>

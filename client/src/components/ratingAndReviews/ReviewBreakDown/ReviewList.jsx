@@ -12,13 +12,14 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [visible, setVisible] = useState(2);
-  const [showMore, setShowMore] = useState(false);
 
   const handleLoadClick = (action) => {
     if (action === 'more') {
       setVisible((prevValue) => prevValue + 2);
     } else {
-      setVisible(2);
+      if (action === 'less') {
+        setVisible(2);
+      }
     }
   };
 
@@ -68,7 +69,6 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
           handleLoadClick={handleLoadClick}
           setVisible={setVisible}
           visible={visible}
-          setShowMore={setShowMore}
           totalReviews= {productReviews.length}
         />
         <Button className='secondary' onClick={onClick}>
