@@ -9,12 +9,13 @@
   font-family: $montserrat;
 
   h3 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 500;
     color: $primary-color;
   };
 
   .search-bar {
+    flex-direction: row;
     border: none;
     gap: 1rem;
 

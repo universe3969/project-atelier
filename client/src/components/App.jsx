@@ -32,6 +32,7 @@ const App = () => {
     <div className='app-container'>
       <NavBar onSearch={handleSearch}/>
       {alert && <Alert type={alert.type} message={alert.message}/>}
+      <div className='announcement'><span>SITE-WIDE ANNOUNCEMENT MESSAGE!</span><span className='dash'>&#8212;</span>SALE / DISCOUNT<span className='offer'>OFFER</span><span className='dash'>&#8212;</span><span className='highlight'>NEW PRODUCT HIGHTLIGHT</span></div>
       <div className='app-modules'>
         {currentProduct &&
           <Fragment>

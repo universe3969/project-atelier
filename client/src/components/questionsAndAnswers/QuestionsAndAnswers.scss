@@ -3,7 +3,6 @@
 .questions-and-answers {
   display: flex;
   flex-direction: column;
-  font-size: 90%;
   padding: 0 1rem;
 
   h3 {
@@ -23,6 +22,10 @@
   .question-buttons {
     display: flex;
     padding: inherit;
+
+    & > * {
+      transform: scale(0.9);
+    }
 
     .more-question {
       margin-right: 1rem;
