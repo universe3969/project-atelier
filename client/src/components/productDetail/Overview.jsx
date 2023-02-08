@@ -28,6 +28,8 @@ const Overview = ({currentProduct}) => {
   const [originalPrice, setOriginalPrice] = useState();
   const [salesPrice, setSalesPrice] = useState();
 
+
+
   useEffect(() => {
     setCategory(currentProduct.info.category);
     setProductName(currentProduct.info.name);
@@ -60,6 +62,7 @@ const Overview = ({currentProduct}) => {
   }, [currStyle]);
 
   const [isZoomed, setIsZoomed] = useState(false);
+  const [currIndex, setCurrIndex] = useState(0);
 
   return (
     <div className="overview-container">
@@ -68,14 +71,14 @@ const Overview = ({currentProduct}) => {
       </div>
       <div className="overview-container-top">
         <div className="top-container-left">
-          {photos ? <Gallery photos={photos} isZoomed={isZoomed} setIsZoomed={setIsZoomed}/> : null}
+          {photos ? <Gallery photos={photos} isZoomed={isZoomed} setIsZoomed={setIsZoomed} currIndex={currIndex} setCurrIndex={setCurrIndex}/> : null}
         </div>
         <div className={!isZoomed ? "top-container-right" : "top-container-right top-right-zoomed"}>
           <ProductInfo
           productName={productName} category={category} defaultPrice={defaultPrice}
           salesPrice={salesPrice} avgRating ={avgRating}
           />
-          {styles ? <Styles styles={styles} styleName={styleName} styleId={styleId} setStyleId={setStyleId}/> : null}
+          {styles ? <Styles setCurrIndex={setCurrIndex} styles={styles} styleName={styleName} styleId={styleId} setStyleId={setStyleId}/> : null}
           {styles && currStyle ? <Cart styles={styles} styleId={styleId} currStyle={currStyle}/> : null}
         </div>
       </div>
