@@ -4,7 +4,7 @@ import RelatedItemsAndOutfitCreation from './relatedItemsAndOutfitCreation/Relat
 import ProductCard2 from './relatedItemsAndOutfitCreation/ProductCard2.jsx';
 
 const App = () => {
-  const [productId, setProductId] = useState(37313);
+  const [productId, setProductId] = useState(37317);
   const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {
@@ -15,12 +15,12 @@ const App = () => {
   return (
     <div>
       <h3>Project Atelier</h3>
-      {/* {currentProduct &&
+      {currentProduct &&
         <RelatedItemsAndOutfitCreation
           currentProductId={productId}
           product={currentProduct}
         />
-      } */}
+      }
       {currentProduct &&
         <div style={{paddingLeft: '3rem' }}>
           <ProductCard2

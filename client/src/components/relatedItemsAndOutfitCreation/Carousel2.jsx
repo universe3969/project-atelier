@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FiChevronLeft } from 'react-icons/fi';
 import { FiChevronRight } from 'react-icons/fi';
-import './Carousel.scss';
-import ProductCard2 from './ProductCard2.jsx';
-// import ProductCard from './ProductCard.jsx';
+import './Carousel2.scss';
+import ProductCard from './ProductCard.jsx';
 
 const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -44,13 +43,16 @@ const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct }) => {
   let renderededItems = [];
   if (items.length) {
     renderededItems = items.map(item =>
-      <ProductCard2
-        key={item.info.id}
-        type={type}
-        product={item}
-        onButtonClick={onButtonClick}
-        removedId={removedId}
-      />
+    //   <ProductCard
+    //     key={item.info.id}
+    //     type={type}
+    //     product={item}
+    //     onButtonClick={onButtonClick}
+    //     removedId={removedId}
+    //   />
+    <div>
+
+    </div>
     );
   }
 
@@ -81,7 +83,7 @@ const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct }) => {
         </button>
       }
       <div className='carousel-content' ref={sliderRef}>
-        {/* {type === 'yourOutfit' && <ProductCard2 type='addProduct' onButtonClick={onAddProduct}/>} */}
+        {type === 'yourOutfit' && <ProductCard type='addProduct' onButtonClick={onAddProduct}/>}
         {items && renderededItems}
       </div>
     </div>

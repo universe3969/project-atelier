@@ -106,7 +106,15 @@ const ProductCard2 = ({ type, product, onButtonClick, removedId }) => {
   if (images.length) {
     renderedImages = images.map(url =>
       <div key={url}>
-        <img src={url}/>
+        {url
+          ? <img src={url}/>
+          : (
+            <div className='no-image'>
+              <div className='no-image-icon'><BsFileEarmarkImageFill/></div>
+              <div className='no-image-text'>No Image Available</div>
+            </div>
+          )
+        }
       </div>
     );
   }
@@ -117,33 +125,35 @@ const ProductCard2 = ({ type, product, onButtonClick, removedId }) => {
   let rightArrowStyle = currentIndex + 1 !== images.length
     ? { color: 'black' } : { color: 'transparent' };
   return (
-    <div className='product-slideshow-container'>
-      {renderedButton}
-      <div className='slideshow-content' ref={sliderRef}>
-        {images && renderedImages}
-      </div>
-      <div className='product-slideshow-navigation'>
-        <div
-          className='left'
-          onClick={() => onHandleClick('left')}>
-          <BsFillCaretLeftFill
-          />
+    <div className='card-wrapper'>
+      <div className='product-slideshow-container'>
+        {renderedButton}
+        <div className='slideshow-content' ref={sliderRef}>
+          {images && renderedImages}
         </div>
-        <div
-          className='right'
-          onClick={() => onHandleClick('right')}>
-          <BsFillCaretRightFill
-          />
+        {images.length >= 3 &&
+          <div className='product-slideshow-navigation'>
+            <div
+              onClick={() => onHandleClick('left')}>
+              <BsFillCaretLeftFill
+              />
+            </div>
+            <div
+              onClick={() => onHandleClick('right')}>
+              <BsFillCaretRightFill
+              />
+            </div>
+          </div>
+        }
+        {/* <div className='product-card-detail'> */}
+        <div className='product-detail'>
+          <div className='title'>{info.category.toUpperCase()}</div>
+          <div className='product-name'>{info.name}</div>
+          <div className='product-price'>{formattedPrice}</div>
+          <StarRating rating={avgRating}/>
         </div>
+        {/* </div> */}
       </div>
-      {/* <div className='product-card-detail'> */}
-      <div className='product-detail'>
-        <div className='title'>{info.category.toUpperCase()}</div>
-        <div className='product-name'>{info.name}</div>
-        <div className='product-price'>{formattedPrice}</div>
-        <StarRating rating={avgRating}/>
-      </div>
-      {/* </div> */}
     </div>
   );
 };

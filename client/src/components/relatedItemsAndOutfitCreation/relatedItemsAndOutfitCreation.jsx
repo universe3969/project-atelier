@@ -24,12 +24,12 @@ const RelatedItemsAndOutfitCreation = ({ currentProductId, product }) => {
       <div className='related-products'>
         {relatedProducts.length && <RelatedProducts relatedProducts={relatedProducts}/>}
       </div>
-      <div className='your-outfit'>
+      {/* <div className='your-outfit'>
         <YourOutfit
           currentProduct={product}
           productId={currentProductId}
         />
-      </div>
+      </div> */}
     </div>
   );
 };
