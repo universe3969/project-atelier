@@ -5,7 +5,7 @@ import Alert from './Alert.jsx';
 import Overview from './productDetail/Overview.jsx';
 
 const App = () => {
-  const [productId, setProductId] = useState(37316);
+  const [productId, setProductId] = useState(37318);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [alert, setAlert] = useState(null);
 
@@ -30,6 +30,7 @@ const App = () => {
     <div>
       <NavBar onSearch={handleSearch}/>
       {alert && <Alert type={alert.type} message={alert.message}/>}
+      {currentProduct ? <Overview currentProduct={currentProduct}/> : null}
     </div>
   );
 };
