@@ -21,7 +21,13 @@ const App = () => {
           product={currentProduct}
         />
       } */}
-      {currentProduct && <ProductCard2 product={currentProduct}/>}
+      {currentProduct &&
+        <div style={{paddingLeft: '3rem' }}>
+          <ProductCard2
+            type='relatedProducts'
+            product={currentProduct}/>
+        </div>
+      }
     </div>
   );
 };
