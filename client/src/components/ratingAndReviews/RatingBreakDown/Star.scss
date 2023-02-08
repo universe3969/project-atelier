@@ -1,0 +1,41 @@
+.star-breakdown-item {
+  display: flex;
+  gap: 5px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+  .filter-star-button {
+    display: flex;
+    gap: 5px;
+    border-bottom: 1px solid rgb(88, 114, 88);
+  }
+
+  .filter-active {
+    background-color: rgb(57, 54, 54);
+  }
+
+  .filter-star-button:hover {
+    cursor: pointer;
+    opacity: .5;
+    background-color: rgb(84, 84, 64);
+  }
+
+  .break-down-bar {
+    display: flex;
+    align-items: center;
+  }
+
+    .gray-bar {
+      background-color: rgb(64, 62, 62);
+      opacity: .4;
+      width: 244px;
+      height: 10px;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .green-bar {
+      background-color: rgb(80, 142, 80);
+      height: 10px;
+    }

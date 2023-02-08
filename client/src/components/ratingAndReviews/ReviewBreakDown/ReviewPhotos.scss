@@ -1,0 +1,11 @@
+.photos-container {
+  display: flex;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 0.8rem;
+
+  .image-url img {
+    height: 400px;
+    width: 400px;
+  }
+}

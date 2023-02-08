@@ -1,0 +1,59 @@
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  width: 650px;
+  height: 800px;
+  gap: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+   h1{
+    font-size: 1.3rem;
+    background-color: rgb(249, 244, 244);
+   }
+   .write-review-stars{
+    background-color: rgb(238, 233, 233);
+   }
+   .name-email{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(15rem, 1fr));
+    grid-gap: 1rem;
+    height: 30px;
+    background-color: rgb(230, 225, 225);
+    &:hover{
+          background: rgb(140, 148, 140);
+         }
+   }
+   textarea, input {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    padding: 0.5rem;
+    border: solid rgb(209, 203, 203) 0.5px;
+    outline: none;
+    background-color:  rgb(238, 233, 233);
+
+
+    &:focus::placeholder {
+      color: rgb(237, 230, 230);
+    }
+  };
+  .content-warning{
+    background:  rgb(238, 233, 233);
+  }
+  .photo-container{
+   background-color: rgb(238, 233, 233)
+
+  }
+  .recommend-statement{
+    background-color: rgb(218, 216, 216)
+  }
+  .submit-review{
+      background-color: rgb(218, 216, 216),
+      cursor pointer;
+
+      &:hover{
+        background: rgb(120, 103, 103);
+      }
+    }
+}
+

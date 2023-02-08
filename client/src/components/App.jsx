@@ -27,7 +27,6 @@ const App = () => {
       setAlert({ type: 'error', message: 'Invalid Product ID'});
     }
   };
-
   return (
     <div className='app-container'>
       <NavBar onSearch={handleSearch}/>
