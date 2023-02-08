@@ -1,0 +1,43 @@
+.quality-bar-container {
+  display: flex;
+  width: 300px;
+  margin-bottom: 5px;
+  gap: 5px;
+}
+.quality-bar-traits {
+  display: flex;
+  width: 300px;
+}
+.quality-bar {
+  margin-top: 3px;
+  background-color:rgb(59, 56, 56);
+  opacity: 0.4;
+  z-index: -1;
+  width: 100px;
+  height: 10px;
+}
+.quality-triangle{
+  position:absolute;
+  font-size: 1.1em;
+  height: 10px;
+  transform: rotate(180deg);
+  margin-top: 9px;
+}
+.quality-trait-left {
+  display: flex;
+  justify-content: flex-start;
+  width: 100px;
+  font-size: .7rem;
+}
+.quality-trait-middle {
+  display: flex;
+  justify-content: center;
+  width: 100px;
+  font-size: .7rem;
+}
+.quality-trait-right {
+  display: flex;
+  justify-content: flex-end;
+  width: 100px;
+  font-size: .7rem;
+}

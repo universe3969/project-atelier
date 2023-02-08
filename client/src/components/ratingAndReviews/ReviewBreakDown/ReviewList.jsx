@@ -11,15 +11,14 @@ import AddReviewForm from './AddReviewForm.jsx';
 const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sortBy, productName, reviewMetaData}) => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [imageURL, setImageURL] = useState('');
   const [visible, setVisible] = useState(2);
   const [showMore, setShowMore] = useState(false);
 
   const handleLoadClick = (action) => {
     if (action === 'more') {
-      setVisible((prevValue) => prevValue + 3);
+      setVisible((prevValue) => prevValue + 2);
     } else {
-      setVisible(3);
+      setVisible(2);
     }
   };
 
@@ -41,17 +40,10 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
     });
   };
 
-  const handlePhotoClick = (e) => {
-    if (e.target.src) {
-      setImageURL(e.target.src);
-      setShowModal(true);
-    }
-  };
-
   let totalReviews = [];
   if (productReviews) {
     totalReviews = productReviews.slice(0, visible).map((review, index) => {
-      return <Review key={index} review={review} handleReportClick={handleReportClick} handleHelpfulClick={handleHelpfulClick} handlePhotoClick={handlePhotoClick} showModal={showModal} setShowModal={setShowModal}/>;
+      return <Review key={index} review={review} handleReportClick={handleReportClick} handleHelpfulClick={handleHelpfulClick}/>;
     });
   }
 
@@ -64,11 +56,13 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
   };
 
   return (
-    <div className='review-container'>
+    <div>
       <div>
         <SortBy handleSortClick={handleSortClick} totalReviews={productReviews.length} />
       </div>
-      {totalReviews}
+      <div className='review-container'>
+        {totalReviews}
+      </div>
       <div className='review-list-buttons'>
         <ActionButtons
           handleLoadClick={handleLoadClick}
@@ -77,11 +71,9 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
           setShowMore={setShowMore}
           totalReviews= {productReviews.length}
         />
-        {/* <div className='add-review'> */}
         <Button className='secondary' onClick={onClick}>
           ADD A REVIEW +
         </Button>
-        {/* </div> */}
       </div>
       {showModal &&
         <Modal className='modal clear' onClose={onClose}>
@@ -89,9 +81,11 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
             productReviews={productReviews}
             reviewMetaData={reviewMetaData}
             setRender={setRender}
-            productName={productName}/>
+            productName={productName}
+            onClose={() => setShowModal(false)}/>
         </Modal>
       }
+
     </div>
 
   );

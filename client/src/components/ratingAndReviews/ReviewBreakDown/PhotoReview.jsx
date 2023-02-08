@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './PhotoReview.scss';
 let PhotoReview = ({ photos, setPhotos }) => {
 
   let [key, setKey] = useState(-1);

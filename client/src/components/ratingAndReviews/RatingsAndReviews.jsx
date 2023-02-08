@@ -18,8 +18,9 @@ const RatingsAndReviews = ({productId, currentProduct}) => {
   const [render, setRender] = useState([]);
   const [reviewMetaData, setReviewMetaData] = useState({});
   const [starFilter, setStarFilter] = useState(initialStars);
+  const [firstClick, setFirstClick] = useState(true);
 
-  // console.log(currentProduct.reviews.results.filter((review) => review.rating === 5));
+
   useEffect(() => {
     axios.get(`http://localhost:3000/api/reviews/${productId}/${sortBy}`)
       .then(({data}) => {
@@ -37,18 +38,21 @@ const RatingsAndReviews = ({productId, currentProduct}) => {
     setSortBy(e.target.value);
   };
   const handleSortByStars = (starNumber) => {
-    console.log(starNumber);
     let sortedStarRating = (currentProduct.reviews.results.filter((review) => review.rating === starNumber));
-    console.log(sortedStarRating)
-    setProductReviews(sortedStarRating);
+    if (firstClick) {
+      setProductReviews(sortedStarRating);
+      setFirstClick(false);
+    } else {
+      setProductReviews(currentProduct.reviews.results);
+      setFirstClick(true);
+    }
   };
 
   return (
     <div className='rating-review-containers'>
-      <RatingList reviewMetaData={reviewMetaData} starFilter={starFilter} setStarFilter={setStarFilter} averageRating={currentProduct.avgRating} onSortStarRatingReview={handleSortByStars}/>
+      <RatingList reviewMetaData={reviewMetaData} starFilter={starFilter} setStarFilter={setStarFilter} averageRating={currentProduct.avgRating} onSortStarRatingReview={handleSortByStars} productReviews={productReviews}/>
       <ReviewList productReviews={productReviews} handleSortClick={handleSortClick} sortBy={sortBy} setRender={setRender} reviewMetaData={reviewMetaData}/>
     </div>
-
   );
 };
 export default RatingsAndReviews;

@@ -4,7 +4,10 @@
   object-fit: contain;
   margin-bottom: 0.8rem;
 
-  img {
-    margin-right: 1rem;
+  .image-url img {
+    height: 400px;
+    width: 400px;
+
   }
+
 }

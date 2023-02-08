@@ -2,21 +2,47 @@ import React, {useEffect, useState} from 'react';
 import Star from './Star.jsx';
 import './StarBreakDown.scss';
 
-const StarBreakDown = ({totalVotes, ratings, handleStarClick, starFilter, setStarFilter, onSortStarRatingReview}) => {
+const StarBreakDown = ({totalVotes, starFilter, setStarFilter, onSortStarRatingReview, productReviews}) => {
+
+  let totalStarRating = [];
+  productReviews.map((review) => totalStarRating.push(review.rating));
+
+  let container5 = [];
+  let container4 = [];
+  let container3 = [];
+  let container2 = [];
+  let container1 = [];
+
+  for (let i = 0; i < totalStarRating.length; i++) {
+
+    if (totalStarRating[i] === 5) {
+      container5.push(totalStarRating[i]);
+    }
+    if (totalStarRating[i] === 4) {
+      container4.push(totalStarRating[i]);
+    }
+    if (totalStarRating[i] === 3) {
+      container3.push(totalStarRating[i]);
+    }
+    if (totalStarRating[i] === 2) {
+      container2.push(totalStarRating[i]);
+    }
+    if (totalStarRating[i] === 1) {
+      container1.push(totalStarRating[i]);
+    }
+  }
+
+  let ratingsArr = {5: `${container5.length}`, 4: `${container4.length}`, 3: `${container3.length}`, 2: `${container2.length}`, 1: `${container1.length}`};
   const barDisplays = [];
-  console.log(ratings);
-  console.log(starFilter);
-
-
   for (let i = 5; i > 0; i -= 1) {
-    if (ratings[i]) {
-      const barWidth = ratings[i] / totalVotes;
+    if (ratingsArr[i]) {
+      const barWidth = ratingsArr[i] / totalStarRating.length;
       barDisplays.push(
         <Star
-          key={i}//12345
-          starType={i}//12345
-          barWidth={barWidth}//8,12,22/35/66
-          starFilter={starFilter}//1;false blah blah
+          key={i}
+          starType={i}
+          barWidth={barWidth}
+          starFilter={starFilter}
           onSortStarRatingReview={onSortStarRatingReview}
         />
       );

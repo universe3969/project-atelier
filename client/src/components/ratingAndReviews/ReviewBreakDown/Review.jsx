@@ -8,7 +8,7 @@ import axios from 'axios';
 import ReviewPhotos from './ReviewPhotos.jsx';
 import Modal from '../../reusableComponents/Modal.jsx';
 
-const Review = ({review, handleReportClick, handleHelpfulClick, handlePhotoClick, showModal, setShowModal}) => {
+const Review = ({review, handleReportClick, handleHelpfulClick, handlePhotoClick}) => {
 
   const dateString = `${review.date}`;
 
@@ -23,14 +23,15 @@ const Review = ({review, handleReportClick, handleHelpfulClick, handlePhotoClick
 
     <div className='individual-review'>
       <div>
-        <StarRating rating={review.rating}/>
+        {/* <StarRating rating={review.rating}/> */}
+        {review.rating}
         <span className='name-date'>{review.reviewer_name}, {date} </span>
       </div>
       <div className='summary'>{review.summary}</div>
       <div className='body'>
         {review.body}
         {review.recommend ? <Recommend/> : null}
-        {review.photos.length ? <ReviewPhotos photos={review.photos} handlePhotoClick={handlePhotoClick} showModal={showModal} setShowModal={setShowModal}/> : null}
+        {review.photos.length ? <ReviewPhotos photos={review.photos}/> : null}
         {review.response ? <SellerReply response={review.response}/> : null}
       </div>
 

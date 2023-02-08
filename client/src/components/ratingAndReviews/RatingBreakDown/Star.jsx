@@ -4,7 +4,6 @@ import './Star.scss';
 const Star = ({starType, barWidth, starFilter, onSortStarRatingReview}) => {
   const handleClickStarRating = () => {
     onSortStarRatingReview(starType);
-    console.log('click star');
   };
   return (
     <div className="star-breakdown-item">
@@ -18,7 +17,7 @@ const Star = ({starType, barWidth, starFilter, onSortStarRatingReview}) => {
       </div>
       <div className="break-down-bar">
         <div className="gray-bar" />
-        <div className="green-bar" style={{ width: 242 * barWidth }} />
+        <div className="green-bar" style={{ width: 240 * barWidth }} />
       </div>
     </div>
   );

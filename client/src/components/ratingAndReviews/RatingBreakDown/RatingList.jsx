@@ -17,7 +17,7 @@ let recommendPercentCal = (recommended) => {
   return (Number(recommended.true) / (Number(recommended.true) + Number(recommended.false))) * 100;
 };
 
-const RatingList = ({reviewMetaData, onSortStarRatingReview, starFilter, setStarFilter, averageRating}) => {
+const RatingList = ({reviewMetaData, onSortStarRatingReview, starFilter, setStarFilter, averageRating, productReviews}) => {
 
   const [totalVotes, setTotalVotes] = useState(0);
   const [recommendPercent, setRecommendPercent] = useState(100);
@@ -39,7 +39,7 @@ const RatingList = ({reviewMetaData, onSortStarRatingReview, starFilter, setStar
       <h4>Ratings and Reviews</h4>
       {averageRating} <StarRating rating={averageRating}/>
       <Recommended recommendPercent={recommendPercent}/>
-      <StarBreakDown totalVotes={totalVotes} ratings={ratings} onSortStarRatingReview={onSortStarRatingReview} starFilter={starFilter} setStarFilter={setStarFilter}/>
+      <StarBreakDown totalVotes={totalVotes} onSortStarRatingReview={onSortStarRatingReview} starFilter={starFilter} setStarFilter={setStarFilter} productReviews={productReviews}/>
       <BarBreakDown characters={characters}/>
     </div>
   );
