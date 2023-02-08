@@ -7,9 +7,8 @@ import SearchBar from '../components/reusableComponents/SearchBar.jsx';
 import Modal from '../components/reusableComponents/Modal.jsx';
 import Button from '../components/reusableComponents/Button.jsx';
 
-
 const App = () => {
-  const [productId, setProductId] = useState(37316);
+  const [productId, setProductId] = useState(37318);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [alert, setAlert] = useState(null);
 
