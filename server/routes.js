@@ -5,6 +5,7 @@ const {
   getOverviewProduct,
   getRelatedProducts,
   getProductQuestionsAndAnswers,
+  getAnswerListofQuestion,
   updateQuestionHelpfulFeedback,
   updateAnswerHelpfulFeedback,
   updateAnswerReportStatus,
@@ -26,6 +27,9 @@ router.get('/api/relatedProducts/:productId', getRelatedProducts);
 
 // Return questions and answers of specific product
 router.get('/api/questionsAndAnswers/:productId', getProductQuestionsAndAnswers);
+
+// Return answer list of specific questions
+router.get('/api/questionsAndAnswers/answers/:questionId', getAnswerListofQuestion);
 
 // Update question helpful feedback for a product
 router.put('/api/questionsAndAnswers/questions/:questionId/helpful', updateQuestionHelpfulFeedback);

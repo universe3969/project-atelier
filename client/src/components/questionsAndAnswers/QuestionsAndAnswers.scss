@@ -1,0 +1,39 @@
+.questions-and-answers {
+  display: flex;
+  flex-direction: column;
+  font-size: 90%;
+
+  h3 {
+    margin-bottom: 2rem;
+    font-weight: 100;
+    color: rgb(51, 51, 51);
+  };
+
+  .questions-searchbar {
+    margin-bottom: 2rem;
+  };
+
+  .question-buttons {
+    display: flex;
+
+    .more-question {
+      margin-right: 1rem;
+    };
+  };
+
+  .search-bar {
+    flex-direction: row;
+    width: inherit;
+
+    .search-input::placeholder {
+      font-weight: bold;
+      font-size: 90%;
+    };
+  };
+
+  .search-notice {
+    margin-bottom: 1rem;
+    font-size: larger;
+    font-weight: bold;
+  };
+}
