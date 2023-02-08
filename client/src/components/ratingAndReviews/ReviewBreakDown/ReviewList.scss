@@ -1,0 +1,47 @@
+.review-container {
+  text-align:left;
+  height: 140%;
+  overflow-y: scroll;
+}
+
+.review-sort {
+  font-weight: bold;
+  select {
+    margin-left: .2rem;
+    height: 1.3rem;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: solid black 2px;
+    width: fit-content;
+    font-size: inherit;
+    font-weight: bold;
+    outline: none;
+  }
+}
+
+.sort-option {
+  width: 70px;
+  height: 35px;
+  text-align: center;
+}
+
+.secondary {
+  width: 200px;
+  height: 25px;
+  text-align: center;
+  padding-top: .2rem;
+  padding-bottom: .2rem;
+  padding-right: .01rem;
+  padding-left: .002;
+}
+
+.review-list-buttons {
+  display: flex;
+  margin-top: 2rem;
+  gap: 2rem;
+
+  .secondary {
+    height: auto;
+  }
+}
