@@ -96,7 +96,7 @@ const AddReviewForm = ({setShowReviewModal, onClose, reviewMetaData, setRender, 
         </div>
       </div>
       <div className="summary">
-        <input type="text" className="review-summary" placeholder="Short and sweet" onChange={e => { setSummary(e.target.value); }}></input>
+        <input type="text" className="review-summary" placeholder="summary" onChange={e => { setSummary(e.target.value); }}></input>
       </div>
       <textarea rows="rows" required='required' minLength='50' maxLenght='1100'className="review-content" placeholder="Any thoughts on this product.." onChange={e => { setContent(e.target.value); }} />
       <div className='content-warning'>{content.length <= 50 ? `[${50 - content.length}] require to reach minimum limit` : 'Minimum limit reached'}</div>
