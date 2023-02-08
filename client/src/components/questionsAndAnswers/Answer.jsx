@@ -40,7 +40,7 @@ const Answer = ({ answer }) => {
       <div className='photos-container'>
         {renderedPhotos}
       </div>
-      <div className='action-bar'>
+      <div className='action-bar answer'>
         <div className='author'>
           <p className='user'>by {renderedUser},</p>
           <p className='date'>{formattedDate}</p>
