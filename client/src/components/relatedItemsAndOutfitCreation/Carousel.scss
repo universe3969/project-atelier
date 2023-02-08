@@ -3,8 +3,6 @@
 .carousel-container {
   position: relative;
   padding: 0;
-  // height: fit-content;
-  // overflow: hidden;
 
   button {
     position: absolute;
@@ -31,7 +29,6 @@
   }
 
   .carousel-content {
-    // --items-per-screen: $itemPerScreen;
     --items-per-screen: 4;
     --added-Width: 0;
     display: flex;
@@ -39,29 +36,28 @@
     transition: transform 250ms ease-in-out;
     height: fit-content;
 
-    // .product-slideshow-container {
     .card-wrapper {
       flex: 0 0 calc(100% / var(--items-per-screen));
     }
 
-    // @media only screen and (max-width: 600px) {
-    //   --items-per-screen: 2;
-    // }
+    @media only screen and (max-width: 600px) {
+      --items-per-screen: 2;
+    }
 
-    // @media only screen and (max-width: 800px) and (min-width: 601px) {
-    //   --items-per-screen: 3;
-    // }
+    @media only screen and (max-width: 800px) and (min-width: 601px) {
+      --items-per-screen: 3;
+    }
 
-    // @media only screen and (max-width: 1200px) and (min-width: 801px) {
-    //   --items-per-screen: 4;
-    // }
+    @media only screen and (max-width: 1200px) and (min-width: 801px) {
+      --items-per-screen: 4;
+    }
 
-    // @media only screen and (max-width: 1500px) and (min-width: 1201px) {
-    //   --items-per-screen: 5;
-    // }
+    @media only screen and (max-width: 1500px) and (min-width: 1201px) {
+      --items-per-screen: 5;
+    }
 
-    // @media only screen and (max-width: 1900px) and (min-width: 1501px) {
-    //   --items-per-screen: 6;
-    // }
+    @media only screen and (max-width: 1900px) and (min-width: 1501px) {
+      --items-per-screen: 6;
+    }
   }
 }

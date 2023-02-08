@@ -1,0 +1,25 @@
+.card-wrapper {
+  width: 20%;
+  display: flex;
+}
+
+.add-product {
+  border: solid black 0.5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 374px;
+  background-color: rgb(235, 235, 235);
+  color: rgb(139, 139, 139);
+  width: 100%;
+
+  .add-sign {
+    font-size: 4rem;
+    padding: 0.5rem;
+  }
+
+  .text {
+    font-size: 1.4rem;
+  }
+}

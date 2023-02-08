@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FiChevronLeft } from 'react-icons/fi';
 import { FiChevronRight } from 'react-icons/fi';
 import './Carousel.scss';
-import ProductCard2 from './ProductCard2.jsx';
-// import ProductCard from './ProductCard.jsx';
+import ProductCard from './ProductCard.jsx';
+import AddProductCard from './AddProductCard.jsx';
 
 const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -44,7 +44,7 @@ const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct }) => {
   let renderededItems = [];
   if (items.length) {
     renderededItems = items.map(item =>
-      <ProductCard2
+      <ProductCard
         key={item.info.id}
         type={type}
         product={item}
@@ -58,13 +58,12 @@ const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct }) => {
   if (type !== 'yourOutfit') {
     showNavigation = true;
   } else {
-    // if (itemsLength !== 1) {
-    //   showNavigation = true;
-    // }
     if (itemsLength > 3) {
       showNavigation = true;
     }
   }
+
+  let addToCardStyle = items.length ? { height: 'auto' } : null;
 
   return (
     <div className='carousel-container'>
@@ -81,7 +80,12 @@ const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct }) => {
         </button>
       }
       <div className='carousel-content' ref={sliderRef}>
-        {/* {type === 'yourOutfit' && <ProductCard2 type='addProduct' onButtonClick={onAddProduct}/>} */}
+        {type === 'yourOutfit' &&
+          <AddProductCard
+            className={addToCardStyle}
+            onAddProduct={onAddProduct}
+          />
+        }
         {items && renderededItems}
       </div>
     </div>
