@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {AiFillCheckCircle} from 'react-icons/ai';
 
-const Styles = ({styles, styleId, setStyleId, styleName}) => {
+const Styles = ({styles, styleId, setStyleId, styleName, setCurrIndex}) => {
 
   let selectStyle = (event) => {
     setStyleId(+event.target.dataset.style);
@@ -13,7 +13,10 @@ const Styles = ({styles, styleId, setStyleId, styleName}) => {
       <div key={style.style_id} className="style-icon-container">
         <img
         className="style-icon"
-        onClick={selectStyle}
+        onClick={(event) => {
+          setCurrIndex(0);
+          selectStyle(event);
+        }}
         src={style.photos[0]['url']}
         data-style={style.style_id}
         />

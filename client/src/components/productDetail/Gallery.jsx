@@ -1,19 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import './Styles.scss';
 import {GoArrowLeft, GoArrowRight, GoTriangleDown, GoTriangleUp} from 'react-icons/go';
-const Gallery = ({photos, isZoomed, setIsZoomed}) => {
+const Gallery = ({photos, isZoomed, setIsZoomed, currIndex, setCurrIndex}) => {
 
-  const [currIndex, setCurrIndex] = useState(0);
   const [style, setStyle] = useState({});
   const handleMouseMove = (event) => {
 
     const x = (event.clientX - event.target.offsetLeft);
     const y = (event.clientY - event.target.offsetTop);
-    console.log(x,y)
     setStyle({
       transform: "scale(2)",
       transformOrigin: `${x}px ${y}px`,
-      width: '1400px',
+      width: '1000px',
       height: '700px',
       cursor: 'zoom-out'
     });

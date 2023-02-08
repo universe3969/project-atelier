@@ -5,7 +5,7 @@ import Alert from './Alert.jsx';
 import Overview from './productDetail/Overview.jsx';
 
 const App = () => {
-  const [productId, setProductId] = useState(37314);
+  const [productId, setProductId] = useState(37318);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [alert, setAlert] = useState(null);
 
