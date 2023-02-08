@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Carousel from './Carousel.jsx';
 import Modal from '../reusableComponents/Modal.jsx';
 import CompareProductsCard from './CompareProductsCard.jsx';
-import './relatedItemsAndOutfitCreation.scss';
+import './RelatedItemsAndOutfitCreation.scss';
 
 const RelatedProducts = ({ relatedProducts }) => {
   const [comparingProducts, setComparingProducts] = useState([]);

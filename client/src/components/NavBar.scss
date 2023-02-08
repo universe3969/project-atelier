@@ -5,11 +5,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 4rem;
-  background-color: rgb(49, 49, 49);
+  background-color: $navbar-color;
   font-family: $montserrat;
 
   h3 {
-    // font-size: xx-large;
     font-size: 2.5rem;
     font-weight: 500;
     color: $primary-color;

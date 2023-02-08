@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './relatedItemsAndOutfitCreation.scss';
+import './RelatedItemsAndOutfitCreation.scss';
 import Carousel from './Carousel.jsx';
 
 const YourOutfit = ({ currentProduct, productId }) => {

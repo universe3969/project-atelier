@@ -14,10 +14,10 @@
     border: none;
     background-color: transparent;
     font-size: 2rem;
-    color: rgb(90, 90, 90);
+    color: $text-color-100;
     z-index: 5;
     &:hover {
-      color: white;
+      color: $primary-color;
     }
   }
 

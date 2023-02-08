@@ -35,11 +35,14 @@ const Answer = ({ answer }) => {
   return (
     <div className='answer'>
       <div className='answer-text'>
-        <span>A:</span> {body}
+        <span>A:</span>
+        <div className='answer-body'>{body}</div>
       </div>
-      <div className='photos-container'>
-        {renderedPhotos}
-      </div>
+      {photos.length > 0 &&
+        <div className='photos-container'>
+          {renderedPhotos}
+        </div>
+      }
       <div className='action-bar answer'>
         <div className='author'>
           <p className='user'>by {renderedUser},</p>

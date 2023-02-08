@@ -1,14 +1,16 @@
+@import '../../variables.scss';
+
 .products-and-outfits {
   padding: 0;
 
   .related-products {
     padding-bottom: 2rem;
-  }
+  };
 }
 
 .header {
-  color:rgb(90, 90, 90);
-  font-weight: 300;
+  color:$text-color-100;
+  font-weight: 500;
   font-size: 1rem;;
   padding-left: 0.7rem;
   padding-bottom: 1rem;

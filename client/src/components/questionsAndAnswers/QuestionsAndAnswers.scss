@@ -1,20 +1,28 @@
+@import '../../variables.scss';
+
 .questions-and-answers {
   display: flex;
   flex-direction: column;
   font-size: 90%;
+  padding: 0 1rem;
 
   h3 {
     margin-bottom: 2rem;
-    font-weight: 100;
-    color: rgb(51, 51, 51);
+    font-weight: 500;
+    color: $text-color-300;
   };
 
   .questions-searchbar {
     margin-bottom: 2rem;
   };
 
+  .question {
+    padding: inherit;
+  }
+
   .question-buttons {
     display: flex;
+    padding: inherit;
 
     .more-question {
       margin-right: 1rem;

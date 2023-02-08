@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .card-wrapper {
   width: 20%;
   padding: 0 0.7rem;
@@ -61,17 +63,18 @@
         align-items: center;
         width: 100%;
         padding-top: 2.2rem;
-        background-color: rgb(235, 235, 235);
+        background-color: $gray-100;
         height: inherit;
 
         .no-image-icon {
           font-size: 5rem;
-          color: rgb(109, 109, 109);
+          color: $gray-300;
         };
 
         .no-image-text {
           font-size: 1.5rem;
-          color: rgb(139, 139, 139);
+          color: $gray-200;
+          text-align: center;
         };
       };
     };
@@ -89,7 +92,7 @@
     color: transparent;
 
     &:hover {
-      color: rgb(30, 30, 30);
+      color: $text-color-400;
     };
   };
 
@@ -99,7 +102,7 @@
 
     .title {
       font-size: 0.9rem;
-      color: rgb(85, 85, 85);
+      color: $gray-400;
     };
 
     .product-name {
@@ -108,7 +111,7 @@
 
     .product-price {
       font-size: 0.9rem;
-      color:rgb(85, 85, 85);
+      color: $gray-400;
       padding-bottom: 0.3rem;
     };
   };

@@ -7,7 +7,7 @@ import RelatedItemsAndOutfitCreation from './relatedItemsAndOutfitCreation/Relat
 import QuestionsAndAnswers from './questionsAndAnswers/QuestionsAndAnswers.jsx';
 
 const App = () => {
-  const [productId, setProductId] = useState(37316);
+  const [productId, setProductId] = useState(37317);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [alert, setAlert] = useState(null);
 

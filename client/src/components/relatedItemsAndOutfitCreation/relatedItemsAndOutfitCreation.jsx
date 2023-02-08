@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import RelatedProducts from './RelatedProducts.jsx';
 import YourOutfit from './YourOutfit.jsx';
-import axios from 'axios';
 
 const RelatedItemsAndOutfitCreation = ({ currentProductId, product }) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -22,7 +22,7 @@ const RelatedItemsAndOutfitCreation = ({ currentProductId, product }) => {
   return (
     <div className='products-and-outfits'>
       <div className='related-products'>
-        {relatedProducts.length && <RelatedProducts relatedProducts={relatedProducts}/>}
+        {relatedProducts.length > 0 && <RelatedProducts relatedProducts={relatedProducts}/>}
       </div>
       <div className='your-outfit'>
         <YourOutfit
