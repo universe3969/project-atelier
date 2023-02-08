@@ -3,7 +3,7 @@ import axios from 'axios';
 import RelatedProducts from './RelatedProducts.jsx';
 import YourOutfit from './YourOutfit.jsx';
 
-const RelatedItemsAndOutfitCreation = ({ currentProductId, product }) => {
+const RelatedItemsAndOutfitCreation = ({ currentProductId, product, onChangeProduct }) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
@@ -17,17 +17,23 @@ const RelatedItemsAndOutfitCreation = ({ currentProductId, product }) => {
         });
         setRelatedProducts(filteredProducts);
       });
-  }, []);
+  }, [currentProductId]);
 
   return (
     <div className='products-and-outfits'>
       <div className='related-products'>
-        {relatedProducts.length > 0 && <RelatedProducts relatedProducts={relatedProducts}/>}
+        {relatedProducts.length > 0 &&
+          <RelatedProducts
+            relatedProducts={relatedProducts}
+            onChangeProduct={onChangeProduct}
+          />
+        }
       </div>
       <div className='your-outfit'>
         <YourOutfit
           currentProduct={product}
           productId={currentProductId}
+          onChangeProduct={onChangeProduct}
         />
       </div>
     </div>

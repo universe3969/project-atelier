@@ -5,7 +5,7 @@ import './Carousel.scss';
 import ProductCard from './ProductCard.jsx';
 import AddProductCard from './AddProductCard.jsx';
 
-const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct }) => {
+const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct, onChangeProduct }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef();
   const itemsPerScreen = useRef(0);
@@ -50,6 +50,7 @@ const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct }) => {
         product={item}
         onButtonClick={onButtonClick}
         removedId={removedId}
+        onChangeProduct={onChangeProduct}
       />
     );
   }

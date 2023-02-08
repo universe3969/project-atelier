@@ -21,7 +21,7 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
         setQuestions(data);
         setSearchQuestions(data);
       });
-  }, []);
+  }, [productId]);
 
   let renderedQuestions = null;
   if (searchQuestions) {

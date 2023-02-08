@@ -14,7 +14,6 @@
   overflow: hidden;
   border: solid black 0.5px;
 
-
   .secondary.active {
     position: absolute;
     right: 2px;
@@ -92,7 +91,7 @@
     color: transparent;
 
     &:hover {
-      color: $text-color-400;
+      color: $card-button-color;
     };
   };
 

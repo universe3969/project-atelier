@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './RelatedItemsAndOutfitCreation.scss';
 import Carousel from './Carousel.jsx';
 
-const YourOutfit = ({ currentProduct, productId }) => {
+const YourOutfit = ({ currentProduct, productId, onChangeProduct }) => {
   const [currentOutfit, setCurrentOutfit] = useState([]);
 
   useEffect(() => {
@@ -37,6 +37,7 @@ const YourOutfit = ({ currentProduct, productId }) => {
         items={currentOutfit}
         onButtonClick={handleRemoveProduct}
         onAddProduct={handleAddProduct}
+        onChangeProduct={onChangeProduct}
       />
     </div>
   );

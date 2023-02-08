@@ -4,7 +4,7 @@ import Modal from '../reusableComponents/Modal.jsx';
 import CompareProductsCard from './CompareProductsCard.jsx';
 import './RelatedItemsAndOutfitCreation.scss';
 
-const RelatedProducts = ({ relatedProducts }) => {
+const RelatedProducts = ({ relatedProducts, onChangeProduct }) => {
   const [comparingProducts, setComparingProducts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [removedId, setRemovedId] = useState(0);
@@ -34,6 +34,7 @@ const RelatedProducts = ({ relatedProducts }) => {
         items={relatedProducts}
         onButtonClick={addComparingProducts}
         removedId={removedId}
+        onChangeProduct={onChangeProduct}
       />
       {showModal &&
         <Modal className='modal clear' onClose={handleModalClose}>

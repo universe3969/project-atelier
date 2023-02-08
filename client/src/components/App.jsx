@@ -11,6 +11,9 @@ const App = () => {
   const [currentProduct, setCurrentProduct] = useState(null);
   const [alert, setAlert] = useState(null);
 
+// console.log('ID', productId);
+// console.log('product ', currentProduct);
+
   useEffect(() => {
     axios.get(`http://localhost:3000/api/products/${productId}`)
       .then(({ data }) => setCurrentProduct(data))
@@ -39,6 +42,7 @@ const App = () => {
             <RelatedItemsAndOutfitCreation
               currentProductId={productId}
               product={currentProduct}
+              onChangeProduct={handleSearch}
             />
             <QuestionsAndAnswers
               productId={productId}

@@ -9,7 +9,7 @@ import StarRating from '../reusableComponents/StarRating.jsx';
 import Button from '../reusableComponents/Button.jsx';
 import './ProductCard.scss';
 
-const ProductCard = ({ type, product, onButtonClick, removedId }) => {
+const ProductCard = ({ type, product, onButtonClick, removedId, onChangeProduct }) => {
   const [filledButton, setFilledButton] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef();
@@ -107,7 +107,7 @@ const ProductCard = ({ type, product, onButtonClick, removedId }) => {
     renderedImages = images.map(url =>
       <div key={url}>
         {url
-          ? <img src={url}/>
+          ? <img src={url} onClick={() => onChangeProduct(product.info.id)}/>
           : (
             <div className='no-image'>
               <div className='no-image-icon'><BsFileEarmarkImageFill/></div>
@@ -145,7 +145,7 @@ const ProductCard = ({ type, product, onButtonClick, removedId }) => {
             </div>
           </div>
         }
-        <div className='product-detail'>
+        <div className='product-detail' onClick={() => onChangeProduct(product.info.id)}>
           <div className='title'>{info.category.toUpperCase()}</div>
           <div className='product-name'>{info.name}</div>
           <div className='product-price'>{formattedPrice}</div>
