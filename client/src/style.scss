@@ -8,6 +8,11 @@
 
 body {
   background-color: $primary-color;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: $montserrat;
+  font-size: 0.9rem;
   line-height: 1.5;
+}
+
+.app-modules {
+  padding: 3rem;
 }

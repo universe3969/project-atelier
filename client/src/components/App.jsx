@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import NavBar from './NavBar.jsx';
 import Alert from './Alert.jsx';
 import Overview from './productDetail/Overview.jsx';
 import RelatedItemsAndOutfitCreation from './relatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreation.jsx';
+import QuestionsAndAnswers from './questionsAndAnswers/QuestionsAndAnswers.jsx';
 
 const App = () => {
-  const [productId, setProductId] = useState(37316);
+  const [productId, setProductId] = useState(37317);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [alert, setAlert] = useState(null);
 
@@ -28,16 +29,23 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className='app-container'>
       <NavBar onSearch={handleSearch}/>
       {alert && <Alert type={alert.type} message={alert.message}/>}
-      <h3>Project Atelier</h3>
-      {currentProduct &&
-        <RelatedItemsAndOutfitCreation
-          currentProductId={productId}
-          product={currentProduct}
-        />
-      }
+      <div className='app-modules'>
+        {currentProduct &&
+          <Fragment>
+            <RelatedItemsAndOutfitCreation
+              currentProductId={productId}
+              product={currentProduct}
+            />
+            <QuestionsAndAnswers
+              productId={productId}
+              productName={currentProduct.info.name}
+            />
+          </Fragment>
+        }
+      </div>
     </div>
   );
 };
