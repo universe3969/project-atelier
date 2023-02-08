@@ -7,10 +7,22 @@ import AddProductCard from './AddProductCard.jsx';
 
 const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct, onChangeProduct }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showNavigation, setShowNavigation] = useState(false);
+  const [itemsPerScreen, setItemsPerScreen] = useState(null);
   const sliderRef = useRef();
-  const itemsPerScreen = useRef(0);
 
   const itemsLength = type === 'yourOutfit' ? items.length + 1 : items.length;
+
+  useEffect(() => {
+    if (sliderRef.current) {
+      setItemsPerScreen(parseInt(getComputedStyle(sliderRef.current).getPropertyValue('--items-per-screen')));
+    }
+    if (itemsPerScreen && itemsLength > itemsPerScreen + 1) {
+      setShowNavigation(true);
+    } else {
+      setShowNavigation(false);
+    }
+  }, [items, sliderRef.current]);
 
   const onHandleClick = (direction) => {
     const slider = sliderRef.current;
@@ -22,11 +34,10 @@ const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct, onChang
     }
 
     const cardWidth = sliderRef.current.childNodes[0].getBoundingClientRect().width;
-    itemsPerScreen.current = parseInt(getComputedStyle(slider).getPropertyValue('--items-per-screen'));
-    const index = itemsPerScreen.current + currentIndex;
+    const index = itemsPerScreen + currentIndex;
 
     if (direction === 'left') {
-      if (index === itemsPerScreen.current) {
+      if (index === itemsPerScreen) {
         return;
       }
       width += cardWidth;
@@ -55,15 +66,6 @@ const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct, onChang
     );
   }
 
-  let showNavigation = false;
-  if (type !== 'yourOutfit') {
-    showNavigation = true;
-  } else {
-    if (itemsLength > 3) {
-      showNavigation = true;
-    }
-  }
-
   let addToCardStyle = items.length ? { height: 'auto' } : null;
 
   return (
@@ -75,7 +77,7 @@ const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct, onChang
         </button>
       }
       {showNavigation &&
-        (currentIndex + itemsPerScreen.current) !== itemsLength &&
+        (currentIndex + itemsPerScreen) !== itemsLength &&
         <button className='right' onClick={() => onHandleClick('right')}>
           <FiChevronRight/>
         </button>

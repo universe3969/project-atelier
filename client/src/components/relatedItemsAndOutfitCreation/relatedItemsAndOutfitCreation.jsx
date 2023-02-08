@@ -22,11 +22,16 @@ const RelatedItemsAndOutfitCreation = ({ currentProductId, product, onChangeProd
   return (
     <div className='products-and-outfits'>
       <div className='related-products'>
-        {relatedProducts.length > 0 &&
-          <RelatedProducts
-            relatedProducts={relatedProducts}
-            onChangeProduct={onChangeProduct}
-          />
+        {relatedProducts.length > 0
+          ? (
+            <RelatedProducts
+              relatedProducts={relatedProducts}
+              onChangeProduct={onChangeProduct}
+            />
+          )
+          : (
+            <h3 className='related-product-notice'>No Related Products Found</h3>
+          )
         }
       </div>
       <div className='your-outfit'>
