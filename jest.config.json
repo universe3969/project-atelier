@@ -1,0 +1,21 @@
+{
+  "testEnvironment": "jsdom",
+  "setupFilesAfterEnv": ["<rootDir>/client/src/setupTests.js"],
+  "testRegex": "/*.test.js$",
+  "collectCoverage": true,
+  "collectCoverageFrom": [".client/src/**"],
+  "coverageReporters": ["lcov"],
+  "coverageThreshold": {
+    "global": {
+    "branches": 0,
+    "functions": 0,
+    "lines": 0,
+    "statements": 0
+    }
+   },
+  "moduleDirectories": ["node_modules", "<rootDir>/client/src"],
+  "moduleNameMapper": {
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+  }
+}
