@@ -7,6 +7,7 @@ import Report from './Report.jsx';
 import axios from 'axios';
 import ReviewPhotos from './ReviewPhotos.jsx';
 import Modal from '../../reusableComponents/Modal.jsx';
+import HelpfulActionBar from '../../reusableComponents/HelpfulActionBar.jsx';
 
 const Review = ({review, handleReportClick, handleHelpfulClick, handlePhotoClick}) => {
 
@@ -24,7 +25,6 @@ const Review = ({review, handleReportClick, handleHelpfulClick, handlePhotoClick
     <div className='individual-review'>
       <div>
         <StarRating rating={review.rating}/>
-        {/* {review.rating} */}
         <span className='name-date'>{review.reviewer_name}, {date} </span>
       </div>
       <div className='summary'>{review.summary}</div>
@@ -36,10 +36,13 @@ const Review = ({review, handleReportClick, handleHelpfulClick, handlePhotoClick
       </div>
 
       <div className='help-report'>
-
-        <HelpfulButton helpfulness={review.helpfulness}handleHelpfulClick={handleHelpfulClick} reviewID={review.review_id}/>
+        <HelpfulActionBar
+          type='review'
+          id={review.review_id}
+          helpfulCount={review.helpfulness}
+          sideButtonText='Report'
+        />
       </div>
-      <Report reviewID={review.review_id} handleReportClick={handleReportClick}/>
     </div>
   );
 

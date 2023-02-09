@@ -1,3 +1,18 @@
 .ratings-container {
     min-width: 300px;
+    .average-star-rating {
+      display: flex;
+      gap: 1rem;
+      padding: 0;
+
+      .average-rating-text {
+        font-size: 3rem;
+        font-weight: bold;
+      }
+
+      .review-star-rating {
+        height: fit-content;
+        padding-top: 1rem;
+      }
+    }
   }

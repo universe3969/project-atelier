@@ -1,11 +1,13 @@
+@import '../../../variables.scss';
+
 .characteristics {
   display: flex;
   border: 1px solid rgb(238, 236, 233)t;
 
   .selection-type {
-
-    border-right: 2px solid rgb(238, 236, 233);
-    background-color: rgb(238, 238, 236);
+    background-color: $secondary-color;
+    opacity: 0.8;
+    color: $primary-color;
     font-size: 1em;
     min-width: 100px;
     width: auto;
@@ -43,7 +45,6 @@
         margin: 0px;
         padding: 0px;
       }
-
     }
   }
 }

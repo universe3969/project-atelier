@@ -57,7 +57,7 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
   };
 
   return (
-    <div>
+    <div className='all-reviews'>
       <div>
         <SortBy handleSortClick={handleSortClick} totalReviews={productReviews.length} />
       </div>
@@ -71,12 +71,12 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
           visible={visible}
           totalReviews= {productReviews.length}
         />
-        <Button className='secondary' onClick={onClick}>
+        <Button className='secondary review' onClick={onClick}>
           ADD A REVIEW +
         </Button>
       </div>
       {showModal &&
-        <Modal className='modal clear' onClose={onClose}>
+        <Modal className='modal blur' onClose={onClose}>
           <AddReviewForm
             productReviews={productReviews}
             reviewMetaData={reviewMetaData}
@@ -85,9 +85,7 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
             onClose={() => setShowModal(false)}/>
         </Modal>
       }
-
     </div>
-
   );
 };
 export default ReviewList;

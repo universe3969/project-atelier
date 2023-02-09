@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import Star from './Star.jsx';
-import './StarBreakDown.scss';
 
 const StarBreakDown = ({totalVotes, starFilter, setStarFilter, onSortStarRatingReview, productReviews}) => {
 

@@ -64,6 +64,7 @@ const Question = ({ question, productName }) => {
         <div className='question-text'>Q: {question_body}</div>
         <div className='action-bar'>
           <HelpfulActionBar
+            type='question'
             id={question_id}
             helpfulCount={question_helpfulness}
             sideButtonText='Add Answer'

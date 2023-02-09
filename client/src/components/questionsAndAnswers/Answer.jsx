@@ -49,6 +49,7 @@ const Answer = ({ answer }) => {
           <p className='date'>{formattedDate}</p>
         </div>
         <HelpfulActionBar
+          type='answer'
           id={id}
           helpfulCount={helpfulness}
           sideButtonText='Report'

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './PhotoReview.scss';
-let PhotoReview = ({ photos, setPhotos }) => {
+import Button from '../../reusableComponents/Button.jsx';
+
+const PhotoReview = ({ photos, setPhotos }) => {
 
   let [key, setKey] = useState(-1);
   let [image, setImage] = useState([]);
@@ -14,8 +16,17 @@ let PhotoReview = ({ photos, setPhotos }) => {
 
   let addPhotoHandler = (e) => {
     e.preventDefault();
-    let temp = [...image, <input type="text" className="image" placeholder="photo url" key={key} name={key} onChange={updatePhotos}></input>];
-    setImage(temp);
+    if (image.length < 5) {
+      let temp = [...image,
+        <input
+          type="text"
+          className="image"
+          placeholder="photo url"
+          key={key} name={key}
+          onChange={updatePhotos}
+        />];
+      setImage(temp);
+    }
   };
 
   useEffect(() => {
@@ -24,9 +35,18 @@ let PhotoReview = ({ photos, setPhotos }) => {
 
   return (
     <div className="photosWrapper">
-      <p>Add image urls</p>
-      {image}
-      <button onClick={addPhotoHandler}>+</button>
+      <p className='write-review-title'>Add image urls</p>
+      {image.length > 0 &&
+        <div className='upload-image-urls'>
+          {image}
+        </div>
+      }
+      <Button
+        onClick={addPhotoHandler}
+        className='primary add-image'
+      >
+        +
+      </Button>
     </div>
   );
 };

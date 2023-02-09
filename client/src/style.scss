@@ -38,13 +38,12 @@ body {
   .dash {
     margin: 0 0.6rem;
   }
-
 }
 
 .app-modules {
-  padding: 3rem;
+  padding: 0 3rem;
 
   & > * {
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
   }
 }

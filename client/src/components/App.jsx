@@ -5,6 +5,7 @@ import Alert from './Alert.jsx';
 import Overview from './productDetail/Overview.jsx';
 import RelatedItemsAndOutfitCreation from './relatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreation.jsx';
 import QuestionsAndAnswers from './questionsAndAnswers/QuestionsAndAnswers.jsx';
+import RatingsAndReviews from './ratingAndReviews/RatingsAndReviews.jsx';
 
 const App = () => {
   const [productId, setProductId] = useState(37317);
@@ -44,6 +45,10 @@ const App = () => {
             <QuestionsAndAnswers
               productId={productId}
               productName={currentProduct.info.name}
+            />
+            <RatingsAndReviews
+              productId={productId}
+              currentProduct={currentProduct}
             />
           </Fragment>
         }

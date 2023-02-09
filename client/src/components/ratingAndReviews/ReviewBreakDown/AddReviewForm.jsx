@@ -4,6 +4,7 @@ import { BsStarFill, BsStar} from 'react-icons/bs';
 import PhotoReview from './PhotoReview.jsx';
 import Characteristics from './Characteristics.jsx';
 import StarRating from '../../reusableComponents/StarRating.jsx';
+import Button from '../../reusableComponents/Button.jsx';
 import './AddReviewForm.scss';
 
 
@@ -54,7 +55,6 @@ const AddReviewForm = ({setShowReviewModal, onClose, reviewMetaData, setRender, 
     });
   }, [reviewMetaData]);
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (content.length < 50 || !starNum) {
@@ -86,8 +86,7 @@ const AddReviewForm = ({setShowReviewModal, onClose, reviewMetaData, setRender, 
       <div className="write-top">
         <h1>Write Your Review</h1>
         <div className="write-review-stars">
-          <div>Rate this product *</div>
-          {/* <div>{stars}</div> */}
+          <div className='write-review-title'>Rate this product *</div>
           <StarRating rating='0' onRating={(r) => setStarNum(r)}/>
         </div>
         <div className="name-email" >
@@ -98,29 +97,33 @@ const AddReviewForm = ({setShowReviewModal, onClose, reviewMetaData, setRender, 
       <div className="summary">
         <input type="text" className="review-summary" placeholder="summary" onChange={e => { setSummary(e.target.value); }}></input>
       </div>
-      <textarea rows="rows" required='required' minLength='50' maxLenght='1100'className="review-content" placeholder="Any thoughts on this product.." onChange={e => { setContent(e.target.value); }} />
+      <div>
+        <textarea rows="rows" required='required' minLength='50' maxLenght='1100'className="review-content" placeholder="Any thoughts on this product.." onChange={e => { setContent(e.target.value); }}></textarea>
+      </div>
       <div className='content-warning'>{content.length <= 50 ? `[${50 - content.length}] require to reach minimum limit` : 'Minimum limit reached'}</div>
       <div className="photo-container">
         <div>You can upload 5 max photos</div>
         {photos.length < 5 ? ( <PhotoReview photos={photos} setPhotos={setPhotos} />) : null}
         <div className='recommend'>
-          <div> Recommend? *</div>
           <div className='recommend-selection'>
-            <label >
-              <span>Yes:</span>
-              <div>
-                <input required type="radio" name="recommend" onChange={() => setRecommend(true)} />
-              </div>
-            </label>
-            <label>
-              <span>No:</span>
-              <div>
-                <input type="radio" name="recommend" onChange={() => setRecommend(false)} />
-              </div>
-            </label>
+            <div className='write-review-title'> Recommend? *</div>
+            <div className='recommend-selection-container'>
+              <label >
+                <span>Yes:</span>
+                <div>
+                  <input required type="radio" name="recommend" onChange={() => setRecommend(true)} />
+                </div>
+              </label>
+              <label>
+                <span>No:</span>
+                <div>
+                  <input type="radio" name="recommend" onChange={() => setRecommend(false)} />
+                </div>
+              </label>
+            </div>
           </div>
           <div className="char-container">
-            <div>Select Characteristics *</div>
+            <div className='write-review-title'>Select Characteristics *</div>
             <div className="char-forms">
               {characteristicsForm}
             </div>
@@ -130,7 +133,13 @@ const AddReviewForm = ({setShowReviewModal, onClose, reviewMetaData, setRender, 
           <div>{showErrorMessage ? 'There was an error' : null}</div>
         </div>
       </div>
-      <button type="submit" className="submit-review" onClick={handleSubmit}>Submit</button>
+      <Button
+        type="submit"
+        className="primary submit-review"
+        onClick={handleSubmit}
+      >
+        Submit
+      </Button>
     </form>
 
   );
