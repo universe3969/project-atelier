@@ -37,7 +37,7 @@ const RelatedProducts = ({ currentProduct, relatedProducts, onChangeProduct }) =
         onChangeProduct={onChangeProduct}
       />
       {showModal &&
-        <Modal className='modal clear' onClose={handleModalClose}>
+        <Modal className='modal clear' onClose={handleModalClose} data-testid='comparing-modal'>
           <CompareProductsCard comparingProducts={comparingProducts}/>
         </Modal>
       }

@@ -5,7 +5,7 @@ import './Carousel.scss';
 import ProductCard from './ProductCard.jsx';
 import AddProductCard from './AddProductCard.jsx';
 
-const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct, onChangeProduct }) => {
+const Carousel = ({ items, removedId, type, onButtonClick, onAddProduct, onChangeProduct }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showNavigation, setShowNavigation] = useState(false);
   const [itemsPerScreen, setItemsPerScreen] = useState(null);
@@ -69,7 +69,7 @@ const Carousel = ({ items, onButtonClick, removedId, type, onAddProduct, onChang
   let addToCardStyle = items.length ? { height: 'auto' } : null;
 
   return (
-    <div className='carousel-container'>
+    <div className='carousel-container' data-testid='carousel-test'>
       {showNavigation &&
         currentIndex !== 0 &&
         <button className='left' onClick={() => onHandleClick('left')}>

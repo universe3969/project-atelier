@@ -13,7 +13,7 @@ const Modal = ({ children, className, onClose }) => {
 
   return ReactDOM.createPortal(
     <div className={className}>
-      <div className='modal-backdrop' onClick={onClose}></div>
+      <div className='modal-backdrop' onClick={onClose} data-testid='close-modal'></div>
       <div className='modal-content'>
         {children}
       </div>

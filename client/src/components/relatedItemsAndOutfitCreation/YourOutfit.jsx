@@ -41,7 +41,6 @@ const YourOutfit = ({ currentProduct, productId, onChangeProduct }) => {
       />
     </div>
   );
-
 };
 
 export default YourOutfit;

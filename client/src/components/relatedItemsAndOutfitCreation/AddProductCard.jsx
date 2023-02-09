@@ -9,6 +9,7 @@ const AddProductCard = ({ onAddProduct }) => {
       <div
         className='add-product'
         onClick={onAddProduct}
+        data-testid='add-product-function'
       >
         <div className='add-sign'>
           <GrAdd/>
