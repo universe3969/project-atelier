@@ -27,6 +27,7 @@ const RelatedItemsAndOutfitCreation = ({ currentProductId, product, onChangeProd
             <RelatedProducts
               relatedProducts={relatedProducts}
               onChangeProduct={onChangeProduct}
+              currentProduct={product}
             />
           )
           : (

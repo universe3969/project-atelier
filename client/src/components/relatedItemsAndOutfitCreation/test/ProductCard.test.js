@@ -7,7 +7,8 @@ const renderComponent = () => {
     avgRating: 3.5,
     info: {
       id: 37311,
-      name: 'Summer Shirt'
+      name: 'Summer Shirt',
+      category: 'Blouse'
     },
     styles: {
       results: [{
@@ -43,8 +44,18 @@ test('render the all card product details', async () => {
   const { avgRating, styles, info } = product;
 
   const productName = await screen.findByText(info.name);
-  // const productPrice = screen.getByText(`${styles[0].original_price}`);
+  const productPrice = await screen.findByText(`$${styles.results[0].original_price}`);
 
   expect(productName).toBeInTheDocument();
-  // expect(productPrice).toBeInTheDocument();
+  expect(productPrice).toBeInTheDocument();
+});
+
+test('render all style images of product card', async () => {
+  const { product } = renderComponent();
+  const { styles } = product;
+  const [firstImage, secondImage] = styles.results[0].photos;
+
+  const imageEls = await screen.findAllByRole('img');
+  expect(imageEls[0].src).toEqual(firstImage.thumbnail_url);
+  expect(imageEls[1].src).toEqual(secondImage.thumbnail_url);
 });

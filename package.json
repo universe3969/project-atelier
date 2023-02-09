@@ -7,7 +7,7 @@
     "build": "npm run clean && webpack",
     "client-dev": "webpack-dev-server",
     "server-dev": "nodemon server/index.js",
-    "test": "jest",
+    "test": "jest --watch",
     "clean": "rimraf client/dist/*.js client/dist/*.map"
   },
   "repository": {

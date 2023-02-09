@@ -24,9 +24,9 @@ const ProductCard = ({ type, product, onButtonClick, removedId, onChangeProduct 
   const defaultStyle = styles.results
     .find(style => style['default?'] === true) || styles.results[0];
   const images = defaultStyle.photos.map(img => img.thumbnail_url);
-console.log(defaultStyle.original_price);
+
   let formattedPrice = 0;
-  if (+defaultStyle.original_price.slice(info.default_price.length - 2) === 0) {
+  if (+defaultStyle.original_price.slice(defaultStyle.original_price.length - 2) === 0) {
     formattedPrice = `$${parseInt(defaultStyle.original_price)}`;
   } else {
     formattedPrice = `$${defaultStyle.original_price}`;
@@ -62,17 +62,6 @@ console.log(defaultStyle.original_price);
       </Button>
     );
   }
-
-  // if (type === 'addProduct') {
-  //   renderCardContent = (
-  //     <div className='add-product'>
-  //       <div className='add-sign'>
-  //         <GrAdd/>
-  //       </div>
-  //       <div className='text'>Add to Outfit</div>
-  //     </div>
-  //   );
-  // }
 
   const onHandleClick = (direction) => {
     const slider = sliderRef.current;

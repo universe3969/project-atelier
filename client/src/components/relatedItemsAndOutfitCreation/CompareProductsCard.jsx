@@ -8,37 +8,29 @@ const CompareProductsCard = ({ comparingProducts }) => {
   const currentProductFeatures = currentProduct.info.features;
   const comparingProductFeatures = comparingProduct.info.features;
 
-  const length = currentProductFeatures.length > comparingProductFeatures.length
-    ? currentProductFeatures.length : comparingProductFeatures.length;
-
   const featureList = {};
-  for (let i = 0; i < length; i++) {
-    if (currentProductFeatures[i]) {
-      let currentFeature = currentProductFeatures[i];
-      featureList[currentFeature.feature] = {
-        value: currentFeature.value,
-        currentProduct: 'yes'
-      };
-      if (comparingProductFeatures.hasOwnProperty(currentFeature.feature)
-      && comparingProductFeatures[currentFeature.feature].value ===
-      featureList[currentFeature.feature].value) {
-        featureList[currentFeature.feature].comparingProduct = 'yes';
+  for (let i = 0; i < currentProductFeatures.length; i++) {
+    const item = currentProductFeatures[i];
+    if (!featureList.hasOwnProperty(item.feature)) {
+      featureList[item.feature] = { value: item.value, currentProduct: 'yes' };
+      const found = comparingProductFeatures.find(p => p.feature === item.feature);
+      if (found) {
+        featureList[item.feature].comparingProduct = found.value === item.value ? 'yes' : 'no';
       } else {
-        featureList[currentFeature.feature].comparingProduct = 'no';
+        featureList[item.feature].comparingProduct = 'no';
       }
     }
-    if (comparingProductFeatures[i]) {
-      let currentFeature = comparingProductFeatures[i];
-      featureList[currentFeature.feature] = {
-        value: currentFeature.value,
-        comparingProduct: 'yes'
-      };
-      if (currentProductFeatures.hasOwnProperty(currentFeature.feature)
-      && currentProductFeatures[currentFeature.feature].value ===
-      featureList[currentFeature.feature].value) {
-        featureList[currentFeature.feature].currentProduct = 'yes';
+  }
+
+  for (let i = 0; i < comparingProductFeatures.length; i++) {
+    const item = comparingProductFeatures[i];
+    if (!featureList.hasOwnProperty(item.feature)) {
+      featureList[item.feature] = { value: item.value, comparingProduct: 'yes' };
+      const found = currentProductFeatures.find(p => p.feature === item.feature);
+      if (found) {
+        featureList[item.feature].currentProduct = found.value === item.value ? 'yes' : 'no';
       } else {
-        featureList[currentFeature.feature].currentProduct = 'no';
+        featureList[item.feature].currentProduct = 'no';
       }
     }
   }
