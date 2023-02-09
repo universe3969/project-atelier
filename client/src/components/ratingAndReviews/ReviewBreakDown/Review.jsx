@@ -1,9 +1,7 @@
 import React from 'react';
 import StarRating from '../../reusableComponents/StarRating.jsx';
 import './Review.scss';
-import HelpfulButton from './HelpfulButton.jsx';
 import Recommend from './Recommend.jsx';
-import Report from './Report.jsx';
 import axios from 'axios';
 import ReviewPhotos from './ReviewPhotos.jsx';
 import Modal from '../../reusableComponents/Modal.jsx';
