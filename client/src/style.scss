@@ -9,5 +9,41 @@
 body {
   background-color: $primary-color;
   font-family: $montserrat;
+  font-size: 0.9rem;
   line-height: 1.5;
+}
+
+.announcement {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  color: $text-color-400;
+  font-size: 1rem;
+
+  & > * {
+    text-align: center;
+  }
+
+  .offer {
+    font-weight: 700;
+    margin-left: 0.5rem;
+  };
+
+  .highlight {
+    text-decoration: underline;
+    text-underline-offset: 0.1rem;
+    margin-left: unset;
+  };
+
+  .dash {
+    margin: 0 0.6rem;
+  }
+}
+
+.app-modules {
+  padding: 0 3rem;
+
+  & > * {
+    margin-bottom: 4rem;
+  }
 }

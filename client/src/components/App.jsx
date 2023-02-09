@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
 import NavBar from './NavBar.jsx';
 import Alert from './Alert.jsx';
-import RatingsAndReviews from '../components/ratingAndReviews/RatingsAndReviews.jsx';
-import SearchBar from '../components/reusableComponents/SearchBar.jsx';
-import Modal from '../components/reusableComponents/Modal.jsx';
-import Button from '../components/reusableComponents/Button.jsx';
+import Overview from './productDetail/Overview.jsx';
+import RelatedItemsAndOutfitCreation from './relatedItemsAndOutfitCreation/RelatedItemsAndOutfitCreation.jsx';
+import QuestionsAndAnswers from './questionsAndAnswers/QuestionsAndAnswers.jsx';
+import RatingsAndReviews from './ratingAndReviews/RatingsAndReviews.jsx';
 
 const App = () => {
-  const [productId, setProductId] = useState(37318);
+  const [productId, setProductId] = useState(37317);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [alert, setAlert] = useState(null);
 
@@ -29,10 +29,30 @@ const App = () => {
     }
   };
   return (
-    <div>
+    <div className='app-container'>
       <NavBar onSearch={handleSearch}/>
       {alert && <Alert type={alert.type} message={alert.message}/>}
-      {currentProduct && <RatingsAndReviews productId={productId} currentProduct={currentProduct}/>}
+      <div className='announcement'><span>APPLY FOR OUR MASTERCARD</span><span className='dash'>&#8212;</span><span className='offer'>GET UP TO 30% OFF YOUR NEXT ORDER</span><span className='dash'>&#8212;</span><span className='highlight'>SPRING 2023 COLLECTON</span></div>
+      <div className='app-modules'>
+        {currentProduct &&
+          <Fragment>
+            <Overview currentProduct={currentProduct}/>
+            <RelatedItemsAndOutfitCreation
+              currentProductId={productId}
+              product={currentProduct}
+              onChangeProduct={handleSearch}
+            />
+            <QuestionsAndAnswers
+              productId={productId}
+              productName={currentProduct.info.name}
+            />
+            <RatingsAndReviews
+              productId={productId}
+              currentProduct={currentProduct}
+            />
+          </Fragment>
+        }
+      </div>
     </div>
   );
 };

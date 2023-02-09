@@ -1,0 +1,21 @@
+@import '../../variables.scss';
+
+.products-and-outfits {
+  padding: 0;
+
+  .related-products {
+    padding-bottom: 2rem;
+  };
+}
+
+.header {
+  color:$text-color-100;
+  font-weight: 500;
+  font-size: 1rem;;
+  padding-left: 0.7rem;
+  padding-bottom: 1rem;
+}
+
+.related-product-notice {
+  margin-left: 0.8rem;
+}

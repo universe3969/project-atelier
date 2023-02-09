@@ -1,11 +1,22 @@
+.all-reviews {
+  width: 100%;
+}
+
 .review-container {
   text-align:left;
-  height: 140%;
   overflow-y: scroll;
+  max-height: 50vh;
 }
 
 .review-sort {
   font-weight: bold;
+  font-size: 1rem;
+  padding-bottom: 1rem;
+
+  & > :first-child {
+    margin-left: unset;
+  };
+
   select {
     margin-left: .2rem;
     height: 1.3rem;
@@ -26,7 +37,7 @@
   text-align: center;
 }
 
-.secondary {
+.secondary.review {
   width: 200px;
   height: 25px;
   text-align: center;
@@ -39,9 +50,11 @@
 .review-list-buttons {
   display: flex;
   margin-top: 2rem;
-  gap: 2rem;
+  margin-bottom: 3rem;
+  gap: 1rem;
 
   .secondary {
     height: auto;
+    transform: scale(0.9);
   }
 }

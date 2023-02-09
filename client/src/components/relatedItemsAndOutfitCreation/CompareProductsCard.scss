@@ -1,0 +1,40 @@
+@import '../../variables.scss';
+
+.comparison-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  width: 400px;
+
+  h4 {
+    color: $text-color-100;
+    font-size: 0.8rem;
+    font-weight: 300;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0 1.5rem 0;
+  }
+
+  .product-name {
+    font-weight: bold;
+  }
+
+  .feature {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0;
+    font-size: 0.9rem;
+    color: $text-color-100;
+  }
+
+  .check-icon {
+    font-size: large;
+  }
+
+  .feature-detail {
+    text-align: center;
+  }
+}

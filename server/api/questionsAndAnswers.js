@@ -11,6 +11,16 @@ const getQuestions = (productId, page) => {
   }).then(({ data }) => data.results);
 };
 
+const getAnswerList = (questionId, page) => {
+  return instance.get(`${process.env.QUESTIONS_URL}/${questionId}/answers`, {
+    params: {
+      page,
+      count: 200
+    }
+  })
+    .then(({ data }) => data);
+};
+
 const updateQuestionHelpfulCount = (questionId) => {
   return instance.put(`${process.env.QUESTIONS_URL}/${questionId}/helpful`)
     .then(({ data }) => data);
@@ -38,6 +48,7 @@ const postAnswer = (questionId, answerPost) => {
 
 module.exports = {
   getQuestions,
+  getAnswerList,
   updateQuestionHelpfulCount,
   updateAnswerHelpfulCount,
   reportAnswer,

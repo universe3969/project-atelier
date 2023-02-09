@@ -1,6 +1,7 @@
 const { validationResult } = require('express-validator');
 const {
   getQuestions,
+  getAnswerList,
   updateQuestionHelpfulCount,
   updateAnswerHelpfulCount,
   reportAnswer,
@@ -24,12 +25,33 @@ const getProductQuestionsAndAnswers = async (req, res) => {
       page++;
     } while (results.length);
 
-
     questions = questions.sort((a, b) => b.question_helpfulness - a.question_helpfulness);
     res.status(200).send(questions);
   } catch (err) {
     console.log(err);
     res.status(400).send('Unable to retrieve questions');
+  }
+};
+
+const getAnswerListofQuestion = async (req, res) => {
+  const { questionId } = req.params;
+
+  let answers = [];
+  let page = 1;
+  let results = [];
+
+  try {
+    do {
+      results = await getAnswerList(questionId, page);
+      if (results.results.length) {
+        answers = answers.concat(results.results);
+      }
+      page++;
+    } while (results.results.length);
+    res.status(200).send(answers);
+  } catch (err) {
+    console.log(err);
+    res.status(400).send('Unable to retrieve answer list');
   }
 };
 
@@ -101,6 +123,7 @@ const addProductAnswer = async (req, res) => {
 
 module.exports = {
   getProductQuestionsAndAnswers,
+  getAnswerListofQuestion,
   updateQuestionHelpfulFeedback,
   updateAnswerHelpfulFeedback,
   updateAnswerReportStatus,

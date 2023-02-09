@@ -1,0 +1,66 @@
+@import '../../variables.scss';
+
+.answer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+
+  .answer-text {
+    display: flex;
+    padding-bottom: 0.5rem;
+
+    span {
+      margin-left: unset;
+      font-weight: bold;
+    };
+
+    .answer-body {
+      margin-left: 0.2rem;
+    }
+  };
+
+  .photos-container {
+    overflow-x: hidden;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+
+    img {
+      height: 60px;
+      cursor: pointer;
+      margin-right: 0.8rem;
+    };
+  }
+
+  .action-bar {
+    display: flex;
+    font-size: 0.8rem;
+    color: $text-color-200;
+
+    gap: 0.5rem;
+
+    .author {
+      display: flex;
+      border-right: solid black 0.5px;
+      padding-right: 0.5rem;
+
+      span {
+        margin-left: unset;
+      }
+
+      .date {
+        margin-left: 0.3rem;
+      };
+    };
+
+    .helpful-action-bar {
+      font-size: inherit;
+      color: inherit;
+    };
+  };
+
+  .action-bar.answer {
+    margin-left: 1rem;
+    flex-direction: row;
+  }
+}

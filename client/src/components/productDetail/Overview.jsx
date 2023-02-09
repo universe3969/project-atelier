@@ -6,7 +6,7 @@ import ProductInfo from './ProductInfo.jsx';
 import Cart from './Cart.jsx';
 import AdditionalInfo from './AdditionalInfo.jsx';
 
-const Overview = ({currentProduct}) => {
+const Overview = ({ currentProduct }) => {
 
   // product info
   const [category, setCategory] = useState();
@@ -36,11 +36,11 @@ const Overview = ({currentProduct}) => {
     setDefaultPrice(currentProduct.info.default_price);
     setSlogan(currentProduct.info.slogan);
     setFeatures(currentProduct.info.features);
-    setDescription(currentProduct.info.description)
+    setDescription(currentProduct.info.description);
 
     setStyles(currentProduct.styles.results);
     setStyleId(currentProduct.styles.results[0].style_id);
-  }, []);
+  }, [currentProduct]);
 
 
   useEffect(() => {
@@ -66,17 +66,14 @@ const Overview = ({currentProduct}) => {
 
   return (
     <div className="overview-container">
-      <div className="overview-message-container">
-        <div className="overview-message"><u className="master-card">APPLY FOR OUR MASTERCARD</u> — <em>GET UP TO 30% OFF YOUR NEXT ORDER</em> — </div>
-      </div>
       <div className="overview-container-top">
         <div className="top-container-left">
           {photos ? <Gallery photos={photos} isZoomed={isZoomed} setIsZoomed={setIsZoomed} currIndex={currIndex} setCurrIndex={setCurrIndex}/> : null}
         </div>
-        <div className={!isZoomed ? "top-container-right" : "top-container-right top-right-zoomed"}>
+        <div className={!isZoomed ? 'top-container-right' : 'top-container-right top-right-zoomed'}>
           <ProductInfo
-          productName={productName} category={category} defaultPrice={defaultPrice}
-          salesPrice={salesPrice} avgRating ={avgRating}
+            productName={productName} category={category} defaultPrice={defaultPrice}
+            salesPrice={salesPrice} avgRating ={avgRating}
           />
           {styles ? <Styles setCurrIndex={setCurrIndex} styles={styles} styleName={styleName} styleId={styleId} setStyleId={setStyleId}/> : null}
           {styles && currStyle ? <Cart styles={styles} styleId={styleId} currStyle={currStyle}/> : null}
@@ -86,8 +83,8 @@ const Overview = ({currentProduct}) => {
         {slogan && features && description ? <AdditionalInfo slogan={slogan} features={features} description={description}/> : null}
       </div>
     </div>
-    );
-}
+  );
+};
 
 
 export default Overview;

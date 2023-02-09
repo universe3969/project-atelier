@@ -22,9 +22,11 @@
   background-color: $primary-color;
   color: $secondary-color;
   border-width: 1.5px;
+
   &:hover {
     background-color: $secondary-color;
     color: $primary-color;
+    border-color: transparent;
   }
 }
 

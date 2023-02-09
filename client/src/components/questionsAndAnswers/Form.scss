@@ -1,0 +1,79 @@
+@import '../../variables.scss';
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  gap: 1rem;
+
+  & > * {
+    display: flex;
+    flex-direction: column;
+  };
+
+  header {
+    gap: 0.3rem;
+
+    h3 {
+      font-size: 1.3rem;
+    };
+  };
+
+  .form-body,
+  .form-name,
+  .form-email {
+    label {
+      font-weight: bold;
+      padding-bottom: 0.2rem;
+    };
+
+    & > textarea, input {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      padding: 0.5rem;
+      border: solid $light-border-color 0.5px;
+      outline: none;
+
+      &:focus::placeholder {
+        color: transparent;
+      }
+    };
+
+    textarea {
+      height: 5rem;
+      width: 50vw;
+      line-height: 1.5;
+    };
+
+    p {
+      margin-top: 0.3rem;
+      font-size: 0.9rem;
+      color: $text-color-200;
+      font-style: italic;
+    };
+  }
+
+  .primary.add-image {
+    width: 8rem;
+    justify-content: center;
+    align-self: start;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 95%;
+    font-style: italic;
+
+    .messages {
+      padding: 0 1rem;
+    }
+  }
+
+  .primary {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    width: 50%;
+    align-self: center;
+  }
+}

@@ -55,9 +55,12 @@ const RatingsAndReviews = ({productId, currentProduct}) => {
   };
 
   return (
-    <div className='rating-review-containers'>
-      <RatingList reviewMetaData={reviewMetaData} starFilter={starFilter} setStarFilter={setStarFilter} averageRating={currentProduct.avgRating} onSortStarRatingReview={handleSortByStars} productReviews={productReviews}/>
-      <ReviewList productReviews={productReviews} handleSortClick={handleSortClick} sortBy={sortBy} setRender={setRender} reviewMetaData={reviewMetaData}/>
+    <div className='rating-review-wrapper'>
+      <h3 className='header'>RATINGS & REVIEWS</h3>
+      <div className='rating-review-containers'>
+        <RatingList reviewMetaData={reviewMetaData} starFilter={starFilter} setStarFilter={setStarFilter} averageRating={currentProduct.avgRating} onSortStarRatingReview={handleSortByStars} productReviews={productReviews}/>
+        <ReviewList productReviews={productReviews} handleSortClick={handleSortClick} sortBy={sortBy} setRender={setRender} reviewMetaData={reviewMetaData}/>
+      </div>
     </div>
   );
 };

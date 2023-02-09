@@ -9,11 +9,7 @@
   .helpful-button {
     display: flex;
     border-right: solid black 0.5px;
-    padding-right: 0.3rem;
-
-    & > * {
-      margin-right: 0.3rem;
-    };
+    padding-right: 0.5rem;
 
     span {
       margin-right: 0.3rem;
