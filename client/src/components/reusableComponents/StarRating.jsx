@@ -37,7 +37,7 @@ const StarRating = ({ rating, className, onRating }) => {
       renderStars.push(
         <div key={i} className='outer-star'>
           <MdStarBorder id={i} onClick={handleRating}/>
-          <div className='inner-star' style={{ width: `${displayWidth}%` }}>
+          <div className='inner-star' style={{ width: `${displayWidth}%` }} data-testid='inner-star-test'>
             <MdStar id={i} onClick={handleRating}/>
           </div>
         </div>

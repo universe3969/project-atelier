@@ -26,7 +26,7 @@ const ProductCard = ({ type, product, onButtonClick, removedId, onChangeProduct 
   const images = defaultStyle.photos.map(img => img.thumbnail_url);
 
   let formattedPrice = 0;
-  if (+defaultStyle.original_price.slice(info.default_price.length - 2) === 0) {
+  if (+defaultStyle.original_price.slice(defaultStyle.original_price.length - 2) === 0) {
     formattedPrice = `$${parseInt(defaultStyle.original_price)}`;
   } else {
     formattedPrice = `$${defaultStyle.original_price}`;
@@ -45,6 +45,7 @@ const ProductCard = ({ type, product, onButtonClick, removedId, onChangeProduct 
       <Button
         className='secondary active'
         onClick={handleButtonClick}
+        data-testid='card-button-click-function'
       >
         {!filledButton
           ? <MdStarBorder className='button-icon'/>
@@ -60,17 +61,6 @@ const ProductCard = ({ type, product, onButtonClick, removedId, onChangeProduct 
       >
         <TiDeleteOutline className='button-icon remove'/>
       </Button>
-    );
-  }
-
-  if (type === 'addProduct') {
-    renderCardContent = (
-      <div className='add-product'>
-        <div className='add-sign'>
-          <GrAdd/>
-        </div>
-        <div className='text'>Add to Outfit</div>
-      </div>
     );
   }
 
@@ -107,7 +97,7 @@ const ProductCard = ({ type, product, onButtonClick, removedId, onChangeProduct 
     renderedImages = images.map(url =>
       <div key={url}>
         {url
-          ? <img src={url} onClick={() => onChangeProduct(product.info.id)}/>
+          ? <img src={url} onClick={() => onChangeProduct(product.info.id)} data-testid='product-card-click-function'/>
           : (
             <div className='no-image'>
               <div className='no-image-icon'><BsFileEarmarkImageFill/></div>
@@ -125,7 +115,7 @@ const ProductCard = ({ type, product, onButtonClick, removedId, onChangeProduct 
   let rightArrowStyle = currentIndex + 1 !== images.length
     ? { color: 'black' } : { color: 'transparent' };
   return (
-    <div className='card-wrapper'>
+    <div className='card-wrapper' data-testid='card-wrapper'>
       <div className='product-slideshow-container'>
         {renderedButton}
         <div className='slideshow-content' ref={sliderRef}>
@@ -145,7 +135,7 @@ const ProductCard = ({ type, product, onButtonClick, removedId, onChangeProduct 
             </div>
           </div>
         }
-        <div className='product-detail' onClick={() => onChangeProduct(product.info.id)}>
+        <div className='product-detail' onClick={() => onChangeProduct(product.info.id)} data-testid='product-detail-click-function'>
           <div className='title'>{info.category.toUpperCase()}</div>
           <div className='product-name'>{info.name}</div>
           <div className='product-price'>{formattedPrice}</div>

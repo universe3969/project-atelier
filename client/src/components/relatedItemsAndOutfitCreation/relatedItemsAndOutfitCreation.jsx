@@ -3,11 +3,13 @@ import axios from 'axios';
 import RelatedProducts from './RelatedProducts.jsx';
 import YourOutfit from './YourOutfit.jsx';
 
+const RELATED_PPODUCTS_URL = '/api/relatedProducts';
+
 const RelatedItemsAndOutfitCreation = ({ currentProductId, product, onChangeProduct }) => {
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/relatedProducts/${currentProductId}`)
+    axios.get(`${RELATED_PPODUCTS_URL}/${currentProductId}`)
       .then(({ data }) => {
         const filteredProducts = [];
         data.forEach(item => {
@@ -27,6 +29,7 @@ const RelatedItemsAndOutfitCreation = ({ currentProductId, product, onChangeProd
             <RelatedProducts
               relatedProducts={relatedProducts}
               onChangeProduct={onChangeProduct}
+              currentProduct={product}
             />
           )
           : (

@@ -7,6 +7,8 @@ import Button from '../reusableComponents/Button.jsx';
 import Modal from '../reusableComponents/Modal.jsx';
 import './Question.scss';
 
+const ANSWER_LIST_URL = '/api/questionsAndAnswers/answers';
+
 const Question = ({ question, productName }) => {
   const [sortedAnswers, setSortedAnswers] = useState(null);
   const [loadedAnswersCount, setLoadedAnswersCount] = useState(2);
@@ -46,9 +48,9 @@ const Question = ({ question, productName }) => {
   };
 
   const handleSubmitAnswer = (answerPost) => {
-    axios.post(`http://localhost:3000/api/questions/${question_id}/answers/new`, answerPost)
+    axios.post(`/api/questions/${question_id}/answers/new`, answerPost)
       .then(data => {
-        return axios.get(`http://localhost:3000/api/questionsAndAnswers/answers/${question_id}`);
+        return axios.get(`${ANSWER_LIST_URL}/${question_id}`);
       }).then(({ data }) => {
         let sorted = Object.values(data).sort((a, b) => b.helpfulness - a.helpfulness);
         let sellerAnswers = sorted.filter(answer => answer.answerer_name === 'Seller') || [];

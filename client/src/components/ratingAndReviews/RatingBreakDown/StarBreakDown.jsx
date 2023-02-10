@@ -31,11 +31,11 @@ const StarBreakDown = ({totalVotes, starFilter, setStarFilter, onSortStarRatingR
     }
   }
 
-  let ratingsArr = {5: `${container5.length}`, 4: `${container4.length}`, 3: `${container3.length}`, 2: `${container2.length}`, 1: `${container1.length}`};
+  let ratingObj = {5: `${container5.length}`, 4: `${container4.length}`, 3: `${container3.length}`, 2: `${container2.length}`, 1: `${container1.length}`};
   const barDisplays = [];
   for (let i = 5; i > 0; i -= 1) {
-    if (ratingsArr[i]) {
-      const barWidth = ratingsArr[i] / totalStarRating.length;
+    if (ratingObj[i]) {
+      const barWidth = ratingObj[i] / totalStarRating.length;
       barDisplays.push(
         <Star
           key={i}

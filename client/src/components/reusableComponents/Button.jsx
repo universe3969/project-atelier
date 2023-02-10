@@ -4,6 +4,7 @@ import './Button.scss';
 const Button = ({ children, className, ...rest }) => {
   return (
     <button
+      id='button'
       className={className}
       {...rest}
     >

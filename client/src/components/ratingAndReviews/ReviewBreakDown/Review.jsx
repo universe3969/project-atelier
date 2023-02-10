@@ -7,7 +7,7 @@ import ReviewPhotos from './ReviewPhotos.jsx';
 import Modal from '../../reusableComponents/Modal.jsx';
 import HelpfulActionBar from '../../reusableComponents/HelpfulActionBar.jsx';
 
-const Review = ({review, handleReportClick, handleHelpfulClick, handlePhotoClick}) => {
+const Review = ({review, handlePhotoClick}) => {
 
   const dateString = `${review.date}`;
 

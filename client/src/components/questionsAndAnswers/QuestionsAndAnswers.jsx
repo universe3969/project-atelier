@@ -7,6 +7,8 @@ import Modal from '../reusableComponents/Modal.jsx';
 import Form from './Form.jsx';
 import './QuestionsAndAnswers.scss';
 
+const PRODUCT_ANSWER_URL = '/api/questionsAndAnswers';
+const POST_QUESTION_URL = '/api/questions/new';
 
 const QuestionsAndAnswers = ({ productId, productName }) => {
   const [questions, setQuestions] = useState(null);
@@ -16,7 +18,7 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/questionsAndAnswers/${productId}`)
+    axios.get(`${PRODUCT_ANSWER_URL}/${productId}`)
       .then(({ data }) => {
         setQuestions(data);
         setSearchQuestions(data);
@@ -70,9 +72,9 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
       product_id: +productId,
       ...questionPost
     };
-    axios.post('http://localhost:3000/api/questions/new', questionData)
+    axios.post(POST_QUESTION_URL, questionData)
       .then(data => {
-        return axios .get(`http://localhost:3000/api/questionsAndAnswers/${productId}`);
+        return axios .get(`${PRODUCT_ANSWER_URL}/${productId}`);
       }).then(({ data }) => {
         setQuestions(data);
         setSearchQuestions(data);
@@ -122,7 +124,6 @@ const QuestionsAndAnswers = ({ productId, productName }) => {
     </div>
   );
 };
-
 
 export default QuestionsAndAnswers;
 
