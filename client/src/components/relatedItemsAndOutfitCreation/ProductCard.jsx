@@ -124,11 +124,13 @@ const ProductCard = ({ type, product, onButtonClick, removedId, onChangeProduct 
         {images.length > 2 &&
           <div className='product-slideshow-navigation'>
             <div
+              className='left'
               onClick={() => onHandleClick('left')}>
               <BsFillCaretLeftFill
               />
             </div>
             <div
+              className='right'
               onClick={() => onHandleClick('right')}>
               <BsFillCaretRightFill
               />

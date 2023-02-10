@@ -17,16 +17,22 @@
     color: $text-color-100;
     z-index: 5;
     &:hover {
-      color: $primary-color;
+      color: $gray-100;
     }
   }
 
   .left {
     left: 2rem;
+    &:hover {
+      cursor: pointer;
+    };
   }
 
   .right {
     right: 2rem;
+    &:hover {
+      cursor: pointer;
+    };
   }
 
   .carousel-content {
@@ -41,23 +47,27 @@
       flex: 0 0 calc(100% / var(--items-per-screen));
     }
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 574px) {
+      --items-per-screen: 1;
+    }
+
+    @media only screen and (max-width: 750px) and (min-width: 575px) {
       --items-per-screen: 2;
     }
 
-    @media only screen and (max-width: 800px) and (min-width: 601px) {
+    @media only screen and (max-width: 1049px) and (min-width: 751px) {
       --items-per-screen: 3;
     }
 
-    @media only screen and (max-width: 1200px) and (min-width: 801px) {
+    @media only screen and (max-width: 1280px) and (min-width: 1050px) {
       --items-per-screen: 4;
     }
 
-    @media only screen and (max-width: 1500px) and (min-width: 1201px) {
+    @media only screen and (max-width: 1649px) and (min-width: 1281px) {
       --items-per-screen: 5;
     }
 
-    @media only screen and (max-width: 1900px) and (min-width: 1501px) {
+    @media only screen and (max-width: 2160px) and (min-width: 1650px) {
       --items-per-screen: 6;
     }
   }
