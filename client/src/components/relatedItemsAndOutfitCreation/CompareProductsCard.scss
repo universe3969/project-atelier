@@ -7,9 +7,9 @@
   width: 400px;
 
   h4 {
-    color: $text-color-100;
+    color: $text-color-300;
     font-size: 0.8rem;
-    font-weight: 300;
+    font-weight: 500;
   }
 
   .header {
@@ -21,6 +21,7 @@
 
   .product-name {
     font-weight: bold;
+    color: $secondary-color;
   }
 
   .feature {
@@ -28,7 +29,7 @@
     justify-content: space-between;
     padding: 0.3rem 0;
     font-size: 0.9rem;
-    color: $text-color-100;
+    color: $text-color-300;;
   }
 
   .check-icon {
