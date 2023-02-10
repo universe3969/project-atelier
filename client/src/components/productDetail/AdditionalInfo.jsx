@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function AdditionalInfo ({slogan, features, description}) {
   const include = [];
   for (let feature of features) {
-    include.push(<div key={feature.value}>&#x2713;{feature.value + ' ' + feature.feature}</div>)
+    include.push(<div key={feature.value}>&#x2713;{feature.value + ' ' + feature.feature}</div>);
   }
 
   return (

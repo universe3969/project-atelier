@@ -19,11 +19,11 @@ const HelpfulActionBar = ({ type, id, helpfulCount, sideButtonText, onHandleSide
     if (!isHelpfulClicked) {
       let url = '';
       if (type === 'question') {
-        url = `http://localhost:3000/api/questionsAndAnswers/questions/${id}/helpful`;
+        url = `/api/questionsAndAnswers/questions/${id}/helpful`;
       } else if (type === 'answer') {
-        url = `http://localhost:3000/api/questionsAndAnswers/answers/${id}/helpful`;
+        url = `/api/questionsAndAnswers/answers/${id}/helpful`;
       } else if (type === 'review') {
-        url = `http://localhost:3000/api/reviews/${id}/helpful`;
+        url = `/api/reviews/${id}/helpful`;
       }
       window.localStorage.setItem(`${type}-helpfulId-${id}`, 'true');
       axios.put(url)
@@ -39,9 +39,9 @@ const HelpfulActionBar = ({ type, id, helpfulCount, sideButtonText, onHandleSide
       if (!isReportClicked || buttonText === 'Report') {
         let url = '';
         if (type === 'answer') {
-          url = `http://localhost:3000/api/questionsAndAnswers/answers/${id}/report`;
+          url = `/api/questionsAndAnswers/answers/${id}/report`;
         } else if (type === 'review') {
-          url = `http://localhost:3000/api/reviews/${id}/report`;
+          url = `/api/reviews/${id}/report`;
         }
         window.localStorage.setItem(`${type}-reportId-${id}`, 'true');
         axios.put(url)

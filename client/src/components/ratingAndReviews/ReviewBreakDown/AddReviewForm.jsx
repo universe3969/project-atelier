@@ -7,6 +7,7 @@ import StarRating from '../../reusableComponents/StarRating.jsx';
 import Button from '../../reusableComponents/Button.jsx';
 import './AddReviewForm.scss';
 
+const POST_REVIEW_URL = '/api/reviews/new';
 
 const AddReviewForm = ({setShowReviewModal, onClose, reviewMetaData, setRender, productName, productReviews}) => {
 
@@ -60,7 +61,7 @@ const AddReviewForm = ({setShowReviewModal, onClose, reviewMetaData, setRender, 
     if (content.length < 50 || !starNum) {
       setShowErrorMessage(true);
     } else {
-      axios.post ('http://localhost:3000/api/reviews/new', {
+      axios.post (POST_REVIEW_URL, {
         product_id: Number(reviewMetaData.product_id),
         rating: starNum,
         summary: summary,

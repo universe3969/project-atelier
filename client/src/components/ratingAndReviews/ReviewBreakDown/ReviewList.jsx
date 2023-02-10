@@ -23,28 +23,29 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
     }
   };
 
-  const handleHelpfulClick = (reviewID) => {
-    axios.put(`http://localhost:3000/reviews/${reviewID}/helpful`).then(() => {
-      console.log('Request for helpful--->');
-    }).catch(() => {
-      console.log('There was an error');
-    });
-  };
+  // const handleHelpfulClick = (reviewID) => {
+  //   axios.put(`http://localhost:3000/reviews/${reviewID}/helpful`).then(() => {
+  //     console.log('Request for helpful--->');
+  //   }).catch(() => {
+  //     console.log('There was an error');
+  //   });
+  // };
 
-  const handleReportClick = (reviewID) => {
-    axios.put(`http://localhost:3000/reviews/${reviewID}/report`).then(() => {
-      console.log('Request for report');
-    }).then(() => {
-      setRender([]);
-    }).catch(() => {
-      console.log('There was an error');
-    });
-  };
+  // const handleReportClick = (reviewID) => {
+  //   axios.put(`http://localhost:3000/reviews/${reviewID}/report`).then(() => {
+  //     console.log('Request for report');
+  //   }).then(() => {
+  //     setRender([]);
+  //   }).catch(() => {
+  //     console.log('There was an error');
+  //   });
+  // };
 
   let totalReviews = [];
   if (productReviews) {
     totalReviews = productReviews.slice(0, visible).map((review, index) => {
-      return <Review key={index} review={review} handleReportClick={handleReportClick} handleHelpfulClick={handleHelpfulClick}/>;
+      return <Review key={index} review={review}/>;
+      // return <Review key={index} review={review} handleReportClick={handleReportClick} handleHelpfulClick={handleHelpfulClick}/>;
     });
   }
 

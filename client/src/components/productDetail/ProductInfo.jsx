@@ -14,7 +14,7 @@ export default function ProductInfo ({productName, category, defaultPrice, sales
       <div className="price">
         {salesPrice ?
           <div className="price-container">
-            <div className="sales-price" style={{color: "red"}}>${salesPrice}</div>
+            <div className="sales-price" style={ { color: 'red' } }>${salesPrice}</div>
             <div className="original-price" style={{textDecoration: 'line-through'}}>${defaultPrice}</div>
           </div>
           : <div className="default-price">${defaultPrice}</div>}

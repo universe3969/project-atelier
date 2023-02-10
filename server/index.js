@@ -11,9 +11,7 @@ app.use(express.json());
 app.use(cors());
 app.use(router);
 
-// Do not comment this out till deployement
-// app.use(express.static(path.join(__dirname, '/client/dist')));
-
+app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.listen(3000, () => {
   console.log('Server is listening on port 3000');

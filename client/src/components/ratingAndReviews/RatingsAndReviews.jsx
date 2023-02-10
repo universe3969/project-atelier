@@ -4,6 +4,8 @@ import RatingList from './RatingBreakDown/RatingList.jsx';
 import axios from 'axios';
 import './RatingsAndReviews.scss';
 
+const REVIEW_URL = '/api/reviews';
+
 const initialStars = {
   5: false,
   4: false,
@@ -22,7 +24,7 @@ const RatingsAndReviews = ({productId, currentProduct}) => {
   const [allSelectStarSort, setAllSelectStarSort] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/reviews/${productId}/${sortBy}`)
+    axios.get(`${REVIEW_URL}/${productId}/${sortBy}`)
       .then(({data}) => {
         let reviews = data.reviews.results;
         let metaData = data.reviewMeta;

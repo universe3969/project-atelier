@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import Styles from './Styles.jsx';
-import axios from 'axios';
 import Gallery from './Gallery.jsx';
 import ProductInfo from './ProductInfo.jsx';
 import Cart from './Cart.jsx';
@@ -57,7 +56,7 @@ const Overview = ({ currentProduct }) => {
     if (currStyle) {
       setPhotos(currStyle.photos);
       setSalesPrice(currStyle.sale_price);
-      setStyleName(currStyle.name)
+      setStyleName(currStyle.name);
     }
   }, [currStyle]);
 
