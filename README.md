@@ -88,5 +88,5 @@ npm start
 5. Navigate to [localhost:3000](http://localhost:3000) in the browser.
 
 6. Contact
-  [Sajana Balal] (https://github.com/SajanaB)
+  [Sajana Balal](https://github.com/SajanaB)
 
