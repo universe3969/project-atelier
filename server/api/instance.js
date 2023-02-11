@@ -1,8 +1,8 @@
 const axios = require('axios');
-require('dotenv').config();
+const { TOKEN } = require('../config');
 
 const instance = axios.create({
-  headers: { 'Authorization': process.env.TOKEN }
+  headers: { 'Authorization': TOKEN }
 });
 
 module.exports = instance;
