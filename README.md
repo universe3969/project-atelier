@@ -53,10 +53,15 @@ This project is about designing the retail portal to implement below mentioned f
 > ### Ratings and Reviews
 + The Ratings & Reviews module will allow viewing and submission of reviews for the product selected. This module contains the following modules:
   - Write new review
+    * A button 'write a review' at the bottom will appear allowing users to create a new review for the product. 
   - Reviews List
-  - Sorting 
+    * This is the heart of this module which will list reviews available for the user to read.
+    * The list displays 2 titles at a time. There is a 'show more' button which adds 2 more reviews on click and the same button will be 'show less' where there is no more reviews to display and 'show less' button will bring the list back to default state.
+    * There is an option to sort the reviews by helpful, relevance or newest.
   - Rating Breakdown
+    * The rating breakdown displays average rating and individual star bars which on click filters the review list with only that star type rating. The click is addidtive if you jump after one click on the particular star to another star but if you double click on the same star, it brings the review list to default state.
   - Product Breakdown
+  * The average feedback received will be displayed for all characteristics which apply to the product. 
 
 ## Usage
 The main purpose of this repository is for education and practicing building React application. 
@@ -81,4 +86,7 @@ npm start
 ```
 
 5. Navigate to [localhost:3000](http://localhost:3000) in the browser.
+
+6. Contact
+  [Sajana Balal] (https://github.com/SajanaB)
 
