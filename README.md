@@ -61,7 +61,7 @@ This project is about designing the retail portal to implement below mentioned f
   - Rating Breakdown
     * The rating breakdown displays average rating and individual star bars which on click filters the review list with only that star type rating. The click is addidtive if you jump after one click on the particular star to another star but if you double click on the same star, it brings the review list to default state.
   - Product Breakdown
-  * The average feedback received will be displayed for all characteristics which apply to the product. 
+    * The average feedback received will be displayed for all characteristics which apply to the product. 
 
 ## Usage
 The main purpose of this repository is for education and practicing building React application. 
