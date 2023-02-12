@@ -8,7 +8,7 @@ import ActionButtons from './ActionButtons.jsx';
 import Modal from '../../reusableComponents/Modal.jsx';
 import AddReviewForm from './AddReviewForm.jsx';
 
-const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sortBy, productName, reviewMetaData}) => {
+const ReviewList = ({productReviews, handleSortClick, starFilter, sortBy, productName, reviewMetaData, setRefresh}) => {
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [visible, setVisible] = useState(2);
@@ -23,29 +23,10 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
     }
   };
 
-  // const handleHelpfulClick = (reviewID) => {
-  //   axios.put(`http://localhost:3000/reviews/${reviewID}/helpful`).then(() => {
-  //     console.log('Request for helpful--->');
-  //   }).catch(() => {
-  //     console.log('There was an error');
-  //   });
-  // };
-
-  // const handleReportClick = (reviewID) => {
-  //   axios.put(`http://localhost:3000/reviews/${reviewID}/report`).then(() => {
-  //     console.log('Request for report');
-  //   }).then(() => {
-  //     setRender([]);
-  //   }).catch(() => {
-  //     console.log('There was an error');
-  //   });
-  // };
-
   let totalReviews = [];
   if (productReviews) {
     totalReviews = productReviews.slice(0, visible).map((review, index) => {
       return <Review key={index} review={review}/>;
-      // return <Review key={index} review={review} handleReportClick={handleReportClick} handleHelpfulClick={handleHelpfulClick}/>;
     });
   }
 
@@ -81,9 +62,10 @@ const ReviewList = ({productReviews, handleSortClick, setRender, starFilter, sor
           <AddReviewForm
             productReviews={productReviews}
             reviewMetaData={reviewMetaData}
-            setRender={setRender}
             productName={productName}
-            onClose={() => setShowModal(false)}/>
+            onClose={() => setShowModal(false)}
+            setRefresh={setRefresh}
+          />
         </Modal>
       }
     </div>

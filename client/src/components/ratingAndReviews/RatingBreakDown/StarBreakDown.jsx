@@ -50,7 +50,7 @@ const StarBreakDown = ({totalVotes, starFilter, setStarFilter, onSortStarRatingR
         <Star
           key={i}
           starType={i}
-          barWidth="0"
+          barWidth={0}
           starFilter={starFilter}
           onSortStarRatingReview={onSortStarRatingReview}
         />

@@ -9,9 +9,15 @@ const getProductReview = (productId, sortCriteria ) => {
       count: 200
     }
   }).then(({ data }) => {
-    let avgRating = (data.results.reduce((total, review) =>
-      total += review.rating, 0)) / data.results.length;
-    return { reviews: data, avgRating: avgRating.toFixed(1) };
+    let avgRating = data.results.reduce((total, review) => {
+      if (review.rating) {
+        return total += review.rating;
+      } else {
+        return total;
+      }
+    }, 0);
+    avgRating = avgRating > 0 ? (avgRating / data.results.length).toFixed(1) : avgRating;
+    return { reviews: data, avgRating };
   });
 };
 

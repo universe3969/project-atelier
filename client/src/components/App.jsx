@@ -10,7 +10,7 @@ import RatingsAndReviews from './ratingAndReviews/RatingsAndReviews.jsx';
 const PRODUCT_URL = '/api/products';
 
 const App = () => {
-  const [productId, setProductId] = useState(37317);
+  const [productId, setProductId] = useState(37318);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [alert, setAlert] = useState(null);
 
