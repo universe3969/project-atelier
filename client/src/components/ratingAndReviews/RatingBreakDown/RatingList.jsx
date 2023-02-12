@@ -37,8 +37,10 @@ const RatingList = ({reviewMetaData, onSortStarRatingReview, starFilter, setStar
   return (
     <div className='ratings-container'>
       <div className='average-star-rating'>
-        <span className='average-rating-text'>{averageRating}</span>
-        <StarRating className='review-star-rating' rating={averageRating}/>
+        <span className='average-rating-text' style={averageRating === 0 ? {fontSize: '1.3rem'} : null}>
+          {averageRating === 0 ? 'No Ratings' : averageRating}
+        </span>
+        {averageRating > 0 && <StarRating className='review-star-rating' rating={averageRating}/>}
       </div>
       <Recommended recommendPercent={recommendPercent}/>
       <StarBreakDown totalVotes={totalVotes} onSortStarRatingReview={onSortStarRatingReview} starFilter={starFilter} setStarFilter={setStarFilter} productReviews={productReviews}/>

@@ -14,31 +14,30 @@ const initialStars = {
   1: false,
 };
 
-const RatingsAndReviews = ({productId, currentProduct}) => {
-  const [ productReviews, setProductReviews ] = useState([]);
-  const [ sortBy, setSortBy ] = useState('relevant');
-  const [render, setRender] = useState([]);
+const RatingsAndReviews = ({ productId, currentProduct }) => {
+  const [productReviews, setProductReviews] = useState([]);
+  const [sortBy, setSortBy] = useState('relevant');
   const [reviewMetaData, setReviewMetaData] = useState({});
   const [starFilter, setStarFilter] = useState(initialStars);
   const [selectStar, setSelectStar] = useState(0);
   const [allSelectStarSort, setAllSelectStarSort] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     axios.get(`${REVIEW_URL}/${productId}/${sortBy}`)
       .then(({data}) => {
-        let reviews = data.reviews.results;
-        let metaData = data.reviewMeta;
-        setProductReviews([...reviews]);
-        setReviewMetaData({...metaData});
+        setProductReviews(data.reviews.results);
+        setReviewMetaData(data.reviewMeta);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [sortBy, render]);
+  }, [sortBy, productId, refresh]);
 
   const handleSortClick = (e) => {
     setSortBy(e.target.value);
   };
+
   const handleSortByStars = (starNumber) => {
     let sortedStarRating = (currentProduct.reviews.results.filter((review) => review.rating === starNumber));
     if (starNumber === selectStar) {
@@ -61,7 +60,13 @@ const RatingsAndReviews = ({productId, currentProduct}) => {
       <h3 className='header'>RATINGS & REVIEWS</h3>
       <div className='rating-review-containers'>
         <RatingList reviewMetaData={reviewMetaData} starFilter={starFilter} setStarFilter={setStarFilter} averageRating={currentProduct.avgRating} onSortStarRatingReview={handleSortByStars} productReviews={productReviews}/>
-        <ReviewList productReviews={productReviews} handleSortClick={handleSortClick} sortBy={sortBy} setRender={setRender} reviewMetaData={reviewMetaData}/>
+        <ReviewList
+          productReviews={productReviews}
+          handleSortClick={handleSortClick}
+          sortBy={sortBy}
+          reviewMetaData={reviewMetaData}
+          setRefresh={setRefresh}
+        />
       </div>
     </div>
   );

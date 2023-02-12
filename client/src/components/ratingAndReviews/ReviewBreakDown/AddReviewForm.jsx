@@ -9,7 +9,7 @@ import './AddReviewForm.scss';
 
 const POST_REVIEW_URL = '/api/reviews/new';
 
-const AddReviewForm = ({setShowReviewModal, onClose, reviewMetaData, setRender, productName, productReviews}) => {
+const AddReviewForm = ({setShowReviewModal, onClose, reviewMetaData, productName, productReviews, setRefresh}) => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -73,7 +73,7 @@ const AddReviewForm = ({setShowReviewModal, onClose, reviewMetaData, setRender, 
         characteristics: characteristics
       })
         .then (res => {
-          console.log(res);
+          setRefresh(true);
           onClose();
         })
         .catch(err => console.log(err));
@@ -99,7 +99,7 @@ const AddReviewForm = ({setShowReviewModal, onClose, reviewMetaData, setRender, 
         <input type="text" className="review-summary" placeholder="summary" onChange={e => { setSummary(e.target.value); }}></input>
       </div>
       <div>
-        <textarea rows="rows" required='required' minLength='50' maxLenght='1100'className="review-content" placeholder="Any thoughts on this product.." onChange={e => { setContent(e.target.value); }}></textarea>
+        <textarea rows="rows" required='required' minLength='50' maxLength='1100'className="review-content" placeholder="Any thoughts on this product.." onChange={e => { setContent(e.target.value); }}></textarea>
       </div>
       <div className='content-warning'>{content.length <= 50 ? `[${50 - content.length}] require to reach minimum limit` : 'Minimum limit reached'}</div>
       <div className="photo-container">
