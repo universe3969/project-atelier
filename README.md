@@ -25,7 +25,7 @@
 Project Atelier is an application built with [React](https://reactjs.org/) and [Node.js](https://nodejs.org/en/). The app is used to show off products to potential customers and allow them to purchase the products.
 
 
-![Atelier](./project-atelier.png?raw=true "Title")
+![Atelier](./images/project-atelier.png?raw=true "Title")
 
 This project is about designing the retail portal to implement below mentioned features:
 
