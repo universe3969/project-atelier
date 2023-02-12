@@ -72,7 +72,7 @@ The main purpose of this repository is for education and practicing building Rea
 
 2. Fork and clone this repo, then open the terminal and navigate to the project root directory.
 
-3. Open config.js and change to your Github access token.
+3. Make a copy of config.example.js named config.js, and change to your Github access token.
 ```js
    TOKEN ='YOUR TOKEN'
 ```
